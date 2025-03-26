@@ -2,16 +2,15 @@ import { data, Route, Routes } from 'react-router-dom'
 import './App.css'
 import UserLayout from './components/UserLayout'
 import AdminLayout from './components/AdminLayout'
-// import TemperatureTest from './components/TemperatureTest'
+
 import MainLayout from './components/MainLayout'
+import Header from './components/Header'
+
 
 function App() {
 
   return (
     <div className='container'>
-      {/* <TemperatureTest/> */}
-
-
       <Routes>
         <Route path='/main' element={ <MainLayout/> }>
           <Route path='' element={ <div>로그인 페이지</div> }/>
