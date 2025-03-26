@@ -1,9 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Chart, registerables } from "chart.js";
 import FarmseyeInput from '../common_component/FarmseyeInput'
 import FarmseyeButton from '../common_component/FarmseyeButton'
 
 const TemperatureTest = () => {
+  //spring에서 온도, 시간 받아오면 state변수
+  //{temperature, time}
+  //const [temp, setTemp] = useState([])
+
   const chartRef = useRef(null);
   let chartInstance = null;
 
@@ -16,11 +20,11 @@ const TemperatureTest = () => {
       chartInstance = new Chart(ctx, {
         type: "bar", //그래프 타입 선택
         data: {
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"], //temp.map((t) => {t.time})
           datasets: [
             {
               label: "# of Votes",
-              data: [15, 20, 60, 10, 70, 30],
+              data: [30, 40, 25, 23, 30, 40], //temp.map((t) => {t.temperature})
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
                 "rgba(54, 162, 235, 0.2)",
@@ -69,7 +73,9 @@ const TemperatureTest = () => {
   
   return (
     <>
-     <canvas ref={chartRef}/>
+      <canvas ref={chartRef}/>
+      <FarmseyeButton title="버튼" size="large"/>
+      <FarmseyeInput/>
     </>
   )
 }
