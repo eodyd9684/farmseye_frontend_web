@@ -5,12 +5,15 @@ import AdminLayout from './components/AdminLayout'
 
 import MainLayout from './components/MainLayout'
 import Header from './components/Header'
+import EnvironmentDetail from './enviroment_componentes/EnvironmentDetail'
 
 
 function App() {
 
   return (
     <div className='container'>
+      <EnvironmentDetail />
+
       <Routes>
         <Route path='/main' element={ <MainLayout/> }>
           <Route path='' element={ <div>로그인 페이지</div> }/>
