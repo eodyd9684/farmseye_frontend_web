@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './EnvironmentDetail.module.css'
 import Weather from './Weather'
+import TempChart from './TempChart'
 
 const EnvironmentDetail = () => {
 
@@ -10,13 +11,13 @@ const EnvironmentDetail = () => {
     <div className={styles.container}>
       <div className={styles.data_container}>
 
-        <div className={styles.weather}>
-          
+        <div>         
           <Weather />
-          
         </div>
 
-        <div>요일별 온도</div>
+        <div>
+          <TempChart />
+        </div>
 
         <div>요일별 습도</div>
       </div>

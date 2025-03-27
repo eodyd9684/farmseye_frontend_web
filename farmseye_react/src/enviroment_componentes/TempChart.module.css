@@ -1,0 +1,22 @@
+.chart {
+  height: 100%;
+}
+
+.temp_chart_title{
+  padding: 4px;
+  width: 120px;
+  background-color: rgb(255, 234, 234);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.temp_chart_title > i{
+  font-size: 2rem;
+  color: rgb(192, 0, 0);
+}
+
+.temp_chart_title > span{
+  font-size: 2rem;
+  font-weight: bold;
+}

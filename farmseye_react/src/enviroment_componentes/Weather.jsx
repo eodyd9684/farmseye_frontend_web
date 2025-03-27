@@ -12,6 +12,9 @@ const Weather = () => {
   //OpenWeatherMap API 키 입력
   const API_KEY = "d2a371b0579c616f5a7b1edc780996c0"; 
 
+  //오늘 날짜 데이터를 저장할 변수
+  const [currentDate, setCurrentDate] = useState('');
+
   //날씨에 따라 들어갈 아이콘
   const weatherIcons = {
     Clear: <i class="bi bi-brightness-high-fill"></i>,
@@ -22,8 +25,22 @@ const Weather = () => {
     Mist: <i class="bi bi-water"></i>,
   };
 
+  //날짜 데이터를 받아오는 함수
+  const getCurrentDate = () => {
+    const today = new Date();
+    
+    // 날짜와 요일을 한글로 표시 (예: 2025년 3월 27일 목요일)
+    const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+    const formattedDate = today.toLocaleDateString('ko-KR', options);
+
+    setCurrentDate(formattedDate);
+  };
+
   //날씨 api를 받아오는 useEffect함수
   useEffect(() => {
+
+    getCurrentDate();
+
     const fetchWeather = async () => {
       try {
         const response = await axios.get(
@@ -55,9 +72,10 @@ const Weather = () => {
           <div className={styles.weather_container}>
             {weatherIcons[weather.weather[0].main] || "🌍"}
             <div className={styles.weather_info}>
-              <p>온도: {weather.main.temp}°C</p>
-              <p>습도: {weather.main.humidity}%</p>
-              <p>날씨: {weather.weather[0].description}</p>
+              <p>온도 : {weather.main.temp}°C</p>
+              <p>습도 : {weather.main.humidity}%</p>
+              <p>날씨 : {weather.weather[0].description}</p>
+              <p>날짜 : {currentDate}</p>
             </div>
           </div>
         ) 
