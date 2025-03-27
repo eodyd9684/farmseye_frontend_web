@@ -2,10 +2,25 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import FarmseyeButton from '../common_component/FarmseyeButton';
 import FarmseyeInput from '../common_component/FarmseyeInput';
+import styles from '../admin/AdminLayout.module.css'
 
 const Admin = () => {
-  //회원 목록 데이터를 저장할 변수
-  // const [userInfo, setUserInfo] = useState()
+  //user 정보를 저장할 변수
+  // const [userInfo, setUserInfo] = useState({
+  //   id : '',
+  //   name : '',
+  //   email : ''
+  // });
+
+  //userData에 기존/새 비밀번호 확인 하는 변수
+  // const [userData, setUserData] = useState({
+  //   name: userInfo ? userInfo.name : '',
+  //   email: userInfo ? userInfo.email : '',
+  //   oldPassword: '',
+  //   newPassword: '',
+  //   confirmNewPassword: ''
+  // })
+  const [isShow, setIsshow] = useState(false)
   
   // const [changeInfo, setChangeIngo] = useState()
   const [users, setUsers] = useState([
@@ -30,7 +45,6 @@ const Admin = () => {
       email : 'er',
       tel : '010-3333' 
     }
-
   ]);
 
   //회원정보 수정
@@ -50,7 +64,7 @@ const Admin = () => {
     .catch(error => console.log(error))
   }
 
-  //수정 버튼 클릭 시 실행하는 함수 (put)
+  // //수정 버튼 클릭 시 실행하는 API (put)
   const updateUserInfo = () => {
     axios.put()
     .then()
@@ -59,7 +73,7 @@ const Admin = () => {
 
   return (
     <>
-      <table>
+      <table className={styles.container}>
         <thead>
           <tr>
             <td>No</td>
@@ -72,7 +86,7 @@ const Admin = () => {
         {
           users.map((u, i) => {
             return(
-              <tbody>
+              <tbody className={styles.user}>
                 <tr key={i}>
                   <td>{users.length - i}</td>
                   <td>{u.id}</td>
@@ -96,6 +110,7 @@ const Admin = () => {
         }
 
         {/* isshow */}
+      
         <tbody>
           <tr>
             <input type="text" value={users[0].id} />
