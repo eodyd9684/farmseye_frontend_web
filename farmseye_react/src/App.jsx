@@ -1,7 +1,7 @@
 import { data, Route, Routes } from 'react-router-dom'
 import './App.css'
 import UserLayout from './components/UserLayout'
-import AdminLayout from './components/AdminLayout'
+import AdminLayout from './admin/AdminLayout'
 
 import MainLayout from './components/MainLayout'
 import Header from './components/Header'

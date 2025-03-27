@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
+import Admin from './Admin'
 
 const AdminLayout = () => {
 
@@ -14,30 +15,7 @@ const AdminLayout = () => {
   })
 
   //임시 데이터
-  const [users, setUsers] = useState([
-    {
-      id : '1111',
-      pw : '1111',
-      name : 'kim',
-      email : 'eroo',
-      tel : '010-1111' 
-    },
-    {
-      id : '2222',
-      pw : '22222',
-      name : 'kim',
-      email : 'ero',
-      tel : '010-2222' 
-    },
-    {
-      id : '3333',
-      pw : '4444',
-      name : 'kim',
-      email : 'ero',
-      tel : '010-3333' 
-    }
-
-  ]);
+  
   //정보를 조회
   axios.get().then().catch()
 
@@ -61,7 +39,8 @@ const AdminLayout = () => {
       <div>
         헤더 컴포넌트
       </div>
-      <div>
+      <Admin/>
+      {/* <div>
         {
           users.map((u, i) => {
             return(
@@ -74,13 +53,8 @@ const AdminLayout = () => {
             )
           })
         }
-      </div>
-      {/* isshow */}
-      <div>아이디 : <input type="text" /></div>
-      <div>이름 : <input type='text'/></div>
-      <div>이메일 : <input type='text'/> </div>
-      <div>전화번호 : <input/> </div>
-
+      </div> */}
+      
       <button type='button' onClick={() => {}}>수정</button>
       <button type='button' onClick={() => {}}>삭제</button>
       <div>
