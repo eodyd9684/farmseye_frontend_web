@@ -1,9 +1,9 @@
-.chart {
+.chart{
   border: 1px solid black;
   width: 500px;
 }
 
-.temp_chart_title{
+.humi_chart_title{
   padding: 4px;
   width: 120px;
   background-color: rgb(255, 234, 234);
@@ -12,12 +12,12 @@
   align-items: center;
 }
 
-.temp_chart_title > i{
-  font-size: 2rem;
+.humi_chart_title>i{
   color: rgb(192, 0, 0);
+  font-size: 2rem;
 }
 
-.temp_chart_title > span{
+.humi_chart_title>span{
   font-size: 2rem;
   font-weight: bold;
 }

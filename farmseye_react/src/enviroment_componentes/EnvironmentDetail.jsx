@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './EnvironmentDetail.module.css'
 import Weather from './Weather'
 import TempChart from './TempChart'
+import HumidityChart from './HumidityChart'
 
 const EnvironmentDetail = () => {
 
@@ -19,7 +20,9 @@ const EnvironmentDetail = () => {
           <TempChart />
         </div>
 
-        <div>요일별 습도</div>
+        <div>
+          <HumidityChart />
+        </div>
       </div>
     </div>
   )

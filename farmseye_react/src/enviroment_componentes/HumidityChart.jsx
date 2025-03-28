@@ -1,30 +1,29 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Chart, registerables } from "chart.js";
-import FarmseyeInput from '../common_component/FarmseyeInput'
-import FarmseyeButton from '../common_component/FarmseyeButton'
-import styles from './TempChart.module.css'
+import React, { useEffect, useRef, useState } from 'react'
+import styles from './HumidityChart.module.css'
+import { Chart, registerables } from 'chart.js';
 
-const TempChart = () => {
-  //데이터베이스에서 온도 데이터 받아올 변수
-  const [tempData, setTempData] = useState([
+const HumidityChart = () => {
+
+ //데이터베이스에서 온도 데이터 받아올 변수
+  const [humiData, setHumiData] = useState([
     {
       no : 1,
-      temp : 26.5
+      humi : 64
     },
     {
       no : 2,
-      temp : 27.2
+      humi : 58
     },
     {
       no : 3,
-      temp : 28.5
+      humi : 72
     },
     {
       no : 4,
-      temp : 24.5
-    }
+      humi : 66
+    },
   ]);
-  
+
 
 
   const chartRef = useRef(null);
@@ -36,18 +35,18 @@ const TempChart = () => {
     const createChart = () => {
       Chart.register(...registerables);
 
-      const minTemp = Math.min(...tempData.map((t) => t.temp)); //...tempData.map((t) => t.temp)
-      const maxTemp = Math.max(...tempData.map((t) => t.temp)); //...tempData.map((t) => t.temp)
+      const minTemp = Math.min(...humiData.map((t) => t.humi));
+      const maxTemp = Math.max(...humiData.map((t) => t.humi));
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
       chartInstance = new Chart(ctx, {
         type: "line", //그래프 타입 선택
         data: {
-          labels: tempData.map((t) => {return t.no}), //temp.map((t) => {t.time})
+          labels: humiData.map((t) => {return t.no}), //temp.map((t) => {t.time})
           datasets: [
             {
-              label: "온도",
-              data: tempData.map((t) => {return t.temp}), //temp.map((t) => {t.temperature})
+              label: "습도",
+              data: humiData.map((t) => {return t.humi}), //temp.map((t) => {t.temperature})
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
                 "rgba(54, 162, 235, 0.2)",
@@ -90,8 +89,8 @@ const TempChart = () => {
               grid: {
                 display: true,
               },
-              min : minTemp - 1,
-              max : maxTemp + 1,
+              min : minTemp - 10,
+              max : maxTemp + 10,
             },
           },
         },
@@ -112,25 +111,27 @@ const TempChart = () => {
       destroyChart(); // 컴포넌트가 unmount될 때 차트 파괴
     };
   }, []);
-    
+
+
 
   return (
     <div>
-      <div className={styles.temp_chart_title}>
-        <i class="bi bi-thermometer-half"></i>
-        <span>온도</span>
+      <div className={styles.humi_chart_title}>
+        <i class="bi bi-droplet-half"></i>
+        <span>습도</span>
       </div>
 
       <div>
         <span>현재 내부 온도 : </span>
-        {tempData[tempData.length - 1].temp}
+        {humiData[humiData.length - 1].humi}
       </div>
 
       <div className={styles.chart}>
         <canvas ref={chartRef} />
       </div>
+     
     </div>
   )
 }
 
-export default TempChart
+export default HumidityChart
