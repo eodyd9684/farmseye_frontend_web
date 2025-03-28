@@ -21,6 +21,8 @@ const Admin = () => {
   //   confirmNewPassword: ''
   // })
   const [isShow, setIsshow] = useState(false)
+  //변경된 변수 저장 state
+  const [newInfo, setNewInfo] = useState('')
   
   // const [changeInfo, setChangeIngo] = useState()
   const [users, setUsers] = useState([
@@ -49,10 +51,14 @@ const Admin = () => {
 
   //회원정보 수정
   const changeData = (e) => {
-    setUsers({
-      ...users,
-      [e.target.name] : e.target.value
-    })
+    // setUsers({
+    //   ...users,
+    //   [e.target.name] : e.target.value
+    // })
+    const copyUsers = [...users]
+    const findUser = copyUsers.find((user) => {return user.id === users.id})
+    findUser.pw = newInfo
+    setUsers(copyUsers)
   }
   
   //삭제 버튼 클릭 시 실행하는 함수 (delete)
@@ -110,9 +116,10 @@ const Admin = () => {
         }
 
         {/* isshow */}
-      
         <tbody>
-          <tr>
+          {
+          isShow ?
+           <tr>
             <input type="text" value={users[0].id} />
             <td><FarmseyeInput value={users[0].id}/> </td>
             <td><FarmseyeInput/> </td>
@@ -122,10 +129,11 @@ const Admin = () => {
             <td>전화번호</td>
             <td>회원상태</td>
           </tr>
+          : null 
+          }
         </tbody>
       </table>
 
-      
     </>
   )
 }

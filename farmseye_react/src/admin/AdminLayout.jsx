@@ -39,24 +39,9 @@ const AdminLayout = () => {
       <div>
         헤더 컴포넌트
       </div>
-      <Admin/>
-      {/* <div>
-        {
-          users.map((u, i) => {
-            return(
-            <div key={i}>
-              <div>{u.id} </div>
-              <div>{u.name}</div>
-              <div>{u.email}</div>
-              <div>{u.tel}</div>
-            </div>
-            )
-          })
-        }
-      </div> */}
       
-      <button type='button' onClick={() => {}}>수정</button>
-      <button type='button' onClick={() => {}}>삭제</button>
+      <Admin/>
+      
       <div>
         <Outlet/>
       </div>

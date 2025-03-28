@@ -5,6 +5,7 @@ import AdminLayout from './admin/AdminLayout'
 
 import MainLayout from './components/MainLayout'
 import Header from './components/Header'
+import UserJoin from './admin/UserJoin'
 
 
 function App() {
@@ -25,7 +26,8 @@ function App() {
         </Route> */}
 
       </Routes>
-          <AdminLayout/>
+          {/* <AdminLayout/> */}
+          <UserJoin/>
     </div>
   )
 }
