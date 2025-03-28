@@ -6,9 +6,9 @@ import FarmseyeButton from '../common_component/FarmseyeButton';
 const UserJoin = () => {
   //id 입력이 잘못되었을 때 나타나는 에러 메세지
   const [errorMsg, setErrorMsg] = useState({
-    userId: "",
-    userPw: "",
-    userTel: "",
+    userId: '',
+    userPw: '',
+    userTel: ''
   });
 
   //입력한 값을 저장할 변수
@@ -140,7 +140,7 @@ const UserJoin = () => {
             type='text' 
             name='userId' 
             value={userList.userId} 
-            onchange={(e) => {
+            onChange={(e) => {
               changeUserList(e)
            }} 
           />
@@ -151,7 +151,7 @@ const UserJoin = () => {
             type='password' 
             name='userPw' 
             value={userList.userPw} 
-            onchange={(e) => {
+            onChange={(e) => {
               changeUserList(e)
             }}
           /> 
@@ -161,7 +161,7 @@ const UserJoin = () => {
             type='text' 
             name='userName' 
             value={userList.userName} 
-            onchange={(e) => {
+            onChange={(e) => {
               changeUserList(e)
             }}
           /> 
@@ -171,7 +171,7 @@ const UserJoin = () => {
             type='text'
             name='userAge'
             value={userList.userAge}
-            onchange={(e) => {
+            onChange={(e) => {
               changeUserList(e)
             }}
           /> 
@@ -181,7 +181,7 @@ const UserJoin = () => {
             type='text'
             name='userAddr'
             value={userList.userAddr}
-            onchange={(e) => {
+            onChange={(e) => {
               changeUserList(e)
             }}
           /> 
@@ -191,20 +191,20 @@ const UserJoin = () => {
             type='text'
             name='email1'
             value={userList.email1}
-            onchange={(e) => {
+            onChange={(e) => {
               changeUserList(e)
             }}
           />
           <select
             name='email2'
             value={userList.email2}
-            onchange={(e) => {
+            onChange={(e) => {
               changeUserList(e)
             }}
           >
-            <option value='@gmail.com'/>
-            <option value='@naver.com'/>
-            <option value='@nate.com'/>
+            <option value='@gmail.com'>@gmail.com</option>
+            <option value='@naver.com'>@naver.com</option>
+            <option value='@nate.com'>@nate.com</option>
           </select>
         </div>
         <div>연락처 : 
@@ -212,7 +212,7 @@ const UserJoin = () => {
             type='text'
             name='tel1'
             value={userList.tel1}
-            onchange={(e) => {
+            onChange={(e) => {
               changeUserList(e)
             }}
           />
@@ -220,7 +220,7 @@ const UserJoin = () => {
             type='text'
             name='tel2'
             value={userList.tel2}
-            onchange={(e) => {
+            onChange={(e) => {
               changeUserList(e)
             }}
           />
@@ -228,7 +228,7 @@ const UserJoin = () => {
             type='text'
             name='tel3'
             value={userList.tel3}
-            onchange={(e) => {
+            onChange={(e) => {
               changeUserList(e)
             }}
           />
