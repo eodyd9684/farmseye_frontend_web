@@ -2,7 +2,7 @@
   border: 1px solid black;
   width: 80%;
   margin: 0 auto;
-  
+  background-color: #F4EEFF;
 }
 
 .first_container{
@@ -28,6 +28,10 @@
   width: 30%;
   height: 400px;
   border-radius: 6px;
+  background-color: #DCD6F7;
+  object-fit: cover;
+  object-position: center center;
+  transition: all 1s;
 }
 
 .second_container > div{
@@ -35,5 +39,8 @@
   width: 30%;
   height: 400px;
   border-radius: 6px;
+  background-color: #DCD6F7;
+  position: relative;
+  overflow: hidden;
 }
 

@@ -26,8 +26,8 @@ function App() {
         </Route> */}
 
       </Routes>
-          {/* <AdminLayout/> */}
-          <UserJoin/>
+          <AdminLayout/>
+          {/* <UserJoin/> */}
     </div>
   )
 }
