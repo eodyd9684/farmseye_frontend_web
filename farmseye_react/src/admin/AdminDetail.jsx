@@ -48,10 +48,10 @@ const AdminDetail = ({u, users, setUsers, i}) => {
       <td>{u.age}</td>
       <td><FarmseyeInput value={u.email}/></td>
       <td><FarmseyeInput value={u.tel}/> </td>
-      <td><FarmseyeInput value={u.isUsing}/></td>
-      <td>{u.regDate}</td>
-      <FarmseyeButton title='변경' size='small' onClick={(e => {})} />
-      <FarmseyeButton title='취소' size='small' onClick={(e) => {}}/>
+      <td><FarmseyeInput value={u.regDate}/></td>
+      <td>{u.isUsing}</td>
+      <FarmseyeButton title='변경' size='small' onClick={e => {}} />
+      <FarmseyeButton title='취소' size='small' onClick={e => {}}/>
     </tr>
     :
     <tbody className={styles.user}>
@@ -63,8 +63,8 @@ const AdminDetail = ({u, users, setUsers, i}) => {
         <td>{u.age}</td>
         <td>{u.email} </td>
         <td>{u.tel} </td>
-        <td>{u.isUsing}</td>
-        <td>{u.regDate} </td>
+        <td>{u.regDate}</td>
+        <td>{u.isUsing} </td>
         <td className={styles.btn}>
         <FarmseyeButton 
           title='수정' 
