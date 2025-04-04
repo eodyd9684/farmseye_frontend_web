@@ -1,108 +1,88 @@
-import axios from 'axios'
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useState } from 'react';
 import FarmseyeButton from '../common_component/FarmseyeButton';
 import FarmseyeInput from '../common_component/FarmseyeInput';
-import styles from '../admin/AdminLayout.module.css'
+import styles from '../admin/AdminLayout.module.css';
 import AdminDetail from './AdminDetail';
 
 const Admin = () => {
-  //user 정보를 저장할 변수
-  // const [userInfo, setUserInfo] = useState({
-  //   id : '',
-  //   name : '',
-  //   email : ''
-  // });
-  
-  // const [changeInfo, setChangeIngo] = useState()
+  // 사용자 리스트
   const [users, setUsers] = useState([
     {
-      id : '1111',
-      pw : '1111',
-      name : 'kim',
-      age : '20',
-      email : 'eroo',
-      tel : '010-1111',
-      regDate : '2025-04-02',
-      isUsing : 'Y' 
+      userId: '1111',
+      userPw: '1111',
+      userName: 'kim',
+      userAge: '20',
+      userEmail: 'eroo',
+      userTel: '010-1111',
+      regDate: '2025-04-02',
+      isUsing: 'Y',
     },
     {
-      id : '2222',
-      pw : '22222',
-      name : 'lee',
-      age : '25',
-      email : 'ero',
-      tel : '010-2222',
-      regDate : '2025-04-02',
-      isUsing : 'Y' 
+      userId: '2222',
+      userPw: '22222',
+      userName: 'lee',
+      userAge: '25',
+      userEmail: 'ero',
+      userTel: '010-2222',
+      regDate: '2025-04-02',
+      isUsing: 'Y',
     },
     {
-      id : '3333',
-      pw : '4444',
-      name : 'hong',
-      age : '30',
-      email : 'er',
-      tel : '010-3333',
-      regDate : '2025-04-02',
-      isUsing : 'Y' 
-    }
+      userId: '3333',
+      userPw: '4444',
+      userName: 'hong',
+      userAge: '30',
+      userEmail: 'er',
+      userTel: '010-3333',
+      regDate: '2025-04-02',
+      isUsing: 'Y',
+    },
   ]);
 
-  //검색 데이터를 관리하는 변수
+  // 검색 데이터
   const [searchData, setSearchData] = useState({
-    searchKeyword : 'id', //기본 검색 키워드
-    searchValue : ''      // 검색창에 입력된 값
-  })
+    searchKeyword: 'userId', // 기본 검색 키워드 (userId)
+    searchValue: '', // 검색창 입력값
+  });
 
-  // 필터링된 결과를 저장하는 변수
-  const [filteredUsers, setFilteredUsers] = useState([]);
+  // 필터링된 사용자 리스트
+  const [filteredUsers, setFilteredUsers] = useState(users);
 
-  //검색창 내용 변경 시 실행되는 함수
+  // 검색창 입력 변경 시 실행되는 함수
   const changeSearchData = (e) => {
     setSearchData({
       ...searchData,
-      [e.target.name] : e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  //검색 버튼 클릭 시 실행 함수
+  // 검색 버튼 클릭 시 실행되는 함수
   const searchList = () => {
-    // axios.get(`/api/users?searchId=${searchData.searchId}&searchName=${searchData.searchName}&searchTel=${searchData.searchTel}`)
-    // .then(res => setUsers(res.data))
-    // .catch(error => console.log(error))
-    
-    //const [searchKeyword, searchValue] = searchData;
+    const { searchKeyword, searchValue } = searchData;
+    const keyword = searchKeyword ?? ''; // 키워드 기본값
+    const value = searchValue?.toString().toLowerCase() ?? ''; // 입력값 기본값
 
-    // 필터링 로직: 사용자가 선택한 키워드와 입력값을 기준으로 데이터 필터링
-    // const results = users.filter((user) =>
-    //   user[searchKeyword]?.toString().toLowerCase().includes(searchValue.toLowerCase())
-    // );
+    const results = users.filter((user) =>
+      user[keyword]?.toString().toLowerCase().includes(value)
+    );
 
-    // setFilteredUsers(results);
-    // for(let i = 0 ; i < users.length; i++){
-    //   if(searchData.searchKeyword === users[i].id){
-    //     setResult(...result, users[i])
-    //   }
-    // }
-    // return result;
-  }
+    setFilteredUsers(results);
+  };
 
-  console.log(searchData)
   return (
     <div className={styles.container}>
-      <select name="searchKeyword" value={searchData.searchKeyword} onChange={e => {changeSearchData(e)}}>
-        <option value="id">아이디</option>
-        <option value="name">이름</option>
-        <option value="tel">연락처</option>
+      <select name="searchKeyword" value={searchData.searchKeyword} onChange={changeSearchData}>
+        <option value="userId">아이디</option>
+        <option value="userName">이름</option>
+        <option value="userTel">연락처</option>
       </select>
       <div>
-        <FarmseyeInput 
-          name={searchData.searchId}
-          value={searchData[searchData.searchId]} 
-          onChange={e => changeSearchData(e)}
-          pleacholder={`검색할 ${searchData.searchId === 'id' ? '아이디' : searchData.searchId === 'name' ? '이름' : '연락처'}`}/> 
-        <FarmseyeButton title='검색' size='small' onClick={e => searchData()}/>
+        <FarmseyeInput name="searchValue" value={searchData.searchValue} onChange={changeSearchData} />
+        <FarmseyeButton title="검색" size="small" onClick={searchList} />
       </div>
-      <table className={styles.tableContainer}>
+
+      <table border={1} className={styles.tableContainer}>
         <thead>
           <tr>
             <td>No</td>
@@ -116,21 +96,16 @@ const Admin = () => {
             <td>상태</td>
           </tr>
         </thead>
-        
-        {
-          users.map((u, i) => {
-            return(
-                  
-                  <AdminDetail key={i} users={users} i={i} u={u} setUsers={setUsers}/>
 
-            )
-          })
-        }
-        
+        <tbody>
+          {filteredUsers.map((u, i) => (
+            <AdminDetail key={i} users={filteredUsers} i={i} u={u} setUsers={setUsers} />
+          ))}
+        </tbody>
+
       </table>
-      
     </div>
-  )
-}
+  );
+};
 
-export default Admin
+export default Admin;

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import FarmseyeInput from '../common_component/FarmseyeInput';
 import FarmseyeButton from '../common_component/FarmseyeButton';
+import { regUser } from '../apis/userApi';
 
 const UserJoin = () => {
   //id 입력이 잘못되었을 때 나타나는 에러 메세지
@@ -89,7 +90,7 @@ const UserJoin = () => {
     const result = joinValiData()
 
     if(result === 0){
-      axios.post('/api/users', userList) 
+      regUser(userList) 
       .then(res => {
         //회원가입 됐을 때
         if (res.data === true){
