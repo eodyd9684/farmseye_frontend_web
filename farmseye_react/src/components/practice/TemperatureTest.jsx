@@ -1,0 +1,83 @@
+import React, { useEffect, useRef, useState } from "react";
+import { Chart, registerables } from "chart.js";
+import FarmseyeInput from '../../common_component/FarmseyeInput'
+import FarmseyeButton from '../../common_component/FarmseyeButton'
+
+const TemperatureTest = () => {
+  //spring에서 온도, 시간 받아오면 state변수
+  //{temperature, time}
+  //const [temp, setTemp] = useState([])
+
+  const chartRef = useRef(null);
+  let chartInstance = null;
+
+  useEffect(() => {
+    const ctx = chartRef.current.getContext("2d");
+
+    const createChart = () => {
+      Chart.register(...registerables);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      chartInstance = new Chart(ctx, {
+        type: "bar", //그래프 타입 선택
+        data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"], //temp.map((t) => {t.time})
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [30, 40, 25, 23, 30, 40], //temp.map((t) => {t.temperature})
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+            },
+          },
+        },
+      });
+    };
+
+    const destroyChart = () => {
+      if (chartInstance) {
+        chartInstance.destroy();
+        chartInstance = null;
+      }
+    };
+
+    destroyChart(); // 기존 차트 파괴
+    createChart(); // 새로운 차트 생성
+
+    return () => {
+      destroyChart(); // 컴포넌트가 unmount될 때 차트 파괴
+    };
+  }, []);
+  
+  return (
+    <>
+      <canvas ref={chartRef}/>
+      <FarmseyeButton title="버튼" size="large"/>
+      <FarmseyeInput/>
+    </>
+  )
+}
+
+export default TemperatureTest

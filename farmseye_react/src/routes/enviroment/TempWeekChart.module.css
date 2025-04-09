@@ -1,0 +1,31 @@
+.container{
+  width: 100vw;
+  min-width: 1200px;
+}
+
+/* 화면이 600px 이하로 줄어들면 width를 100%로 변경 */
+@media (max-width: 1200px) {
+  .container {
+    width: 100%;
+    min-width: 1200px; /* 최소 너비 제한 해제 */
+  }
+}
+
+
+
+.day_box{
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid red;
+  width: 100%;
+}
+
+.days_container{
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+}
+
+.week_temp{
+  padding: 10px;
+}

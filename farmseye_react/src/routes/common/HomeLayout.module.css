@@ -1,0 +1,103 @@
+.size{
+  width: 100vw;
+  min-width: 1200px;
+}
+
+/* 화면이 600px 이하로 줄어들면 width를 100%로 변경 */
+@media (max-width: 1200px) {
+  .size {
+    width: 100%;
+    min-width: 1200px; /* 최소 너비 제한 해제 */
+  }
+}
+
+
+.home_container{
+  width: 100vw;
+  margin: 0px auto;
+  background-color: lightgrey;
+  height: 70vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.home_container>img{
+  display: block;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  position: relative;
+}
+
+.home_container>div{
+  background-color: lightpink;
+  opacity: 0.6;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.footer{
+  border: 1px solid red;
+  height: 17vh;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+}
+
+.footer_contact{
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 280px;
+}
+
+.footer_contact>img{
+  width: 60px;
+  border-radius: 10px;
+  border: 1px solid rgba(128, 128, 128, 0.219);
+  box-shadow: 6px 6px 6px grey;
+}
+
+.contact_icon {
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact_icon > i {
+  color: grey;
+  font-size: 1.5rem;
+}
+.contact_icon>i:hover{
+  cursor: pointer;
+  color: black;
+  font-size: 1.8rem;
+  transition: all 0.5s;
+}
+
+
+
+.footer_info{
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  height: 100%;
+}
+
+.footer_info > i{
+  width: 200px;
+  font-size: 1.8rem;
+  color: lightcoral;
+}

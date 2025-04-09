@@ -1,3 +1,11 @@
-.container{
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
+.route-body {
+  flex: 1; /* 남은 공간 모두 차지 */
+  margin-top: 13vh;
+  overflow-y: auto;
 }
