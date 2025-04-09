@@ -14,6 +14,12 @@ export default defineConfig({
         changeOrigin: true,
         // 요청 경로에서 '/api' 제거
         rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+      
+      '/openapi': {
+        target: 'http://211.237.50.150:7080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/openapi/, '/openapi'),
       }
     }
   }

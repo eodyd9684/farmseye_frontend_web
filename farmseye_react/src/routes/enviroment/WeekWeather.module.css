@@ -1,0 +1,39 @@
+
+.week_weather{
+  border: 1px solid black;
+  display: flex;
+}
+
+.day{
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.week_weather>div{
+  flex: 1;
+  border: 1px solid red;
+  text-align: center;
+}
+
+.weather_card{
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.weather_card>div{
+  flex: 1;
+  border: 1px solid blue;
+}
+
+.weather_card > div i{
+  color: lightgrey;
+  font-size: 4rem;
+}
+
+.weather_card>div:nth-child(2){
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
