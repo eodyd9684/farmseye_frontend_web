@@ -1,0 +1,45 @@
+.container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left{
+  border: 1px solid grey;
+  border-radius: 10px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 150px;
+  align-items: center;
+  padding: 10px;
+}
+
+.left > p{
+  color: grey;
+  font-weight: bold;
+}
+
+.right{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 40%;
+}
+
+.right>div{
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.right p{
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+}
+
+.right p > span{
+  font-weight: 700;
+  font-size: 0.9rem;
+}

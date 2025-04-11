@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import GaugeComponent from 'react-gauge-component';
 
-const GaugeDesign = () => {
-  const [temperature, setTemperature] = useState(25);
-  const [limit1, setLimit1] = useState(22);
-  const [limit2, setLimit2] = useState(28);
+const GaugeDesign = ({appropriate}) => {
+  const temperature = appropriate.now
+  const limit1 = appropriate.min
+  const limit2 = appropriate.max
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', width:'100%' }}>
       <GaugeComponent
         type="semicircle"
         arc={{
@@ -16,7 +16,7 @@ const GaugeDesign = () => {
           subArcs: [
             { limit: limit1, color: '#F5CD19' },
             { limit: limit2, color: '#5BE12C' },
-            { color: '#EA4228' },
+            { color: '#F5CD19' },
           ],
         }}
         pointer={{
@@ -35,46 +35,28 @@ const GaugeDesign = () => {
           },
         }}
         value={temperature}
-        minValue={0}
-        maxValue={40}
+        minValue={appropriate.min - 5}
+        maxValue={appropriate.max + 5}
       />
       <div style={{
         position: 'absolute',
-        top: '35%', // 위치 조정
-        left: '13%', // 위치 조정
-        fontSize: '2rem',
-        color: '#000',
+        top: '20%', // 위치 조정
+        left: '25%', // 위치 조정
+        fontSize: '0.8rem',
+        color: '#bbb',
       }}>
-        {limit1} °C
+        {limit1} 
       </div>
       <div style={{
         position: 'absolute',
-        top: '35%', // 위치 조정
-        right: '13%', // 위치 조정
-        fontSize: '2rem',
-        color: '#000',
+        top: '20%', // 위치 조정
+        right: '25%', // 위치 조정
+        fontSize: '0.8rem',
+        color: '#bbb',
       }}>
-        {limit2} °C
+        {limit2} 
       </div>
 
-      <div style={{
-        position: 'absolute',
-        top: '92%', // 위치 조정
-        left: '5%', // 위치 조정
-        fontSize: '2rem',
-        color: '#000',
-      }}>
-        0°C
-      </div>
-      <div style={{
-        position: 'absolute',
-        top: '92%', // 위치 조정
-        right: '4%', // 위치 조정
-        fontSize: '2rem',
-        color: '#000',
-      }}>
-        40 °C
-      </div>
     </div>
   )
 }

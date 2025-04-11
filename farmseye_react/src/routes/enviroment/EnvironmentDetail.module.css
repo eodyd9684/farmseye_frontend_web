@@ -18,7 +18,6 @@
   height: 100%;
   padding: 20px;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   gap: 20px;
 }
@@ -38,3 +37,12 @@
   flex: 1;
 }
 
+.gas_info{
+  display: flex;
+  
+}
+
+.gas_info>div {
+  flex: 1;
+  border: 1px solid red;
+}

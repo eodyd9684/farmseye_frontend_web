@@ -1,16 +1,50 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './HomeLayout.module.css'
 
 const HomeLayout = () => {
+  const images = [
+    "/images/easter_bunny_2026-wallpaper-2880x1200.jpg",
+    "/images/powerprod.jpg",
+    "/images/smart-farming-technology-tools-systems-set-illustration-vector-illustration_345238-4985.avif"
+  ];
+  
+
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent(prev => (prev + 1) % images.length);
+    }, 30000); // 30초마다 슬라이드 전환
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className={styles.size}>
       <div className={styles.home_container}>
-        <img src="public\easter_bunny_2026-wallpaper-2880x1200.jpg" alt="메인 홈 이미지.jpg" />
+        
+        <img
+          src={images[current]}
+          alt={`슬라이드 이미지 ${current + 1}`}
+          className={styles.slider_image}
+        />
+
         <div>
           <h2>Farms Eye</h2>
           <p>Lorem ipsum dolor sit amet.</p>
         </div>
+
+        {/* 인디케이터 점 */}
+        <div className={styles.dots}>
+          {images.map((_, index) => (
+            <span
+              key={index}
+              className={`${styles.dot} ${current === index ? styles.active : ''}`}
+              onClick={() => setCurrent(index)}
+            />
+          ))}
+        </div>
+
       </div>
 
       <div className={styles.footer}>

@@ -1,8 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import styles from './TempWeekChart.module.css'
 import SimpleBarChart from '../../components/SimpleBarChart';
+import { useSelector } from 'react-redux';
+import DataChart from './DataChart';
 
 const TempWeekChart = () => {
+  const today = useSelector(state => state.today.today);
+
+  //test
+    const [tempData, setTempData] = useState([
+      {
+        no: 1,
+        temp: 26.5,
+      },
+      {
+        no: 2,
+        temp: 27.2,
+      },
+      {
+        no: 3,
+        temp: 28.5,
+      },
+      {
+        no: 4,
+        temp: 24.5,
+      },
+    ]);
+
   // 예시 데이터
   const [weekTemp, setWeekTemp] = useState([
     [
@@ -129,7 +153,11 @@ const TempWeekChart = () => {
   
   return (
     <div className={styles.container}>
-      <h2>이전 데이터</h2>
+      <h2>주간 데이터</h2>
+
+      <div>
+        <DataChart today={today} data={tempData} dataKey={'temp'}/>
+      </div>
       
       <div className={styles.days_container} >
         {weekDays.map((day, index) => (
