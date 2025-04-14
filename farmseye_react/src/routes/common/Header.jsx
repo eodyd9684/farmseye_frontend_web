@@ -29,6 +29,7 @@ const Header = () => {
 
 
         <div className={styles.content_list}>
+          
           <ul 
             className={styles.menu} 
             onMouseEnter={() => handleMouseEnter('축사 내부')} 
@@ -86,7 +87,6 @@ const Header = () => {
               </div>
             )}
           </ul>
-
 
         </div>
 

@@ -21,11 +21,11 @@ const SimpleChart = ({dataKey, data, legend = null, yAxis=''}) => {
         />
 
         <XAxis 
-          dataKey='no'
-          tickFormatter={(value) => `시간 : ${value}`}
+          dataKey='timestamp'
+          tickFormatter={(value) => `${value.slice(14, 16)}`}
           tickLine={{ strokeDasharray: '3 3', stroke: '#888', strokeWidth: 1 }}
           tickSize={15}
-          padding={{ left: 50, right: 50 }}
+          padding={{ left: 20, right: 20 }}
           axisLine={{ stroke: '#000000' }}
         />
 
@@ -37,6 +37,7 @@ const SimpleChart = ({dataKey, data, legend = null, yAxis=''}) => {
           tickFormatter={(value) => `${value} ${yAxis}`}
           tickLine={{ strokeDasharray: '3 3', stroke: '#888', strokeWidth: 1 }}
           tickSize={15}
+          padding={{ top: 30, bottom: 20 }}
           axisLine={{ stroke: '#000000' }}
         />
 

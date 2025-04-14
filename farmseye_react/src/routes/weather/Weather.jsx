@@ -89,20 +89,24 @@ const Weather = ({today}) => {
       weather ? 
         (
           <div className={styles.weather_container}>
-            {weatherIcons[weather.weather[0].main] || "🌍"}
-            <div className={styles.weather_info}>
-              <p>시간 : {hour}</p>
-              <p>날짜 : {today}{`(${getDayOfWeek()})`}</p>
-              <p>날씨 : {weather.weather[0].description}</p>
-              <p>온도 : {weather.main.temp} °C</p>
-              <p>체감온도 : {weather.main.feels_like} °C</p>
-              <p>습도 : {weather.main.humidity} %</p>
-              <p>기압 : {weather.main.feels_like} (hPa)</p>
-              <p>풍속 : {weather.wind.speed} (m/s)</p>
-              <p>풍향 : {weather.wind.deg} (도)</p>
-              <p>강수량 : {weather.rain?.["1h"] ??  "0"} (mm)</p>
-
+            <div className={styles.weather_icon}>
+              {weatherIcons[weather.weather[0].main] || "🌍"}
+              <p>{today}{`(${getDayOfWeek()})`}</p>
             </div>
+
+            <div>
+              <p>날씨 : <span>{weather.weather[0].description}</span></p>
+              <p>온도 : <span>{weather.main.temp} °C</span></p>
+              <p>습도 : <span>{weather.main.humidity} %</span></p>
+            </div>
+            
+            <div>
+              <p>기압 : <span>{weather.main.feels_like} (hPa)</span></p>
+              <p>풍속 : <span>{weather.wind.speed} (m/)</span></p>
+              <p>풍향 : <span>{weather.wind.deg} (도)</span></p>
+              <p>강수량 : <span>{weather.rain?.["1h"] ??  "0"} (mm)</span></p>
+            </div>
+
           </div>
         ) 
         : 

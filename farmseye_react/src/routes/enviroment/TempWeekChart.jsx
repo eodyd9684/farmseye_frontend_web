@@ -3,45 +3,29 @@ import styles from './TempWeekChart.module.css'
 import SimpleBarChart from '../../components/SimpleBarChart';
 import { useSelector } from 'react-redux';
 import DataChart from './DataChart';
+import { selectEnvList } from '../../apis/enviromentApi';
 
 const TempWeekChart = () => {
   const today = useSelector(state => state.today.today);
 
-  //test
-    const [tempData, setTempData] = useState([
-      {
-        no: 1,
-        temp: 26.5,
-      },
-      {
-        no: 2,
-        temp: 27.2,
-      },
-      {
-        no: 3,
-        temp: 28.5,
-      },
-      {
-        no: 4,
-        temp: 24.5,
-      },
-    ]);
+  //오늘 기준 농장 내부 환경 데이터 12개
+  const [envData, setEnvData] = useState(null);
 
   // 예시 데이터
   const [weekTemp, setWeekTemp] = useState([
     [
-      26.5,
-      26.7,
-      26.8,
-      26.5,
-      24.5,
-      24.9,
-      25.3,
-      25.7,
-      26.5,
-      26.5,
-      26.5,
-      26.5,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10
     ],
     [
       26.5,
@@ -129,6 +113,36 @@ const TempWeekChart = () => {
     ]
   ]);
 
+  useEffect(() => {
+    const fetchEnvData = async () => {
+      try {
+        const res = await selectEnvList();
+        const env = res.data.filter((item) => {
+          item.illumi = (10000 / (item.illumi + 1)).toFixed(1)
+          const date = new Date(item.timestamp)
+          return date.getHours() === 15;
+        })
+        const envCopy = []
+        for(let i = env.length - 12 ; i < env.length ; i ++){
+          envCopy.push(env[i])
+        }
+        setEnvData(envCopy);
+//////////////////////////////////////////////////////////////////////////////////////////
+        //일주일 전 데이터(weekTemp) 받아오기(시간별)
+        const data = res.data;
+        console.log(data)
+//////////////////////////////////////////////////////////////////////////////////////////
+      } catch (error) {
+        console.error("환경 데이터를 불러오는 중 오류 발생:", error);
+      }
+    };
+  
+    fetchEnvData();
+  }, []);
+
+
+  
+
   const [weekDays, setWeekDays] = useState([]);
 
   useEffect(() => {
@@ -155,9 +169,10 @@ const TempWeekChart = () => {
     <div className={styles.container}>
       <h2>주간 데이터</h2>
 
-      <div>
-        <DataChart today={today} data={tempData} dataKey={'temp'}/>
-      </div>
+      {envData === null ? null : 
+        <div>
+        <DataChart today={today} data={envData} dataKey={'temp'}/>
+      </div>}
       
       <div className={styles.days_container} >
         {weekDays.map((day, index) => (

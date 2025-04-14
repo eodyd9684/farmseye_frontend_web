@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './EnvironmentDetail.module.css'
 import { useSelector } from 'react-redux'
 import DataChart from './DataChart'
+import { selectEnvList } from '../../apis/enviromentApi'
 
 const EnvironmentDetail = () => {
   //오늘 날짜 받아오기
@@ -10,111 +11,90 @@ const EnvironmentDetail = () => {
   const dataKey = {
     temp : 'temp',
     humi : 'humi',
-    lux : 'lux'
+    illumi : 'illumi'
   };
 
-  //데이터베이스에서 온도 데이터 받아올 변수
-  const [tempData, setTempData] = useState([
-    {
-      no: 1,
-      temp: 26.5,
-    },
-    {
-      no: 2,
-      temp: 27.2,
-    },
-    {
-      no: 3,
-      temp: 28.5,
-    },
-    {
-      no: 4,
-      temp: 24.5,
-    },
-  ]);
+  //오늘 기준 농장 내부 환경 데이터 12개
+  const [envData, setEnvData] = useState(null);
 
-  //데이터베이스에서 습도 데이터 받아올 변수
-  const [humiData, setHumiData] = useState([
-    {
-      no: 1,
-      humi: 64,
-    },
-    {
-      no: 2,
-      humi: 58,
-    },
-    {
-      no: 3,
-      humi: 72,
-    },
-    {
-      no: 4,
-      humi: 66,
-    },
-  ]);
-
-  //데이터베이스에서 조도 데이터 받아올 변수
-  const [luxData, setLuxData] = useState([
-    {
-      no: 1,
-      lux: 26.5,
-    },
-    {
-      no: 2,
-      lux: 27.2,
-    },
-    {
-      no: 3,
-      lux: 28.5,
-    },
-    {
-      no: 4,
-      lux: 24.5,
-    },
-  ]);
-
-  //co2, no2, nh3, h2s 현재값
+   //co2, no2, nh3, h2s 현재값
   const [appropriateNowData, setAppropriateNowData] = useState({
-    co2 : 2210,
-    no2 : 6,
-    nh3 : 10,
-    h2s : 0.2
+    co2 : 0,
+    no2 : 0,
+    nh3 : 0,
+    h2s : 0
   });
 
+  useEffect(() => {
+    const fetchEnvData = async () => {
+      try {
+        const res = await selectEnvList();
+        const data = res.data[res.data.length - 1];
+        const env = res.data.filter((item) => {
+          item.illumi = (10000 / (item.illumi + 1)).toFixed(1)
+          const date = new Date(item.timestamp)
+          return date.getHours() === 15;
+        })
+        const envCopy = []
+        for(let i = env.length - 12 ; i < env.length ; i ++){
+          envCopy.push(env[i])
+        }
+        setEnvData(envCopy);
+  
+        setAppropriateNowData(prev => ({
+          ...prev,
+          co2: data.co2.toFixed(1),
+          no2: data.no2.toFixed(3),
+          nh3: data.nh3.toFixed(3),
+          h2s: data.h2s.toFixed(3),
+        }));
+      } catch (error) {
+        console.error("환경 데이터를 불러오는 중 오류 발생:", error);
+      }
+    };
+  
+    fetchEnvData();
+  }, []);
+  
 
 
   return (
     <div className={styles.container}>
-      <div className={styles.data_container}>
-        
-        <div>
-          <div>
-            <i class="bi bi-thermometer-half"></i>
-            <span>온도</span>
-          </div>
-
-          <DataChart today={today} data={tempData} dataKey={dataKey.temp}/>
-        </div>
-
-        <div>
-          <div >
-            <i class="bi bi-droplet-half"></i>
-            <span>습도</span>
-          </div>
-
-          <DataChart today={today} data={humiData} dataKey={dataKey.humi}/>
-        </div>
-
-        <div>
-          <div>
-            <i class="bi bi-lightbulb"></i>
-            <span>조도</span>
-          </div>
+      {
+        envData === null ? 
+        null
+        :
+        <div className={styles.data_container}>
           
-          <DataChart today={today} data={luxData} dataKey={dataKey.lux}/>
-        </div>
+          <div>
+            <div>
+              <i class="bi bi-thermometer-half"></i>
+              <span>온도</span>
+            </div>
 
-      </div>
+            <DataChart today={today} data={envData} dataKey={dataKey.temp}/>
+          </div>
+
+          <div>
+            <div >
+              <i class="bi bi-droplet-half"></i>
+              <span>습도</span>
+            </div>
+
+            <DataChart today={today} data={envData} dataKey={dataKey.humi}/>
+          </div>
+
+          <div>
+            <div>
+              <i class="bi bi-lightbulb"></i>
+              <span>조도</span>
+            </div>
+            
+            <DataChart today={today} data={envData} dataKey={dataKey.illumi}/>
+          </div>
+
+        </div>
+      }
 
       <div className={styles.gas_info}>
         <div>

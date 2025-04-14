@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './UserMain.module.css'
 import { useSelector } from 'react-redux'
 import MainWeather from '../weather/mainWeather'
@@ -7,6 +7,8 @@ import GaugeDesign from '../../components/practice/GaugeDesign'
 import ProgressBar from '../../components/practice/ProgressBarChart'
 import Legend from '../../components/Legend'
 import { useNavigate } from 'react-router-dom'
+import FarmseyeButton from '../../common_component/FarmseyeButton'
+import { selectEnvList } from '../../apis/enviromentApi'
 
 const UserMain = () => {
   const nav = useNavigate();
@@ -16,21 +18,21 @@ const UserMain = () => {
 
   //현재 값, 내부 적정 온도
   const [appropriateTemp, setAppropriateTemp] = useState({
-    now : '21',
+    now : 0,
     min : 18,
     max : 24
   });
 
   //현재 값, 내부 적정 습도
   const [appropriateHumi, setAppropriateHumi] = useState({
-    now : '58',
+    now : 0,
     min : 50,
     max : 70
   });
 
   //현재 값, 내부 적정 조도
   const [appropriateLux, setAppropriateLux] = useState({
-    now : '15',
+    now : 0,
     min : 10,
     max : 20
   });
@@ -39,7 +41,7 @@ const UserMain = () => {
   const [appropriateNowData, setAppropriateNowData] = useState({
     co2 : 2100,
     no2 : 6,
-    nh3 : 10,
+    nh3 : 0.6,
     h2s : 0.2
   });
 
@@ -47,10 +49,11 @@ const UserMain = () => {
   const appropriateData = {
     co2 : 3000,
     no2 : 5,
-    nh3 : 20,
+    nh3 : 1,
     h2s : 0.5
   }
 
+  //co2, no2, nh3, h2s 위험 수치값
   const appropriateDangerData = {
     co2 : 5000,
     no2 : 10,
@@ -58,16 +61,30 @@ const UserMain = () => {
     h2s : 2
   }
 
+  useEffect(() => {
+    selectEnvList()
+      .then(res => {
+        const data = res.data[res.data.length - 1];
+        setAppropriateTemp({...appropriateTemp, now : data.temp})
+        setAppropriateHumi({...appropriateHumi, now : data.humi})
+        //CDS조도 센서 출력값을 LUX단위로 변경시 사용식 => 10000 / (743 + 1) ≈ 13.44 lux
+        const lux = (10000 / (data.illumi + 1)).toFixed(1)
+        setAppropriateLux({...appropriateLux, now : lux})
+        setAppropriateNowData({...appropriateNowData, co2 : data.co2.toFixed(1), no2 : data.no2.toFixed(3), nh3 : data.nh3.toFixed(3), h2s : data.h2s.toFixed(3)})
+      })
+      .catch(error => console.log(error))
+  } , []);
   
 
   return (
     <div className={styles.container}>
+        <FarmseyeButton title='농장 내부' size='' onClick={e => nav('/main/enviroment')} />
         <div className={styles.user_main_contents}>
           
           <div>
             <p>날씨</p>
             <MainWeather today={today} />
-            <button type='button' onClick={e => nav('/main/week-weather')}>+ 더 보기</button>
+            <FarmseyeButton title='+ 더 보기' size='' onClick={e => nav('/main/week-weather')} />
           </div>
 
 
@@ -77,7 +94,7 @@ const UserMain = () => {
             <p>{appropriateTemp.now}℃</p>
             <GaugeDesign appropriate={appropriateTemp} />  
             <Legend />
-            <button type='button' onClick={e => nav('/main')}>+ 더 보기</button>
+            <FarmseyeButton title='+ 더 보기' size='' onClick={e => nav('/main/tempWeekChart')} />
           </div>
 
 

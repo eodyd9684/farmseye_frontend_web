@@ -1,13 +1,13 @@
 .container{
   width: 100vw;
-  min-width: 1200px;
+  min-width: 1600px;
   padding: 30px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
   .container {
     width: 100%;
-    min-width: 1200px; /* 최소 너비 제한 해제 */
+    min-width: 1600px; /* 최소 너비 제한 해제 */
   }
 }
 
@@ -15,11 +15,13 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 30px;
+  gap: 20px;
 }
 
 .user_main_contents> div{
-  border: 1px solid black;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px rgba(71, 71, 71, 0.5);
 }
 
 

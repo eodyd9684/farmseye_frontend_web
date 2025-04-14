@@ -7,7 +7,7 @@ const GaugeDesign = ({appropriate}) => {
   const limit2 = appropriate.max
 
   return (
-    <div style={{ position: 'relative', width:'100%' }}>
+    <div style={{ position: 'relative', width:'350px' }}>
       <GaugeComponent
         type="semicircle"
         arc={{
@@ -40,8 +40,8 @@ const GaugeDesign = ({appropriate}) => {
       />
       <div style={{
         position: 'absolute',
-        top: '20%', // 위치 조정
-        left: '25%', // 위치 조정
+        top: '25%', // 위치 조정
+        left: '15%', // 위치 조정
         fontSize: '0.8rem',
         color: '#bbb',
       }}>
@@ -49,8 +49,8 @@ const GaugeDesign = ({appropriate}) => {
       </div>
       <div style={{
         position: 'absolute',
-        top: '20%', // 위치 조정
-        right: '25%', // 위치 조정
+        top: '25%', // 위치 조정
+        right: '15%', // 위치 조정
         fontSize: '0.8rem',
         color: '#bbb',
       }}>

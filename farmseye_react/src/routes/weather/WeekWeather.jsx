@@ -3,16 +3,16 @@ import React, { useEffect, useState } from 'react'
 import styles from './WeekWeather.module.css'
 
 const WeekWeather = () => {
-
+  
   //날씨 데이터 받아온걸 저장할 변수
   const [weather, setWeather] = useState(null);
+  
   
   //특정 지역의 날씨를 조회하기 위해 지정한 변수
   const [city, setCity] = useState('Ulsan'); 
 
   //OpenWeatherMap API 키 입력
   const API_KEY = "d2a371b0579c616f5a7b1edc780996c0"; 
-
 
   //날씨에 따라 들어갈 아이콘
   const weatherIcons = {
@@ -23,8 +23,6 @@ const WeekWeather = () => {
     Snow: <i class="bi bi-snow2" style={{color: '#b8ddfb'}}></i>,
     Mist: <i class="bi bi-water" style={{color: '#b8ddff'}}></i>,
   };
-
-  
 
   //날씨 api를 받아오는 useEffect함수
   useEffect(() => {
@@ -52,22 +50,26 @@ const WeekWeather = () => {
     return () => clearInterval(interval);
   }, [city]);
 
+  
   return (
-    <div >
-      {weatherIcons.Mist}
-      {weatherIcons.Rain}
-      {weatherIcons.Snow}
-      {weatherIcons.Thunderstorm}
-
-      <h2>{city}의 주간 날씨</h2>
+    <div className={styles.container} >
+      
+      <h2 className={styles.week_title}>{city}의 주간 날씨</h2>
       {weather ? (
         <div className={styles.week_weather}>
           {weather.list
-            .filter((item) => item.dt_txt.includes("12:00:00")) // 정오 데이터만 필터링
+            .filter((item) => {
+              const today = new Date();
+              const tomorrow = new Date(today);
+              tomorrow.setDate(today.getDate() + 1); // 내일 날짜 계산
+          
+              const itemDate = new Date(item.dt * 1000); // API에서 받은 데이터의 날짜
+              return itemDate >= tomorrow && item.dt_txt.includes("12:00:00"); // 내일 이후의 정오 데이터만 필터링
+            })
             .map((item, index) => {
               const date = new Date(item.dt * 1000);
               const day = date.toLocaleDateString('ko-KR', { weekday: 'long' });
-
+              
               return (
                 <div key={index}>
                   <p className={styles.day}>{day}</p>
@@ -78,11 +80,11 @@ const WeekWeather = () => {
                     </div>
     
                     <div className={styles.week_text}>
-                      <p>날짜: {date.toLocaleDateString('ko-KR')}</p>
+                      <p>날짜: <span>{date.toLocaleDateString('ko-KR')}</span></p>
       
-                      <p>온도: {item.main.temp}℃</p>
+                      <p>온도: <span>{item.main.temp}℃</span></p>
                       
-                      <p>날씨: {item.weather[0].description}</p>
+                      <p>날씨: <span>{item.weather[0].description}</span></p>
                     </div>
                   </div>
               </div>
