@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const AdminDetail = ({ u, userInfo, setUserInfo, i, setUserTrigger}) => {
   const [isShow, setIsShow] = useState(false);
-  
+
   //userInfo를 저장하는 변수
   const [userData, setUserData] = useState({ ...u });
 
@@ -44,7 +44,6 @@ const AdminDetail = ({ u, userInfo, setUserInfo, i, setUserTrigger}) => {
       {isShow ? (
         <>
           <td>{userData.userId}</td>
-          <td><FarmseyeInput defaultValue={userData.userPw} onChange={e => changeInfo('userPw', e.target.value)} /></td>
           <td>{userData.userName}</td>
           <td>{userData.userAge}</td>
           <td><FarmseyeInput defaultValue={userData.userEmail} onChange={e => changeInfo('userEmail', e.target.value)} /></td>
@@ -56,10 +55,11 @@ const AdminDetail = ({ u, userInfo, setUserInfo, i, setUserTrigger}) => {
             <FarmseyeButton title="취소" size="small" onClick={() => setIsShow(false)} />
           </td>
         </>
-      ) : (
+      ) 
+      : 
+      (
         <>
           <td>{u.userId}</td>
-          <td>{u.userPw}</td>
           <td>{u.userName}</td>
           <td>{u.userAge}</td>
           <td>{u.userEmail}</td>
