@@ -36,6 +36,6 @@ import axios from "axios"
  *  
  */
 export const regUser = (userList) => {
-  const responcs = axios.post('/api/users',userList)
-  return responcs;
+  const responce = axios.post('/api/users', userList)
+  return responce;
 }
