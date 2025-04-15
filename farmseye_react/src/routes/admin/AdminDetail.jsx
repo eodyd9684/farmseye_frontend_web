@@ -1,52 +1,65 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../admin/AdminLayout.module.css';
 import FarmseyeButton from '../../common_component/FarmseyeButton';
 import FarmseyeInput from '../../common_component/FarmseyeInput';
 import axios from 'axios';
 
-const AdminDetail = ({ u, users, setUsers, i }) => {
+const AdminDetail = ({ u, userInfo, setUserInfo, i, setUserTrigger}) => {
   const [isShow, setIsShow] = useState(false);
 
-  // 삭제 버튼 클릭 시 실행하는 함수 (DELETE)
+  //userInfo를 저장하는 변수
+  const [userData, setUserData] = useState({ ...u });
+
+  const changeInfo = (field, value) => {
+    setUserData(prev => ({ ...prev, [field]: value }));
+  };
+
+  //버튼 클릭 시 삭제하는 함수
   const deleteUser = () => {
-    axios.delete(`/api/users/${u.userId}`)
+    axios.delete(`/api/user/${u.userId}`)
       .then(res => {
         alert('삭제되었습니다.');
-        setUsers(users.filter(user => user.userId !== u.userId));
+        setUserInfo(userInfo.filter(user => user.userId !== u.userId));
       })
       .catch(error => console.log(error));
   };
-
-  // 수정 버튼 클릭 시 실행하는 함수 (수정 모드 활성화)
-  const updateUserInfo = () => {
-    setIsShow(true);
-  };
+  //버튼 클릭 시 수정하는 함수
+  const saveUserInfo = () => {
+    axios.put(`/api/user/${u.userId}`, userData)
+      .then(res => {
+        alert('수정되었습니다.');
+        const updatedList = userInfo.map(user =>
+          user.userId === u.userId ? userData : user
+        );
+        setUserInfo(updatedList);
+        setIsShow(false);
+        setUserTrigger({})
+      })
+      .catch(error => console.log(error));
+    };
 
   return (
     <tr>
-      <td>{users.length - i}</td>
-      {
-        isShow ? (
-          <>
-            <td>{u.userId}</td>
-            <td><FarmseyeInput defaultValue={u.userPw} /></td>
-            <td><FarmseyeInput defaultValue={u.userName} /></td>
-            <td><FarmseyeInput defaultValue={u.userAge} /></td>
-            <td><FarmseyeInput defaultValue={u.userEmail} /></td>
-            <td><FarmseyeInput defaultValue={u.userTel} /></td>
-            <td><FarmseyeInput defaultValue={u.regDate} /></td>
-            <td>{u.isUsing}</td>
-            <td>
-              <FarmseyeButton title="변경" size="small" onClick={() => setIsShow(false)} />
-              <FarmseyeButton title="취소" size="small" onClick={() => setIsShow(false)} />
-            </td>
-          </>
-       ) 
-       : 
-       (
+      <td>{userInfo.length - i}</td>
+      {isShow ? (
+        <>
+          <td>{userData.userId}</td>
+          <td>{userData.userName}</td>
+          <td>{userData.userAge}</td>
+          <td><FarmseyeInput defaultValue={userData.userEmail} onChange={e => changeInfo('userEmail', e.target.value)} /></td>
+          <td><FarmseyeInput defaultValue={userData.userTel} onChange={e => changeInfo('userTel', e.target.value)} /></td>
+          <td>{userData.regDate}</td>
+          <td>{userData.isUsing}</td>
+          <td>
+            <FarmseyeButton title="변경" size="small" onClick={saveUserInfo} />
+            <FarmseyeButton title="취소" size="small" onClick={() => setIsShow(false)} />
+          </td>
+        </>
+      ) 
+      : 
+      (
         <>
           <td>{u.userId}</td>
-          <td>{u.userPw}</td>
           <td>{u.userName}</td>
           <td>{u.userAge}</td>
           <td>{u.userEmail}</td>
@@ -54,7 +67,7 @@ const AdminDetail = ({ u, users, setUsers, i }) => {
           <td>{u.regDate}</td>
           <td>{u.isUsing}</td>
           <td className={styles.btn}>
-            <FarmseyeButton title="수정" size="small" onClick={updateUserInfo} />
+            <FarmseyeButton title="수정" size="small" onClick={() => setIsShow(true)} />
             <FarmseyeButton title="삭제" size="small" onClick={deleteUser} />
           </td>
         </>
