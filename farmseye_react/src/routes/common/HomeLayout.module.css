@@ -31,7 +31,7 @@
   position: relative;
 }
 
-.home_container>div{
+.home_container>div:nth-child(2){
   background-color: lightpink;
   opacity: 0.6;
   padding: 20px;
@@ -100,4 +100,36 @@
   width: 200px;
   font-size: 1.8rem;
   color: lightcoral;
+}
+
+.slider_image {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.dots {
+  background-color: rgba(255, 182, 193, 0.6);
+  padding: 8px;
+  border-radius: 10px;
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dot {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  margin: 0 4px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.active {
+  background-color: #717171;
 }
