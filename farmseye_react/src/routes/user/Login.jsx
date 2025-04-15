@@ -82,9 +82,10 @@ const Login = () => {
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={`${styles.inputBox} ${errors.userId && styles.error}`}>
+          <i class="bi bi-person"></i>
           <input
             type="text"
-            placeholder="아이디"
+            placeholder="ID"
             value={loginInfo.userId}
             onChange={handleLoginInfo('userId')}
           />
@@ -92,9 +93,10 @@ const Login = () => {
         {errors.userId && <p className={styles.errorMsg}>{errors.userId}</p>}
 
         <div className={`${styles.inputBox} ${errors.userPw && styles.error}`}>
+          <i class="bi bi-lock"></i>
           <input
             type="password"
-            placeholder="비밀번호"
+            placeholder="PASSWORD"
             value={loginInfo.userPw}
             onChange={handleLoginInfo('userPw')}
           />
