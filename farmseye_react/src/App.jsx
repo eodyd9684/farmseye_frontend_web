@@ -14,10 +14,11 @@ import OrganicMaterials from './components/practice/OrganicMaterials'
 import DiseaseOutbreak from './components/practice/DiseaseOutbreak'
 import SlaughterPerformance from './components/practice/SlaughterPerformance'
 import QuarantineFacility from './components/practice/QuarantineFacility'
-import Test from './components/test'
+import Test from './components/LineChartComponent'
 import Admin from './routes/admin/Admin'
 import Login from './routes/user/Login'
 import Join from './routes/user/Join'
+import UserMainTest from './routes/common/UserMainTest'
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
           </Route>
   
           <Route path='/main' element={ <UserLayout/> }>
-            <Route path='' element={ <UserMain /> }/>
+            <Route path='' element={ <UserMainTest /> }/>
             <Route path='enviroment' element={ <EnvironmentDetail/> } />
             <Route path='tempWeekChart' element={ <TempWeekChart/> } />
             <Route path='week-weather' element={ <WeatherDetail /> }/>

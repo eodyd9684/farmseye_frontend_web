@@ -190,10 +190,7 @@ const TempWeekChart = () => {
               <SimpleBarChart 
                 dataKey={'temp'}
                 rawData={weekTemp[index]}
-                legend={
-                  <>
-                  </>
-                }
+                
                 yAxis={"℃"}
               />
             </div>

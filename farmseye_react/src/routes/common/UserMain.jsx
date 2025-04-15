@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react'
 import styles from './UserMain.module.css'
 import { useSelector } from 'react-redux'
 import MainWeather from '../weather/mainWeather'
-import FarmseyeInput from '../../common_component/FarmseyeInput'
 import GaugeDesign from '../../components/practice/GaugeDesign'
 import ProgressBarChart from '../../components/practice/ProgressBarChart'
 import Legend from '../../components/Legend'
 import { useNavigate } from 'react-router-dom'
 import FarmseyeButton from '../../common_component/FarmseyeButton'
 import { selectEnvList } from '../../apis/enviromentApi'
-import ProgressBarChartHor from '../../components/practice/ProgressBarChartHor'
+import WeekWeather from '../weather/WeekWeather'
+import WeatherDetail from '../weather/WeatherDetail'
 
 const UserMain = () => {
   const nav = useNavigate();
+
+  const [isWeatherModalOpen, setIsWeatherModalOpen] = useState(false); // 모달 열기/닫기 상태
 
   //오늘 날짜 문자열 형태로 저장한 데이터 받아오기
   const today = useSelector(state => state.today.today);
@@ -79,14 +81,20 @@ const UserMain = () => {
 
   return (
     <div className={styles.container}>
-        {/* <FarmseyeButton title='농장 내부' size='' onClick={e => nav('/main/enviroment')} /> */}
+        
         <p className={styles.myFarmseye} onClick={e => nav('/main/enviroment')} >My FarmsEye</p>
         <div className={styles.user_main_contents}>
           
           <div>
             <p>날씨</p>
             <MainWeather today={today} />
-            <FarmseyeButton title='+ 더 보기' size='' onClick={e => nav('/main/week-weather')} />
+            <FarmseyeButton 
+              title='+ 더 보기' 
+              size='' 
+              onClick={e => {
+                setIsWeatherModalOpen(true)
+              }} 
+            />
           </div>
 
 
@@ -168,7 +176,7 @@ const UserMain = () => {
 
         </div>
 
-        
+        {isWeatherModalOpen && <WeatherDetail onClick={() => setIsWeatherModalOpen(false)} />}
 
         
     </div>

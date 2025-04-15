@@ -1,64 +1,81 @@
-.week_title{
-  margin: 10px 0px;
-}
-
-.container{
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.2);
-}
-
-.week_weather{
-  display: flex;
-  gap: 10px;
-}
-
-
-
-.day{
+.week_title {
+  margin: 20px 0;
+  font-size: 1.8rem;
   font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.week_weather>div{
-  flex: 1;
   text-align: center;
-  background-color: rgba(165, 165, 165, 0.15);
-  padding: 4px;
-  border-radius: 10px;
+  color: #333;
 }
 
-.weather_card{
-  padding: 10px;
+.container {
+  background: linear-gradient(90deg, rgba(173, 216, 230, 0.6), rgba(255, 255, 255, 0.6));
+  padding: 20px 30px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.week_weather {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.week_weather > div {
+  flex: 1 1 160px;
+  min-width: 160px;
+  background-color: rgba(240, 248, 255, 0.6);
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.week_weather > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.day {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.weather_card {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 
-.weather_card>div{
-  flex: 1;
+.weather_card > div i,
+.weather_card > div img {
+  font-size: 3rem;
+  width: 60px;
+  height: 60px;
 }
 
-.weather_card > div i{
-  font-size: 4rem;
-}
-
-.weather_card>div:nth-child(2){
-  text-align: start;
+.weather_card > div:nth-child(2) {
+  text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 4px;
+  gap: 6px;
   font-size: 1rem;
+  width: 100%;
 }
 
-.week_text >p{
-  font-size: 1.2rem;
-  font-weight: bold;
+.week_text > p {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #444;
 }
 
-.week_text span{
-  font-size: 1.1rem;
+.week_text span {
+  font-size: 0.95rem;
   font-weight: 500;
+  color: #555;
 }

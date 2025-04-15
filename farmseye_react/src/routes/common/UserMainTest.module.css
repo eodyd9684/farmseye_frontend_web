@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  width: 70%;
+  min-height: 100vh;
+  padding: 40px;
+  background: #f7f9fa;
+  box-sizing: border-box;
+  margin: 0px auto;
+}
+
+.left_panel {
+  flex: 2;
+  background: white;
+  border-radius: 20px;
+  padding: 20px 30px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+}
+
+.right_panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card_item {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card_item .icon {
+  font-size: 2rem;
+  color: #38bdf8;
+}
+
+.card_item .data {
+  text-align: right;
+}
+
+.card_item .data p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.card_item .data span {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.chart_title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.myFarmseye {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #38bdf8;
+  cursor: pointer;
+}
+
+.myFarmseye:hover {
+  color: #0ea5e9;
+  transition: color 0.3s;
+}

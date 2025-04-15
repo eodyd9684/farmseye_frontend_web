@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styles from './Weather.module.css'
 
-
 const Weather = ({today}) => {
   const [hour, setHour] = useState(''); 
 
