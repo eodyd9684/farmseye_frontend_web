@@ -14,16 +14,17 @@
 
 /* 모달 내용 박스 */
 .container {
-  background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5)), url('/images/mountain13.png');
+  background-image:  url('/images/downloaded-image (2).jpg');
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center center;
 
   box-shadow: 0px 0px 20px rgba(128, 128, 128, 0.2);
   border-radius: 30px;
   padding: 20px;
-  width: 900px;
+  width: 1200px;
   max-width: 95vw;
-  height: 600px;
+  height: 800px;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -42,4 +43,10 @@
   background: none;
   border: none;
   cursor: pointer;
+}
+
+.close_button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  color: crimson;
 }

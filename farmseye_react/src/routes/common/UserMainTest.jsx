@@ -87,54 +87,80 @@ const UserMainTest = () => {
   
 
   return (
-    <div className={styles.container}>
-      <div className={styles.left_panel}>
-        <p className={styles.chart_title}>📊 하루 변화 (온도 / 습도 / 조도)</p>
-        <LineChartComponent envData={envData}/> {/* line chart 그래프 컴포넌트 (recharts 사용 추천) */}
-      </div>
+    <div className={styles.background}>
+      <div className={styles.container}>
+
+        <div className={styles.left_panel}>
+          <p className={styles.chart_title}> 내부 (온도 / 습도 / 조도)</p>
+          <LineChartComponent envData={envData}/> {/* line chart 그래프 컴포넌트 (recharts 사용 추천) */}
+
+
+          
+        </div>
+    
+        <div className={styles.right_panel}>
+          <Legend />
+          <div className={styles.card_item}>
+            <p>CO2 <span>{appropriateNowData.co2}</span></p>
   
-      <div className={styles.right_panel}>
-        <Legend />
-        <div className={styles.card_item}>
-          <p>CO2 <span>{appropriateNowData.co2}</span></p>
-
-          <ProgressBarChartHor 
-            max={appropriateData.co2} 
-            current={appropriateNowData.co2} 
-            danger={appropriateDangerData.co2}
-          />
+            <ProgressBarChartHor 
+              max={appropriateData.co2} 
+              current={appropriateNowData.co2} 
+              danger={appropriateDangerData.co2}
+            />
+          </div>
+  
+          <div className={styles.card_item}>
+            <p>NO2 <span>{appropriateNowData.no2}</span></p>
+  
+            <ProgressBarChartHor
+              max={appropriateData.no2} 
+              current={appropriateNowData.no2} 
+              danger={appropriateDangerData.no2} 
+            />
+          </div>
+  
+          <div className={styles.card_item}>
+            <p>NH3 <span>{appropriateNowData.nh3}</span></p>
+  
+            <ProgressBarChartHor 
+              max={appropriateData.nh3} 
+              current={appropriateNowData.nh3} 
+              danger={appropriateDangerData.nh3} 
+            />
+          </div>
+  
+          <div className={styles.card_item}>
+            <p>H2S <span>{appropriateNowData.h2s}</span></p>
+            <ProgressBarChartHor 
+              max={appropriateData.h2s} 
+              current={appropriateNowData.h2s} 
+              danger={appropriateDangerData.h2s} 
+            />
+          </div>
+          
         </div>
-
-        <div className={styles.card_item}>
-          <p>NO2 <span>{appropriateNowData.no2}</span></p>
-
-          <ProgressBarChartHor
-            max={appropriateData.no2} 
-            current={appropriateNowData.no2} 
-            danger={appropriateDangerData.no2} 
-          />
-        </div>
-
-        <div className={styles.card_item}>
-          <p>NH3 <span>{appropriateNowData.nh3}</span></p>
-
-          <ProgressBarChartHor 
-            max={appropriateData.nh3} 
-            current={appropriateNowData.nh3} 
-            danger={appropriateDangerData.nh3} 
-          />
-        </div>
-
-        <div className={styles.card_item}>
-          <p>H2S <span>{appropriateNowData.h2s}</span></p>
-          <ProgressBarChartHor 
-            max={appropriateData.h2s} 
-            current={appropriateNowData.h2s} 
-            danger={appropriateDangerData.h2s} 
-          />
-        </div>
-        
       </div>
+
+
+
+      
+      <div className={styles.weather_box}>
+        <div>
+          <p>Today Weather</p>
+          <button 
+            className={styles.weather_btn}
+            type='button' 
+            onClick={e => {
+              setIsWeatherModalOpen(true)
+            }} 
+          >+ 주간 날씨</button>
+        </div>
+
+        <MainWeather today={today} />
+      </div>
+
+      {isWeatherModalOpen && <WeatherDetail onClick={() => setIsWeatherModalOpen(false)} />}
     </div>
   );
   

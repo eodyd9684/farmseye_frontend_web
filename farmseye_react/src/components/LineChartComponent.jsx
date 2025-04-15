@@ -1,9 +1,9 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 
-const LineChartComponent = ({envData}) => (
+const LineChartComponent = ({envData}) => {
   
-
+  return(
   <ResponsiveContainer width="100%" height={300}>
     <LineChart data={envData}>
       <CartesianGrid 
@@ -14,24 +14,30 @@ const LineChartComponent = ({envData}) => (
         vertical={true}
       />
 
-      <XAxis dataKey="time"padding={{left : 20}} />
+      <XAxis 
+        dataKey='timestamp'
+        tickFormatter={(value) => `${value.slice(11, 16)}`}
+        padding={{left : 20, right : 20}}
+      />
 
       <YAxis 
         padding={{top : 40}}
       />
 
       <Tooltip
+        labelFormatter={(label) => `시간: ${label.slice(11,16)}`}
         labelStyle={{ color: '#333', fontWeight: 'bold' }}
-        wrapperStyle={{ backgroundColor: '#fff', border: '1px solid #ccc' }}
-        cursor={true}
+        contentStyle={{borderRadius: '10px', backgroundColor : '#fbfbfb', fontWeight : '700' }}
       />
 
       <Legend />
+
       <Line type="monotone" dataKey="temp" stroke="#f87171" name="온도" />
       <Line type="monotone" dataKey="humi" stroke="#60a5fa" name="습도" />
       <Line type="monotone" dataKey="illumi" stroke="#34d399" name="조도" />
     </LineChart>
   </ResponsiveContainer>
-);
+  );
+}
 
 export default LineChartComponent

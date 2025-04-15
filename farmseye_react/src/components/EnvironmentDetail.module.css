@@ -1,0 +1,46 @@
+.container{
+  width: 95%;
+  height: 100vh;
+  margin: 0px auto;
+}
+
+.data_container{
+  border: 1px solid black;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.data_container > div:first-child{
+  border: 1px solid black;
+  flex: 1;
+}
+
+.data_container > div:nth-child(2){
+  border: 1px solid black;
+  flex: 1;
+}
+
+.data_container > div:nth-child(3){
+  border: 1px solid black;
+  flex: 1;
+}
+
+.weather{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.weather > div:nth-child(1){
+  border: 1px solid black;
+  flex: 1;
+}
+
+.weather > div:nth-child(2){
+  border: 1px solid black;
+  flex: 1;
+}

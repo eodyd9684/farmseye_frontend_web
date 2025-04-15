@@ -1,81 +1,87 @@
 .week_title {
-  margin: 20px 0;
-  font-size: 1.8rem;
+  margin: 30px 0 20px;
+  font-size: 2rem;
   font-weight: bold;
   text-align: center;
-  color: #333;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .container {
-  background: linear-gradient(90deg, rgba(173, 216, 230, 0.6), rgba(255, 255, 255, 0.6));
-  padding: 20px 30px;
-  border-radius: 16px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 .week_weather {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
   justify-content: center;
+  gap: 20px;
 }
 
 .week_weather > div {
-  flex: 1 1 160px;
-  min-width: 160px;
-  background-color: rgba(240, 248, 255, 0.6);
-  padding: 12px;
-  border-radius: 12px;
+  flex: 1 1 120px;
+  min-width: 180px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  padding: 18px 14px;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
-  transition: transform 0.3s ease;
+  color: #ffffff;
 }
 
 .week_weather > div:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .day {
-  font-weight: 700;
   font-size: 1.2rem;
-  color: #2c3e50;
-  margin-bottom: 8px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: rgb(125, 125, 125);
 }
 
 .weather_card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
 }
 
 .weather_card > div i,
 .weather_card > div img {
-  font-size: 3rem;
+  font-size: 2.8rem;
   width: 60px;
   height: 60px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 }
 
 .weather_card > div:nth-child(2) {
-  text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: flex-start;
   gap: 6px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   width: 100%;
+  color: #eee;
 }
 
+
 .week_text > p {
-  font-size: 1rem;
   font-weight: 600;
-  color: #444;
+  font-size: 1.2rem;
+  margin: 2px 0;
+  color: rgb(125, 125, 125);
 }
 
 .week_text span {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #555;
+  font-weight: 400;
+  font-size: 1rem;
 }
