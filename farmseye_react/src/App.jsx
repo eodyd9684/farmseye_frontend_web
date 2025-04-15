@@ -16,6 +16,8 @@ import SlaughterPerformance from './components/practice/SlaughterPerformance'
 import QuarantineFacility from './components/practice/QuarantineFacility'
 import Test from './components/test'
 import Admin from './routes/admin/Admin'
+import Login from './routes/user/Login'
+import Join from './routes/user/Join'
 
 
 function App() {
@@ -43,6 +45,13 @@ function App() {
           {/* 회원 정보 수정 및 관리, 회원별 데이터 확인 페이지 */}
           <Route path="/admin" element={ <AdminLayout /> } > 
             <Route path="" element={ <Admin /> } />
+          </Route>
+
+          {/* 회원 가입 및 회원 관리 */}
+          <Route path="/user" element={ '' } > 
+            <Route path="join" element={ <Join /> } />
+            <Route path="update" element={ <dev>개인정보수정</dev> } />
+            <Route path="login" element={ <Login /> } />
           </Route>
   
   
