@@ -16,12 +16,9 @@ import SlaughterPerformance from './components/practice/SlaughterPerformance'
 import QuarantineFacility from './components/practice/QuarantineFacility'
 import Test from './components/test'
 import Admin from './routes/admin/Admin'
-<<<<<<< HEAD
 import Stock from './routes/stock/Stock'
-=======
 import Login from './routes/user/Login'
 import Join from './routes/user/Join'
->>>>>>> a67819300c2f26d319b447c3306835685d9aea1a
 
 
 function App() {
