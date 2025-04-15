@@ -16,6 +16,7 @@ import SlaughterPerformance from './components/practice/SlaughterPerformance'
 import QuarantineFacility from './components/practice/QuarantineFacility'
 import Test from './components/test'
 import Admin from './routes/admin/Admin'
+import Stock from './routes/stock/Stock'
 
 
 function App() {
@@ -42,9 +43,10 @@ function App() {
   
           {/* 회원 정보 수정 및 관리, 회원별 데이터 확인 페이지 */}
           <Route path="/admin" element={ <AdminLayout /> } > 
-            <Route path="" element={ <Admin /> } />
+            {/* <Route path="" element={ <Admin /> } /> */}
+            <Route path="" element={ <Stock/> } />
           </Route>
-  
+          
   
         </Routes>
       </div>
