@@ -11,14 +11,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.6.1",
     "@svgr/webpack": "^8.1.0",
     "axios": "^1.8.4",
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.4.8",
     "dayjs": "^1.11.13",
+    "install": "^0.13.0",
+    "jwt-decode": "^4.0.0",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^19.0.0",
+    "react-gauge-component": "^1.2.64",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.4.0",
     "recharts": "^2.15.1"
   },

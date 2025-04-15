@@ -1,18 +1,32 @@
+.week_title{
+  margin: 10px 0px;
+}
+
+.container{
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.2);
+}
 
 .week_weather{
-  border: 1px solid black;
   display: flex;
+  gap: 10px;
 }
+
+
 
 .day{
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .week_weather>div{
   flex: 1;
-  border: 1px solid red;
   text-align: center;
+  background-color: rgba(165, 165, 165, 0.15);
+  padding: 4px;
+  border-radius: 10px;
 }
 
 .weather_card{
@@ -24,7 +38,6 @@
 
 .weather_card>div{
   flex: 1;
-  border: 1px solid blue;
 }
 
 .weather_card > div i{
@@ -38,4 +51,14 @@
   justify-content: space-between;
   gap: 4px;
   font-size: 1rem;
+}
+
+.week_text >p{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.week_text span{
+  font-size: 1.1rem;
+  font-weight: 500;
 }
