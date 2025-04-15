@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import styles from './Weather.module.css'
+import styles from './MainWeather.module.css'
 
 
-const Weather = ({today}) => {
+const MainWeather = ({today}) => {
   const [hour, setHour] = useState(''); 
 
   //날씨 데이터 받아온걸 저장할 변수
@@ -88,25 +88,31 @@ const Weather = ({today}) => {
       {
       weather ? 
         (
-          <div className={styles.weather_container}>
-            <div className={styles.weather_icon}>
-              {weatherIcons[weather.weather[0].main] || "🌍"}
+          <div className={styles.container}>
+            <div className={styles.left} >
+              <div>{weatherIcons[weather.weather[0].main] || "🌍"}</div>
               <p>{today}{`(${getDayOfWeek()})`}</p>
             </div>
-
-            <div>
-              <p>날씨 : <span>{weather.weather[0].description}</span></p>
-              <p>온도 : <span>{weather.main.temp} °C</span></p>
-              <p>습도 : <span>{weather.main.humidity} %</span></p>
+            
+            <div className={styles.right}>
+              <div>
+                <p><span>날씨 :</span> {weather.weather[0].description}</p>
+                <p><span>온도 :</span> {weather.main.temp} °C</p>
+                <p><span>체감온도 :</span> {weather.main.feels_like} °C</p>
+              </div>
+              
+              <div>
+                <p><span>강수량 :</span> {weather.rain?.["1h"] ??  "0"} (mm)</p>
+                <p><span>습도 :</span> {weather.main.humidity} %</p>
+                <p><span>기압 :</span> {weather.main.feels_like} (hPa)</p>
+              </div>
+              
+              <div>
+                <p><span>풍속 :</span> {weather.wind.speed} (m/s)</p>
+                <p><span>풍향 :</span> {weather.wind.deg} (도)</p>
+              </div>
             </div>
             
-            <div>
-              <p>기압 : <span>{weather.main.feels_like} (hPa)</span></p>
-              <p>풍속 : <span>{weather.wind.speed} (m/)</span></p>
-              <p>풍향 : <span>{weather.wind.deg} (도)</span></p>
-              <p>강수량 : <span>{weather.rain?.["1h"] ??  "0"} (mm)</span></p>
-            </div>
-
           </div>
         ) 
         : 
@@ -117,4 +123,4 @@ const Weather = ({today}) => {
   )
 }
 
-export default Weather
+export default MainWeather

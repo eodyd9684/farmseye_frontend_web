@@ -1,0 +1,30 @@
+.container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.backgroundBar {
+  width: 100%;
+  height: 20px; /* 높이는 작게 */
+  background-color: rgb(255, 255, 255);
+  border: 1px solid lightgray;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.progressBar {
+  height: 100%;
+  transition: 0.3s ease;
+  border-radius: 12px 0 0 12px; /* 왼쪽 둥글게 */
+}
+
+.label {
+  font-size: 14px;
+  color: #666;
+}

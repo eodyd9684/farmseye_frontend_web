@@ -1,9 +1,8 @@
-.chart{
-  border: 1px solid black;
+.chart {
   width: 500px;
 }
 
-.humi_chart_title{
+.chart_title{
   padding: 4px;
   width: 120px;
   background-color: rgb(255, 234, 234);
@@ -12,17 +11,18 @@
   align-items: center;
 }
 
-.humi_chart_title>i{
-  color: rgb(192, 0, 0);
+.chart_title > i{
   font-size: 2rem;
+  color: rgb(192, 0, 0);
 }
 
-.humi_chart_title>span{
+.chart_title > span{
   font-size: 2rem;
   font-weight: bold;
 }
 
 .chart_container{
-  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
   padding: 10px;
 }

@@ -1,0 +1,40 @@
+.container{
+  display: flex;
+  gap: 10px;
+}
+
+.green{
+  display: flex;
+  gap: 4px;
+}
+
+.green > div{
+  width: 20px;
+  height: 20px;
+  background-color: #16C47F;
+  border-radius: 6px;
+}
+
+.orange{
+  display: flex;
+  gap: 4px;
+}
+
+.orange > div{
+  width: 20px;
+  height: 20px;
+  background-color: #FFC145;
+  border-radius: 6px;
+}
+
+.red{
+  display: flex;
+  gap: 4px;
+}
+
+.red > div{
+  width: 20px;
+  height: 20px;
+  background-color: #FB4141;
+  border-radius: 6px;
+}
