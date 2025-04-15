@@ -4,11 +4,12 @@ import { useSelector } from 'react-redux'
 import MainWeather from '../weather/mainWeather'
 import FarmseyeInput from '../../common_component/FarmseyeInput'
 import GaugeDesign from '../../components/practice/GaugeDesign'
-import ProgressBar from '../../components/practice/ProgressBarChart'
+import ProgressBarChart from '../../components/practice/ProgressBarChart'
 import Legend from '../../components/Legend'
 import { useNavigate } from 'react-router-dom'
 import FarmseyeButton from '../../common_component/FarmseyeButton'
 import { selectEnvList } from '../../apis/enviromentApi'
+import ProgressBarChartHor from '../../components/practice/ProgressBarChartHor'
 
 const UserMain = () => {
   const nav = useNavigate();
@@ -78,7 +79,8 @@ const UserMain = () => {
 
   return (
     <div className={styles.container}>
-        <FarmseyeButton title='농장 내부' size='' onClick={e => nav('/main/enviroment')} />
+        {/* <FarmseyeButton title='농장 내부' size='' onClick={e => nav('/main/enviroment')} /> */}
+        <p className={styles.myFarmseye} onClick={e => nav('/main/enviroment')} >My FarmsEye</p>
         <div className={styles.user_main_contents}>
           
           <div>
@@ -120,7 +122,7 @@ const UserMain = () => {
 
           <div>
             <p>CO2</p>
-            <ProgressBar 
+            <ProgressBarChart 
               max={appropriateData.co2} 
               current={appropriateNowData.co2} 
               danger={appropriateDangerData.co2}
@@ -132,7 +134,7 @@ const UserMain = () => {
 
           <div>
             <p>NO2</p>
-            <ProgressBar 
+            <ProgressBarChart 
               max={appropriateData.no2} 
               current={appropriateNowData.no2} 
               danger={appropriateDangerData.no2} 
@@ -144,7 +146,7 @@ const UserMain = () => {
 
           <div>
             <p>NH3</p>
-            <ProgressBar 
+            <ProgressBarChart 
               max={appropriateData.nh3} 
               current={appropriateNowData.nh3} 
               danger={appropriateDangerData.nh3} 
@@ -156,7 +158,7 @@ const UserMain = () => {
 
           <div>
             <p>H2S</p>
-            <ProgressBar 
+            <ProgressBarChart 
               max={appropriateData.h2s} 
               current={appropriateNowData.h2s} 
               danger={appropriateDangerData.h2s} 
@@ -165,6 +167,8 @@ const UserMain = () => {
           </div>
 
         </div>
+
+        
 
         
     </div>

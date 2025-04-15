@@ -11,6 +11,8 @@ const TempWeekChart = () => {
   //오늘 기준 농장 내부 환경 데이터 12개
   const [envData, setEnvData] = useState(null);
 
+  const [weekData, setWeekData] = useState(null);
+
   // 예시 데이터
   const [weekTemp, setWeekTemp] = useState([
     [
@@ -129,8 +131,8 @@ const TempWeekChart = () => {
         setEnvData(envCopy);
 //////////////////////////////////////////////////////////////////////////////////////////
         //일주일 전 데이터(weekTemp) 받아오기(시간별)
-        const data = res.data;
-        console.log(data)
+        const weekEnvData = res.data;
+        
 //////////////////////////////////////////////////////////////////////////////////////////
       } catch (error) {
         console.error("환경 데이터를 불러오는 중 오류 발생:", error);
@@ -189,9 +191,8 @@ const TempWeekChart = () => {
                 dataKey={'temp'}
                 rawData={weekTemp[index]}
                 legend={
-                  <div>
-                    <span> 온도</span>
-                  </div>
+                  <>
+                  </>
                 }
                 yAxis={"℃"}
               />

@@ -3,6 +3,8 @@ import styles from './EnvironmentDetail.module.css'
 import { useSelector } from 'react-redux'
 import DataChart from './DataChart'
 import { selectEnvList } from '../../apis/enviromentApi'
+import ProgressBarChartHor from '../../components/practice/ProgressBarChartHor'
+import Legend from '../../components/Legend'
 
 const EnvironmentDetail = () => {
   //오늘 날짜 받아오기
@@ -24,6 +26,22 @@ const EnvironmentDetail = () => {
     nh3 : 0,
     h2s : 0
   });
+
+  //co2, no2, nh3, h2s 적정 수치값
+  const appropriateData = {
+    co2 : 3000,
+    no2 : 5,
+    nh3 : 1,
+    h2s : 0.5
+  }
+
+  //co2, no2, nh3, h2s 위험 수치값
+  const appropriateDangerData = {
+    co2 : 5000,
+    no2 : 10,
+    nh3 : 25,
+    h2s : 2
+  }
 
   useEffect(() => {
     const fetchEnvData = async () => {
@@ -68,17 +86,31 @@ const EnvironmentDetail = () => {
           
           <div>
             <div>
-              <i class="bi bi-thermometer-half"></i>
-              <span>온도</span>
+              <div>
+                <i class="bi bi-thermometer-half"></i>
+                <span> 온도</span>
+              </div>
+
+              <div>
+                <span>※ 현재 내부 온도 : </span>
+                {envData[envData.length - 1][dataKey.temp]}
+              </div>
             </div>
 
             <DataChart today={today} data={envData} dataKey={dataKey.temp}/>
           </div>
 
           <div>
-            <div >
-              <i class="bi bi-droplet-half"></i>
-              <span>습도</span>
+            <div>
+              <div>
+                <i class="bi bi-droplet-half"></i>
+                <span> 습도</span>
+              </div>
+
+              <div>
+                <span>※ 현재 내부 습도 : </span>
+                {envData[envData.length - 1][dataKey.humi]}
+              </div>
             </div>
 
             <DataChart today={today} data={envData} dataKey={dataKey.humi}/>
@@ -86,8 +118,15 @@ const EnvironmentDetail = () => {
 
           <div>
             <div>
-              <i class="bi bi-lightbulb"></i>
-              <span>조도</span>
+              <div>
+                <i class="bi bi-lightbulb"></i>
+                <span>조도</span>
+              </div>
+
+              <div>
+                <span>※ 현재 내부 조도 : </span>
+                {envData[envData.length - 1][dataKey.illumi]}
+              </div>
             </div>
             
             <DataChart today={today} data={envData} dataKey={dataKey.illumi}/>
@@ -96,27 +135,50 @@ const EnvironmentDetail = () => {
         </div>
       }
 
-      <div className={styles.gas_info}>
-        <div>
-          <p>co2</p>
-          <p>현재 수치 : {appropriateNowData.co2}</p>
+      <div className={styles.bottom}>
+        <div className={styles.test}>
+          <div>
+            <p>CO2 <span>{appropriateNowData.co2}</span></p>
+            <ProgressBarChartHor 
+              max={appropriateData.co2} 
+              current={appropriateNowData.co2} 
+              danger={appropriateDangerData.co2}
+            />
+          </div>
+  
+          <div>
+            <p>NO2 <span>{appropriateNowData.no2}</span></p>
+            <ProgressBarChartHor
+              max={appropriateData.no2} 
+              current={appropriateNowData.no2} 
+              danger={appropriateDangerData.no2} 
+            />
+          </div>
+  
+          <div>
+            <p>NH3 <span>{appropriateNowData.nh3}</span></p>
+            <ProgressBarChartHor 
+              max={appropriateData.nh3} 
+              current={appropriateNowData.nh3} 
+              danger={appropriateDangerData.nh3} 
+            />
+          </div>
+  
+          <div>
+            <p>H2S <span>{appropriateNowData.h2s}</span></p>
+            <ProgressBarChartHor 
+              max={appropriateData.h2s} 
+              current={appropriateNowData.h2s} 
+              danger={appropriateDangerData.h2s} 
+            />
+          </div>
+  
         </div>
-
-        <div>
-          <p>no2</p>
-          <p>현재 수치 : {appropriateNowData.no2}</p>
-        </div>
-
-        <div>
-          <p>nh3</p>
-          <p>현재 수치 : {appropriateNowData.nh3}</p>
-        </div>
-
-        <div>
-          <p>h2s</p>
-          <p>현재 수치 : {appropriateNowData.h2s}</p>
-        </div>
+        <br />
+        <Legend />
       </div>
+
+      
     </div>
   )
 }

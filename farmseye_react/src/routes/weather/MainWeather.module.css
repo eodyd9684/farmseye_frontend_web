@@ -2,10 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 }
 
 .left{
-  border: 1px solid grey;
   border-radius: 10px;
   margin-left: 20px;
   display: flex;
@@ -29,6 +29,7 @@
 }
 
 .right>div{
+  box-shadow: 4px 4px 4px lightgrey;
   background-color: rgb(245, 245, 245);
   border-radius: 10px;
   padding: 6px;

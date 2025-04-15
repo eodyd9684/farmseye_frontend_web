@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './ProgressBarChart.module.css';
+import styles from './ProgressBarChartHor.module.css';
 
-const VerticalProgressBar = ({danger, max, current }) => {
+const ProgressBarChartHor = ({danger, max, current }) => {
   const percentage = ((current / max) * 100).toFixed(1);
-  
+
   return (
     <div className={styles.container}>
       {/* 전체 배경 바 */}
@@ -12,18 +12,18 @@ const VerticalProgressBar = ({danger, max, current }) => {
         <div 
           className={styles.progressBar} 
           style={{ 
-            height: `${percentage}%`, // height로 변경
+            width: `${percentage}%`, // width로 변경
             backgroundColor: current >= danger ? '#FB4141': (current >= max ? '#FFC145' : '#16C47F')
           }}
         />
       </div>
-      
+
       {/* 수치 표시 */}
       <div className={styles.label}>
         <p>{current} / {max} ppm</p> {percentage}%
       </div>
     </div>
   );
-};
-
-export default VerticalProgressBar;
+  };
+  
+export default ProgressBarChartHor;

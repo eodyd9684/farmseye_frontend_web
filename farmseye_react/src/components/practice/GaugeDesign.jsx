@@ -14,9 +14,9 @@ const GaugeDesign = ({appropriate}) => {
           width: 0.2,
           padding: 0.005,
           subArcs: [
-            { limit: limit1, color: '#F5CD19' },
-            { limit: limit2, color: '#5BE12C' },
-            { color: '#F5CD19' },
+            { limit: limit1, color: '#FFC145' },
+            { limit: limit2, color: '#16C47F' },
+            { color: '#FFC145' },
           ],
         }}
         pointer={{

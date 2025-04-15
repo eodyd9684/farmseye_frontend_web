@@ -11,7 +11,8 @@
 .green > div{
   width: 20px;
   height: 20px;
-  background-color: green;
+  background-color: #16C47F;
+  border-radius: 6px;
 }
 
 .orange{
@@ -22,7 +23,8 @@
 .orange > div{
   width: 20px;
   height: 20px;
-  background-color: #F5CD19;
+  background-color: #FFC145;
+  border-radius: 6px;
 }
 
 .red{
@@ -33,5 +35,6 @@
 .red > div{
   width: 20px;
   height: 20px;
-  background-color: #EA4228;
+  background-color: #FB4141;
+  border-radius: 6px;
 }

@@ -16,14 +16,6 @@ const DataChart = ({ today, data , dataKey}) => {
 
   return (
     <div>
-      
-
-      <div>
-        <span>현재 내부 온도 : </span>
-        {data[data.length - 1][dataKey]}
-      </div>
-
-      
 
       <div className={styles.chart_container}>
         <SimpleChart
