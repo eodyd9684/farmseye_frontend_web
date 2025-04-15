@@ -91,8 +91,8 @@ const Header = () => {
         </div>
 
         <div className={styles.user_login_join}>
-          <FarmseyeButton title="Sign in" size="header_login"/>
-          <FarmseyeButton title="Register" size="header_logout"/>
+          <FarmseyeButton title="로그인" size="header_login" onClick={() => {nav('user/login')}}/>
+          <FarmseyeButton title="회원가입" size="header_logout" onClick={() => {nav('user/join')}}/>
         </div>
 
 
