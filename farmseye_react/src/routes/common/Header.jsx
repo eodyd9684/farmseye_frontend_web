@@ -88,13 +88,8 @@ const Header = () => {
               onMouseEnter={() => handleMouseEnter('개체 관리')} 
               onMouseLeave={handleMouseLeave}
             >
-              <li>개체 관리</li>
-              {activeMenu === '개체 관리' && (
-                <div className={styles.dropdown}>
-                  <li>상세 1</li>
-                  <li>상세 2</li>
-                </div>
-              )}
+              <li onClick={e => nav('/stock')}>개체 관리</li>
+              
             </ul>
   
             <ul 

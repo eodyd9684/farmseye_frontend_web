@@ -24,6 +24,8 @@ const Login = () => {
     axiosInstance.post('/user/login', loginInfo)
     .then(res => {
       alert('로그인 성공');
+      const id = JSON.parse(res.config.data);
+      sessionStorage.setItem('userId' , id.userId);
 
       //응답 헤더 중 'authorization' 값을 가져옴. 이때 소문자 사용.
       console.log(res.headers['authorization']);
