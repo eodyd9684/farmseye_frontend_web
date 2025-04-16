@@ -60,7 +60,7 @@ const UserMain = () => {
   const appropriateDangerData = {
     co2 : 5000,
     no2 : 10,
-    nh3 : 25,
+    nh3 : 2.5,
     h2s : 2
   }
 

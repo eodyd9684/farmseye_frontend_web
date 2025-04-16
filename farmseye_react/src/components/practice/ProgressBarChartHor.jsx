@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ProgressBarChartHor.module.css';
 
 const ProgressBarChartHor = ({danger, max, current }) => {
-  const percentage = ((current / max) * 100).toFixed(1);
+  const percentage = ((current / danger) * 100).toFixed(1);
 
   return (
     <div className={styles.container}>
@@ -20,7 +20,7 @@ const ProgressBarChartHor = ({danger, max, current }) => {
 
       {/* 수치 표시 */}
       <div className={styles.label}>
-        <p>{current} / {max} ppm</p> {percentage}%
+        <p>{current} / {danger} ppm</p> {percentage}%
       </div>
     </div>
   );

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import GaugeComponent from 'react-gauge-component';
 
-const GaugeDesign = ({appropriate}) => {
-  const temperature = appropriate.now
-  const limit1 = appropriate.min
-  const limit2 = appropriate.max
+const GaugeDesign = ({appropriate, min, max}) => {
+  const temperature = appropriate
+  const limit1 = min
+  const limit2 = max
 
   return (
-    <div style={{ position: 'relative', width:'350px' }}>
+    <div style={{ position: 'relative' }}>
       <GaugeComponent
         type="semicircle"
         arc={{
@@ -28,15 +28,15 @@ const GaugeDesign = ({appropriate}) => {
           valueLabel: {
             formatTextValue: (value) => `${value}°C`,
             style: {
-              fontSize: '20px',
-              fill: '#eee',
-              transform: 'translate(0px, 150px)'
+              fontSize: '0rem',
+              fill: 'red',
+              transform: 'translate(0px, 0px)'
             }
           },
         }}
         value={temperature}
-        minValue={appropriate.min - 5}
-        maxValue={appropriate.max + 5}
+        minValue={limit1 - 5}
+        maxValue={limit2 + 5}
       />
       <div style={{
         position: 'absolute',

@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   gap: 40px;
-  width: 1300px;
+  width: 1200px;
   min-height: 60vh;
   padding: 40px;
   box-sizing: border-box;
@@ -17,9 +17,8 @@
 }
 
 .weather_box{
-  width: 1220px;
   margin: 0px auto;
-  padding: 10px;
+  padding: 20px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1)), url('/images/downloaded-image (2).jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -28,10 +27,8 @@
 }
 
 .weather_box>div{
-  display: flex;
-  justify-content: space-between;
-  width: 600px;
-  margin: 30px auto;
+  margin: 0px auto;
+  text-align: end;
 }
 
 .weather_box>div>p{
@@ -43,15 +40,16 @@
 .weather_btn{
   background-color: rgba(57, 86, 104, 0.7);
   height: 40px;
-  margin-top: 10px;
+  margin: 10px 0px;
   font-size: 0.9rem;
   font-weight: 500;
+  padding: 8px 12px;
 }
 
 .weather_btn:hover{
   background-color: rgba(57, 86, 104);
   color: rgb(185, 46, 11);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
@@ -60,6 +58,15 @@
   background: white;
   padding: 20px 30px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+}
+
+.left_panel > div{
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 99%;
+  padding: 10px;
 }
 
 .right_panel {
@@ -99,21 +106,35 @@
 }
 
 .chart_title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 16px;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
-.myFarmseye {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 30px;
-  color: #38bdf8;
-  cursor: pointer;
+.aircondition{
+  width: 1120px;
+  margin: 0px auto;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+  background-color: white;
+  padding: 30px;
 }
 
-.myFarmseye:hover {
-  color: #0ea5e9;
-  transition: color 0.3s;
+.status_box>div{
+  width: 80%;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status_box>div >span{
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.status{
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
 }

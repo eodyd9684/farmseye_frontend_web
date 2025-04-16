@@ -117,20 +117,23 @@ const MainWeather = ({today}) => {
 
           <div className={styles.weatherCard}>
             <div className={styles.mainInfo}>
+              
               <div className={styles.icon}>{weatherIcons[weather.weather[0].main]}</div>
+              
               <div>
                 <h2>{weather.weather[0].main}</h2>
                 <h1>{Math.round(weather.main.temp)}°</h1>
                 <p>{city} / {today} ({getDayOfWeek()})</p>
               </div>
+
             </div>
 
             <div className={styles.details}>
               <div><span>🌬 풍속:</span> {weather.wind.speed} m/s</div>
               <div><span>💧 습도:</span> {weather.main.humidity} %</div>
               <div><span>🌡 체감:</span> {weather.main.feels_like} °C</div>
-              <div><span>☀️ 일출:</span> {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}</div>
-              <div><span>🌙 일몰:</span> {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}</div>
+              <div><span>☀️ 일출:</span><br /> {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}</div>
+              <div><span>🌙 일몰:</span><br /> {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}</div>
             </div>
           </div>
         ) 
