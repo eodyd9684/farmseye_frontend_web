@@ -32,7 +32,7 @@
 }
 
 .home_container>div:nth-child(2){
-  background-color: lightpink;
+  background-color: cornflowerblue;
   opacity: 0.6;
   padding: 20px;
   border-radius: 10px;
@@ -99,7 +99,7 @@
 .footer_info > i{
   width: 200px;
   font-size: 1.8rem;
-  color: lightcoral;
+  color: cornflowerblue;
 }
 
 .slider_image {
@@ -110,7 +110,7 @@
 }
 
 .dots {
-  background-color: rgba(255, 182, 193, 0.6);
+  background-color: rgba(100, 149, 237, 0.6);
   padding: 8px;
   border-radius: 10px;
   position: absolute;

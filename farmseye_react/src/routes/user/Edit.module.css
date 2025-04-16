@@ -1,0 +1,101 @@
+
+/* 전체 컨테이너 스타일 */
+.edit_container {
+  width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+/* 제목 스타일 */
+.title {
+  font-size: 24px;
+  color: cornflowerblue;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 폼 내부 정렬 */
+.edit_form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 라벨 스타일 */
+.edit_form label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 인풋 필드 공통 스타일 */
+.edit_form input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 5px;
+  transition: border-color 0.3s;
+}
+
+/* 포커스 시 */
+.edit_form input:focus {
+  border-color: cornflowerblue;
+  outline: none;
+}
+
+/* 에러 메시지 */
+.error_msg {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* 비밀번호 변경 버튼 */
+.edit_form button[type='button'] {
+  width: 150px;
+  padding: 8px;
+  margin-top: 10px;
+  align-self: flex-start;
+  background-color: #eef3ff;
+  color: cornflowerblue;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 제출 버튼 */
+.submit_btn {
+  padding: 12px;
+  font-size: 16px;
+  background-color: cornflowerblue;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit_btn:hover {
+  background-color: cornflowerblue;
+}
+
+/* 하단 탈퇴하기 링크 */
+.bottomLink {
+  margin-top: 30px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.bottomLink a {
+  color: #666;
+  text-decoration: none;
+}

@@ -37,6 +37,11 @@
   border-bottom: 1px solid #ccc;
 }
 
+.inputLine > i{
+  padding: 10px;
+  color: #555;
+} 
+
 .inputLine:last-child {
   border-bottom: none;
 }

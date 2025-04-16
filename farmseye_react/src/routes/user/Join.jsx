@@ -190,6 +190,7 @@ const Join = () => {
         {/* 아이디 / 비밀번호 / 이메일 */}
         <div className={styles.inputGroup}>
           <div className={`${styles.inputLine} ${errorMsg.userId && styles.error}`}>
+            <i class="bi bi-person"></i>
             <input
               type="text"
               placeholder="아이디"
@@ -201,9 +202,10 @@ const Join = () => {
           {errorMsg.userId && <p className={styles.errorMsg}>{errorMsg.userId}</p>}
 
           <div className={`${styles.inputLine} ${errorMsg.userPw && styles.error}`}>
+            <i class="bi bi-lock"></i>
             <input
               type="password"
-              placeholder="비밀번호 영어 대/소문자 + 숫자 포함"
+              placeholder="비밀번호 (영어 대/소문자 + 숫자 포함)"
               value={userList.userPw}
               onChange={handleChange('userPw')}
             />
@@ -211,9 +213,10 @@ const Join = () => {
           {errorMsg.userPw && <p className={styles.errorMsg}>{errorMsg.userPw}</p>}
 
           <div className={`${styles.inputLine} ${errorMsg.userEmail && styles.error}`}>
+            <i class="bi bi-envelope"></i>
             <input
               type="email"
-              placeholder="이메일주소 (비밀번호 찾기 등 본인 확인용)"
+              placeholder="이메일 (비밀번호 찾기 등 본인 확인용)"
               value={userList.userEmail}
               onChange={handleChange('userEmail')}
             />
@@ -225,6 +228,7 @@ const Join = () => {
         {/* 이름 / 주소 / 전화번호 */}
         <div className={styles.inputGroup}>
           <div className={`${styles.inputLine} ${errorMsg.userName && styles.error}`}>
+            <i class="bi bi-person"></i>
             <input
               type="text"
               placeholder="이름"
@@ -235,6 +239,7 @@ const Join = () => {
           {errorMsg.userName && <p className={styles.errorMsg}>{errorMsg.userName}</p>}
 
           <div className={`${styles.inputLine} ${errorMsg.userAddr && styles.error}`}>
+            <i class="bi bi-house-door"></i>
             <input
               type="text"
               placeholder="주소"
@@ -245,9 +250,10 @@ const Join = () => {
           {errorMsg.userAddr && <p className={styles.errorMsg}>{errorMsg.userAddr}</p>}
 
           <div className={`${styles.inputLine} ${errorMsg.userTel && styles.error}`}>
+            <i class="bi bi-telephone"></i>
             <input
               type="tel"
-              placeholder="전화번호 입력 (- 없이)"
+              placeholder="전화번호 입력 ( - 없이)"
               value={userList.userTel}
               onChange={handleChange('userTel')}
             />
