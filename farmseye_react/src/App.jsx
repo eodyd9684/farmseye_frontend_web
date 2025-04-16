@@ -22,6 +22,8 @@ import UserMainTest from './routes/common/UserMainTest'
 import Update from './routes/user/Edit'
 import Edit from './routes/user/Edit'
 import Delete from './routes/user/Delete'
+import HumiWeekChart from './routes/enviroment/HumiWeekChart'
+import IllumiWeekChart from './routes/enviroment/IllumiWeekChart'
 
 
 function App() {
@@ -43,8 +45,8 @@ function App() {
             <Route path='' element={ <UserMainTest /> }/>
             <Route path='enviroment' element={ <EnvironmentDetail/> } />
             <Route path='tempWeekChart' element={ <TempWeekChart/> } />
-            <Route path='humiWeekChart' element={ <TempWeekChart/> } />
-            <Route path='illumiWeekChart' element={ <TempWeekChart/> } />
+            <Route path='humiWeekChart' element={ <HumiWeekChart/> } />
+            <Route path='illumiWeekChart' element={ <IllumiWeekChart/> } />
           </Route>
   
           {/* 회원 정보 수정 및 관리, 회원별 데이터 확인 페이지 */}

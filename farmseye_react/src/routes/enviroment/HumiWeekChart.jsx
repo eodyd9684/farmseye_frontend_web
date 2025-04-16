@@ -75,7 +75,7 @@ const getDayName = (date) => {
   return date.toLocaleDateString('ko-KR', options);
 };
 
-const TempWeekChart = () => {
+const HumiWeekChart = () => {
   const today = useSelector(state => state.today.today);
   const { envData, weekData } = useEnvironmentData();
   
@@ -90,7 +90,7 @@ const TempWeekChart = () => {
         {envData && (
           <div className={styles.today_chart}>
             <p>TodayChart</p>
-            <DataChart today={today} data={envData} dataKey={'temp'}/>
+            <DataChart today={today} data={envData} dataKey={'humi'}/>
           </div>
         )}
         
@@ -104,8 +104,8 @@ const TempWeekChart = () => {
                 {weekData && weekData[index] && (
                   <SimpleBarChart 
                     legend={<></>}
-                    rawData={weekData[index].map(d => d.temp)}
-                    yAxis={"℃"}
+                    rawData={weekData[index].map(d => d.humi)}
+                    yAxis={"%"}
                   />
                 )}
               </div>
@@ -117,4 +117,4 @@ const TempWeekChart = () => {
   );
 };
 
-export default TempWeekChart;
+export default HumiWeekChart;

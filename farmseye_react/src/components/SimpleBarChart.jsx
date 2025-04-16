@@ -78,10 +78,10 @@ import {
   CartesianGrid
 } from 'recharts';
 
-const SimpleBarChart = ({ dataKey, rawData, legend = null, yAxis = '' }) => {
+const SimpleBarChart = ({ rawData, legend = null, yAxis = '' }) => {
   const formattedData = rawData.map((value, index) => ({
     no: `${index * 2}시`, // Y축 값
-    value: value,
+    value
   }));
 
   const CustomLabel = ({ x, y, value }) => (

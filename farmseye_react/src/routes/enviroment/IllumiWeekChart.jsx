@@ -29,7 +29,10 @@ const useEnvironmentData = () => {
         setEnvData(todayData);
 
         // 14일 데이터 필터링 및 시간별 그룹화
-        const dayFourteenData = res.data.filter(item => {
+        const dayFourteenData = res.data.map(item => ({
+          ...item,
+          illumi: (10000 / (item.illumi + 1)).toFixed(1)
+        })).filter(item => {
           const date = new Date(item.timestamp);
           return date.getDate() === 14;
         }).sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
@@ -75,7 +78,7 @@ const getDayName = (date) => {
   return date.toLocaleDateString('ko-KR', options);
 };
 
-const TempWeekChart = () => {
+const IllumiWeekChart = () => {
   const today = useSelector(state => state.today.today);
   const { envData, weekData } = useEnvironmentData();
   
@@ -90,7 +93,7 @@ const TempWeekChart = () => {
         {envData && (
           <div className={styles.today_chart}>
             <p>TodayChart</p>
-            <DataChart today={today} data={envData} dataKey={'temp'}/>
+            <DataChart today={today} data={envData} dataKey={'illumi'}/>
           </div>
         )}
         
@@ -104,8 +107,8 @@ const TempWeekChart = () => {
                 {weekData && weekData[index] && (
                   <SimpleBarChart 
                     legend={<></>}
-                    rawData={weekData[index].map(d => d.temp)}
-                    yAxis={"℃"}
+                    rawData={weekData[index].map(d => d.illumi)}
+                    yAxis={"lx"}
                   />
                 )}
               </div>
@@ -117,4 +120,4 @@ const TempWeekChart = () => {
   );
 };
 
-export default TempWeekChart;
+export default IllumiWeekChart;

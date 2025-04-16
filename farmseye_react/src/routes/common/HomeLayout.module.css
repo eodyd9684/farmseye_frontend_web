@@ -16,7 +16,7 @@
   width: 100vw;
   margin: 0px auto;
   background-color: lightgrey;
-  height: 70vh;
+  height: calc(100vh - 100px - 15vh);
   position: relative;
   overflow: hidden;
 }
@@ -45,7 +45,7 @@
 
 .footer{
   border: 1px solid red;
-  height: 17vh;
+  height: 15vh;
   display: flex;
   padding: 10px;
   align-items: center;
