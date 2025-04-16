@@ -26,7 +26,7 @@ const Admin = () => {
   const itemsPerPage = 5;
 
   useEffect(() => {
-    axios.get('/api/user')
+    axios.get('/api/users')
       .then((res) => {
         setUserInfo(res.data);
         setFilteredUsers(res.data);

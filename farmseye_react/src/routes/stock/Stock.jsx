@@ -14,10 +14,13 @@ const Stock = () => {
 
   //user 정보 재조회 실행을 위한 변수
     const [userTrigger, setUserTrigger] = useState({});
+  
+  
 
   //개체 조회
   useEffect(() => {
-    axios.get('/api/stock')
+    const userId = sessionStorage.getItem('userId')
+    axios.get(`/api/stock/${userId}`)
     .then(res => {
       console.log(res.data)
       setStockInfo(res.data)

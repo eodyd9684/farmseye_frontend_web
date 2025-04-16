@@ -14,6 +14,8 @@ const StockRegistration = () => {
     userId : 'user'
   })
 
+  console.log(stockData)
+  
   const changeData = (e) => {
     const { name, value } = e.target
     setStockData(prev => ({
@@ -34,28 +36,34 @@ const StockRegistration = () => {
   }
 
   return (
-    <>
-      <div>
-        입고 수
-        <FarmseyeInput 
-          name="warehousing" 
-          value={stockData.warehousing} 
-          onChange={(e) => {changeData(e)}} 
+    <div className={styles.registrationWrapper}>
+      <div className={styles.fieldGroup}>
+        <label className={styles.label}>입고 수</label>
+        <FarmseyeInput
+          name="warehousing"
+          value={stockData.warehousing}
+          onChange={changeData}
+          className={styles.input}
         />
       </div>
-      <div>
-        총 무게
-        <FarmseyeInput 
-          name="stockWeight" 
-          value={stockData.stockWeight} 
-          onChange={(e) => {changeData(e)}} 
+      <div className={styles.fieldGroup}>
+        <label className={styles.label}>총 무게</label>
+        <FarmseyeInput
+          name="stockWeight"
+          value={stockData.stockWeight}
+          onChange={changeData}
+          className={styles.input}
         />
       </div>
-      <div>
-        <FarmseyeButton title='등록' size='small' onClick={() => {insertStock()}}/>
-        <FarmseyeButton title='취소' size='small' onClick={() => {nav('/stock')}} />
+      <div className={styles.buttonGroup}>
+        <button className={styles.cancelButton} onClick={() => nav('/stock')}>
+          취소
+        </button>
+        <button onClick={insertStock}>
+          등록
+        </button>
       </div>
-    </>
+    </div>
   )
 }
 

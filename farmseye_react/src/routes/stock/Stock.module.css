@@ -24,3 +24,65 @@
   text-align: center;
 }
 
+/* stockRegistration */
+.registrationWrapper {
+  background-color: #F8F4E1;
+  padding: 40px;
+  max-width: 500px;
+  margin: 40px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.fieldGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 14px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.greenButton {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.greenButton:hover {
+  background-color: #27ae60;
+}
+
+.cancelButton {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background-color: #f0f0f0;
+}
