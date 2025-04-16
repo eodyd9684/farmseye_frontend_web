@@ -6,7 +6,6 @@
   display: flex;
   justify-content: space-between;
   background-color: white;
-  border: 1px solid grey;
   padding: 10px 30px;
   height: 13vh;
   min-height: 100px;
@@ -26,6 +25,10 @@
   align-items: center;
   gap: 30px;
   padding: 10px;
+  border-radius: 10px;
+}
+
+.home_logo img{
   border-radius: 10px;
 }
 

@@ -85,7 +85,7 @@ const Login = () => {
           <i class="bi bi-person"></i>
           <input
             type="text"
-            placeholder="ID"
+            placeholder="아이디"
             value={loginInfo.userId}
             onChange={handleLoginInfo('userId')}
           />
@@ -96,7 +96,7 @@ const Login = () => {
           <i class="bi bi-lock"></i>
           <input
             type="password"
-            placeholder="PASSWORD"
+            placeholder="비밀번호"
             value={loginInfo.userPw}
             onChange={handleLoginInfo('userPw')}
           />
