@@ -7,6 +7,6 @@
 
 .route-body {
   flex: 1; /* 남은 공간 모두 차지 */
-  margin-top: 13vh;
+  margin-top: 100px;
   overflow-y: auto;
 }

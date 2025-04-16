@@ -168,39 +168,43 @@ const TempWeekChart = () => {
   
   
   return (
-    <div className={styles.container}>
-      <h2>주간 데이터</h2>
-
-      {envData === null ? null : 
-        <div>
-        <DataChart today={today} data={envData} dataKey={'temp'}/>
-      </div>}
-      
-      <div className={styles.days_container} >
-        {weekDays.map((day, index) => (
-          <div key={index} className={styles.day_box}>
-
-            <div>{getDayName(day[0])}</div>
-
-            <div>{day[0].getDate()}</div> {/* 날짜 표시 */}
-
-            <hr />
-
-            <div className={styles.week_temp}>
-              <SimpleBarChart 
-                dataKey={'temp'}
-                rawData={weekTemp[index]}
-                
-                yAxis={"℃"}
-              />
-            </div>
-
+    <div className={styles.background}>
+      <div className={styles.container}>
+        <p className={styles.chart_title}>WeekChart</p>
+  
+        {envData === null ? null : 
+          <div className={styles.today_chart}>
+            <p>TodayChart</p>
+            <DataChart today={today} data={envData} dataKey={'temp'}/>
           </div>
-        ))}
+        }
+        
+        <div className={styles.days_container} >
+          {weekDays.map((day, index) => (
+            <div key={index} className={styles.day_box}>
+  
+              <div>{getDayName(day[0])}</div>
+  
+              <div>{day[0].getDate()}</div> {/* 날짜 표시 */}
+  
+              <hr />
+  
+              <div className={styles.week_temp}>
+                <SimpleBarChart 
+                  dataKey={'temp'}
+                  rawData={weekTemp[index]}
+                  
+                  yAxis={"℃"}
+                />
+              </div>
+  
+            </div>
+          ))}
+        </div>
+  
+        
+  
       </div>
-
-      
-
     </div>
   )
 }

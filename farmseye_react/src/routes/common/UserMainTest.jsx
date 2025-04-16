@@ -91,13 +91,23 @@ const UserMainTest = () => {
         console.error("환경 데이터를 불러오는 중 오류 발생:", error);
       }
     };
+    
     fetchEnvData();
+
+    // 5분마다 반복 실행
+    const interval = setInterval(() => {
+      fetchEnvData();
+    }, 5 * 60 * 1000); // 5분 = 300,000ms
+
+    // 컴포넌트 언마운트 시 clear
+    return () => clearInterval(interval);
   }, []);
   
-  console.log(appropriateNowData)
 
   return (
     <div className={styles.background}>
+      <p className={styles.chart_title}>Today Chart</p>
+      
       <div className={styles.container}>
 
         <div className={styles.left_panel}>
@@ -155,7 +165,7 @@ const UserMainTest = () => {
               </div>
 
               <div>
-                <p className={styles.chart_title}> 온도 : {appropriateNowData.temp} ℃</p>
+                <p className={styles.now_title}> 온도 : {appropriateNowData.temp} ℃</p>
                 <GaugeDesign 
                 appropriate={appropriateNowData.temp} 
                 min={minMaxData.tempMin} 
@@ -164,7 +174,7 @@ const UserMainTest = () => {
               </div>
 
               <div>
-                <p className={styles.chart_title}> 현재 습도 : {appropriateNowData.humi} %</p>
+                <p className={styles.now_title}> 현재 습도 : {appropriateNowData.humi} %</p>
                 <GaugeDesign 
                 appropriate={appropriateNowData.humi} 
                 min={minMaxData.humiMin} 
@@ -173,7 +183,7 @@ const UserMainTest = () => {
               </div>
 
               <div>
-                <p className={styles.chart_title}> 현재 조도 : {appropriateNowData.illumi} lx</p>
+                <p className={styles.now_title}> 현재 조도 : {appropriateNowData.illumi} lx</p>
                 <GaugeDesign 
                 appropriate={appropriateNowData.illumi} 
                 min={minMaxData.illumiMin} 

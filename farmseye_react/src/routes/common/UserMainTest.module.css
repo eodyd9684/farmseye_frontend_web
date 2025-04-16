@@ -1,23 +1,36 @@
 
 .background{
   width: 100vw;
-  height: 70%;
+  overflow: auto;
   background: #f7f9fa;
+}
+
+.chart_title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  background-color: #f0f4f8;
+  padding: 12px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  font-family: 'Pretendard', sans-serif;
+  width: 1200px;
+  margin: 0px auto;
 }
 
 .container {
   display: flex;
   justify-content: space-between;
-  gap: 40px;
+  gap: 20px;
   width: 1200px;
   min-height: 60vh;
-  padding: 40px;
+  padding: 0px 0px;
   box-sizing: border-box;
   margin: 0px auto;
 }
 
 .weather_box{
-  margin: 0px auto;
+  height: 100%;
+  margin: auto;
   padding: 20px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1)), url('/images/downloaded-image (2).jpg');
   background-size: cover;
@@ -105,14 +118,14 @@
   color: #555;
 }
 
-.chart_title {
+.now_title {
   font-size: 1.2rem;
   font-weight: 500;
 }
 
 .aircondition{
-  width: 1120px;
-  margin: 0px auto;
+  width: 1200px;
+  margin: 20px auto;
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 10px;

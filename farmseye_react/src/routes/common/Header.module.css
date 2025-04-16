@@ -1,20 +1,24 @@
-.header{
+.header_bar{
+  background-color: #2cc185;
   position: fixed;
   top: 0;
   width: 100vw;
   min-width: 1200px;
+  height: 100px;
+  z-index: 999;
+}
+
+.header{
+  margin: 0px auto;
+  width: 1200px;
+  height: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: white;
-  padding: 10px 30px;
-  height: 13vh;
-  min-height: 100px;
-  z-index: 999;
 }
 
 /* 화면이 1200px 이하로 줄어들면 width를 100%로 변경 */
 @media (max-width: 1200px) {
-  .header {
+  .header_bar {
     width: 100%;
     min-width: 1200px; /* 최소 너비 제한 해제 */
   }
@@ -30,6 +34,8 @@
 
 .home_logo img{
   border-radius: 10px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .home_logo:hover{
@@ -45,7 +51,7 @@
 
 .content_list{
   margin: auto 0px;
-  color: black;
+  color: white;
   display: flex;
   align-items: center;
   gap: 80px;
@@ -89,12 +95,11 @@
 
 /* 드롭다운 스타일 */
 .dropdown {
+  background-color: #2cc185;
   position: absolute;
   top: 100%; /* ul 아래로 배치 */
   left: 0px;
-  background-color: white;
-  border: 1px solid #ddd;
-  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.6);
   padding: 10px;
   animation: dropdown-animation 0.3s ease-in-out; /* 애니메이션 추가 */
   width: 180px;

@@ -1,8 +1,26 @@
+.background{
+  width: 100vw;
+  background: #f7f9fa;
+  overflow: auto;
+}
+
+.chart_title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  background-color: #f0f4f8;
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  font-family: 'Pretendard', sans-serif;
+}
+
+
+
 .container{
-  width: 100%;
-  min-width: 1300px;
-  height: 100%;
-  margin: 10px;
+  width: 1200px;
+  min-width: 1200px;
+  margin: 10px auto;
   padding: 0px 20px;
 }
 
@@ -15,27 +33,26 @@
 }
 
 .data_container{
-  background-color: rgb(245, 245, 245);
-  box-shadow: 0px 0px 4px rgba(71, 71, 71, 0.5);
-  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   height: 100%;
   padding: 20px;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2 , 1fr);
   gap: 20px;
 }
 
 .data_container > div{
-  flex: 1;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.data_container > div > div:first-child{
+.data_container > div > div > div:first-child{
   display: flex;
   justify-content: space-between;
-  align-items: end;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
 }
+
+
 
 .data_container > div > div:first-child > div:nth-child(2){
   font-size: 1rem;
@@ -44,18 +61,22 @@
 
 
 
-.bottom{
-  background-color: rgb(245, 245, 245);
-  border-radius: 10px;
-  margin: 20px 0px;
-  padding: 10px;
-  box-shadow: 0px 0px 4px rgba(71, 71, 71, 0.5);
-}
 
 .test{
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
 }
+
+.test > div{
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 
 .test > div > p{
   font-size: 1.4rem;
@@ -66,4 +87,10 @@
   font-size: 1.2rem;
   font-weight: 500;
   color: salmon;
+}
+
+.legend_div{
+  grid-column: 1 / -1; /* 👉 가로 전체를 차지하도록 설정 */
+  box-shadow: none !important;
+  align-items: end;
 }
