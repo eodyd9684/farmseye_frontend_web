@@ -3,9 +3,11 @@ import styles from './HomeLayout.module.css'
 
 const HomeLayout = () => {
   const images = [
-    "/images/easter_bunny_2026-wallpaper-2880x1200.jpg",
-    "/images/powerprod.jpg",
-    "/images/smart-farming-technology-tools-systems-set-illustration-vector-illustration_345238-4985.avif"
+    "/images/banner1.jpg",
+    "/images/banner2.png",
+    "/images/banner3.png",
+    "/images/banner4.jpg",
+    "/images/banner5.png"
   ];
   
 
@@ -49,7 +51,7 @@ const HomeLayout = () => {
 
       <div className={styles.footer}>
         <div className={styles.footer_contact}>
-          <img src="/images/Farms Eye Logo.png" />
+          <img src="/images/icon.png" />
 
           <div className={styles.contact_icon}>
             <i class="bi bi-twitter-x" ></i>

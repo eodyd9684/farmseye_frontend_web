@@ -20,6 +20,9 @@ import Stock from './routes/stock/Stock'
 import Login from './routes/user/Login'
 import Join from './routes/user/Join'
 import StockRegistration from './routes/stock/StockRegistration'
+import Update from './routes/user/Edit'
+import Edit from './routes/user/Edit'
+import Delete from './routes/user/Delete'
 
 
 function App() {
@@ -53,7 +56,8 @@ function App() {
           {/* 회원 가입 및 회원 관리 */}
           <Route path="/user" element={ '' } > 
             <Route path="join" element={ <Join /> } />
-            <Route path="update" element={ <dev>개인정보수정</dev> } />
+            <Route path="update" element={ <Edit /> } />
+            <Route path="delete" element={ <Delete /> } />
             <Route path="login" element={ <Login /> } />
           </Route>
   
