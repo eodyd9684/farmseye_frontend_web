@@ -2,111 +2,208 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './Edit.module.css'; // FarmsEye 스타일 적용을 위한 CSS 파일
-import { useParams } from 'react-router-dom';
+import { axiosInstance } from '../../redux/axiosInstance';
+import { useNavigate } from 'react-router-dom';
 
 const EditUserInfo = () => {
-  const {userId} = useParams();
-
+  const nav = useNavigate();
   // 사용자 정보 상태 설정
   const [userInfo, setUserInfo] = useState({
     userId: '',
     userPw: '',
+    confirmPw: '',
     userTel: '',
     userEmail: '',
     userAddr: ''
   });
 
+  const [userList, setUserList] = useState({});
+
   // 상태 설정: 비밀번호 변경 여부
   const [changePw, setChangePw] = useState(false);
-  const [newPw, setNewPw] = useState('');
-  const [confirmPw, setConfirmPw] = useState('');
   
-  // 상태 설정: 이메일/전화번호 중복 여부
-  const [emailError, setEmailError] = useState('');
-  const [telError, setTelError] = useState('');
+  //에러 메세지
+  const [errorMsg, setErrorMsg] = useState({});
 
 
   ////////////////////////////////////////////////////////////////////////////////////
 
-  // 사용자 정보 로딩
+  // 현재 사용자 정보 로딩
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
-    if (!token) {
-      console.warn("토큰이 없습니다.");
-      return;
-    }
+    if (!token) return;
   
-    axios.get(`/api/users/${userId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .then(res => {
-      console.log('내 정보:', res.data);
-      setUserInfo(res.data);
-    })
-    .catch(err => {
-      console.error("응답 코드:", err.response?.status);
-      console.error("응답 메시지:", err.response?.data);
-    });
+    axiosInstance
+      .get('/users/isUsable')
+      .then(res => {
+        const data = res.data;
+        console.log('내 정보:', data);
+
+        setUserInfo({
+          userId: data.userId ?? '',
+          userPw: '',
+          confirmPw : '',
+          userTel: data.userTel ?? '',
+          userEmail: data.userEmail ?? '',
+          userAddr: data.userAddr ?? ''
+        });
+        
+      })
+      .catch(err => {
+        console.error("응답 코드:", err.response?.status);
+        console.error("응답 메시지:", err.response?.data);
+      });
   }, []);
 
 
+  //회원 정보창 변경
+  const handleUserInfo = (field) => (e) => {
+    let value = e.target.value;
+
+  // 전화번호일 경우 하이픈 자동 삽입 처리
+    if (field === 'userTel') {
+      value = value.replace(/[^0-9]/g, ''); // 숫자 외 제거
+
+    // 길이 제한 (11자리까지만 허용)
+    if (value.length > 11) {
+      value = value.slice(0, 11);
+    }
+
+    if (value.startsWith('02')) {
+      // 서울 번호
+      if (value.length > 2 && value.length <= 5) {
+        value = value.replace(/(\d{2})(\d{0,3})/, '$1-$2');
+      } else if (value.length > 5) {
+        value = value.replace(/(\d{2})(\d{3,4})(\d{0,4})/, '$1-$2-$3');
+      }
+    } else {
+      // 휴대전화 및 일반 지역번호
+      if (value.length > 3 && value.length <= 7) {
+        value = value.replace(/(\d{3})(\d{0,4})/, '$1-$2');
+      } else if (value.length > 7) {
+        value = value.replace(/(\d{3})(\d{3,4})(\d{0,4})/, '$1-$2-$3');
+      }
+    }
+
+    // 마지막에 '-'가 붙는 경우 제거
+    value = value.replace(/-$/, '');
+  }
+
+  // 에러 해제
+  if (errorMsg[field]) {
+    setErrorMsg({ ...errorMsg, [field]: '' });
+  }
+
+    setUserInfo({
+      ...userInfo,
+      [e.target.name] : value
+    });
+  }
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  //회원가입 전 회원 중복 검사를 위한 회원 목록 조회
+  useEffect(() => {
+    axios.get('/api/users/check')
+    .then(res => {
+      console.log(res.data)
+      setUserList(res.data)
+    })
+    .catch(error => console.log(error))
+  }, []);
 
   ////////////////////////////////////////////////////////////////////////////
 
 
+  //수정 전 유효성 검사
+  const joinValiData = () => {
+    let result = 0;
 
-  // 이메일 중복 확인
-  const checkEmailDuplicate = (email) => {
-    axios.post('/api/users/check', { email })
-      .then(res => {
-        setEmailError(res.data.duplicate ? '이미 사용 중인 이메일입니다.' : '');
+    setErrorMsg((state) => {
+      return{
+        userPw: '',
+        userEmail: '',
+        userAddr: '',
+        userTel: '',
+      }
+    })
+
+    //비밀번호 정규식
+    //영어는 소문자나 대문자 + 숫자는 포함
+    const regex_pw = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,20}$/;
+
+    if (!regex_pw.test(userInfo.userPw)) {
+      result = 1;
+
+      setErrorMsg((state) => {
+        return {
+          ...state,
+          userPw : "잘못된 비밀번호 입니다.",
+        };
       });
-  };
-
-  // 전화번호 중복 확인
-  const checkTelDuplicate = (tel) => {
-    axios.post('/api/users/check', { tel })
-      .then(res => {
-        setTelError(res.data.duplicate ? '이미 사용 중인 연락처입니다.' : '');
-      });
-  };
-
-    //input태그의 값이 변경될 때마다 실행하는 함수
-    const changeUserInfo = (e) => {
-      setUserInfo({
-        ...userInfo,
-        [e.target.name] : e.target.value
-      })
     }
 
-  // 회원 정보 수정 제출
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    //전화번호 정규식
+    const regex_tel =
+      /^(01[0-9])-([0-9]{3,4})-([0-9]{4})$|^(0[2-9]{1})-([0-9]{3,4})-([0-9]{4})$/;
 
-    if (changePw && newPw !== confirmPw) {
-      alert('새 비밀번호와 일치하지 않습니다.');
+    if (!regex_tel.test(userInfo.userTel)) {
+      result = 1;
+
+      setErrorMsg((state) => {
+        return {
+          ...state,
+          userTel : "잘못된 전화번호 입니다.",
+        };
+      });
+    }
+    return result;
+  }
+
+
+  //회원 정보 수정 제출
+  const handleSubmit = (e) => {
+    console.log(userInfo);
+
+    if (changePw && userInfo.userPw !== userInfo.confirmPw) {
+      setErrorMsg(prev => ({
+        ...prev,
+        confirmPw: '새 비밀번호와 일치하지 않습니다.'
+      }));
       return;
     }
 
-    const payload = {
-      ...userInfo,
-      userPw: changePw ? newPw : undefined // 비밀번호 변경 요청 시에만 전송
-    };
+    const result = joinValiData();
 
-    try {
-      await axios.put(`/api/user/${userId}`, payload);
-      alert('회원 정보가 수정되었습니다.');
-    } catch (err) {
-      console.error(err);
+    //중복 검사 확인
+    const isEmailDuplicate = userList.some(user => user.userEmail === userInfo.userEmail && user.userId !== userInfo.userId);
+    const isTelDuplicate = userList.some(user => user.userTel === userInfo.userTel && user.userId !== userInfo.userId);
+
+    const duplicateErrors = {};
+    if (isEmailDuplicate) duplicateErrors.userEmail = '이미 존재하는 이메일입니다.';
+    if (isTelDuplicate) duplicateErrors.userTel = '이미 존재하는 전화번호입니다.';
+    
+    if (Object.keys(duplicateErrors).length > 0) {
+      setErrorMsg(prev => ({ ...prev, ...duplicateErrors }));
+      return;
     }
-  };
+
+    if(result === 0){
+      axiosInstance
+      .put('/users', userInfo)
+      .then(res => {
+        console.log(res.data)
+        alert('수정 완료')
+        nav('/')
+      })
+      .catch()
+    }
+  }
 
   return (
     <div className={styles.edit_container}>
       <h2 className={styles.title}>회원 정보 수정</h2>
-      <form className={styles.edit_form} onSubmit={handleSubmit}>
+      <div className={styles.edit_form}>
         <label>아이디
           <input type="text" name='userId' value={userInfo.userId} disabled />
         </label>
@@ -120,43 +217,37 @@ const EditUserInfo = () => {
         {changePw && (
           <>
             <label>새 비밀번호
-              <input type="password" value={newPw} onChange={(e) => setNewPw(e.target.value)} required />
+              <input type="password" name='userPw' value={userInfo.userPw} onChange={handleUserInfo('userPw')} />
+              {errorMsg.userPw && <p className={styles.error_msg}>{errorMsg.userPw}</p>}
             </label>
             <label>새 비밀번호 확인
-              <input type="password" value={confirmPw} onChange={(e) => setConfirmPw(e.target.value)} required />
+              <input type="password" name='confirmPw' value={userInfo.confirmPw} onChange={handleUserInfo('confirmPw')} />
+              {errorMsg.confirmPw && <p className={styles.error_msg}>{errorMsg.confirmPw}</p>}
             </label>
           </>
         )}
 
         <label>연락처
-          <input type="text" value={userInfo.userTel} onChange={(e) => {
-            const value = e.target.value;
-            setUserInfo({ ...userInfo, userTel: value });
-            checkTelDuplicate(value);
-          }} required />
-          {telError && <p className={styles.error_msg}>{telError}</p>}
+          <input type="text" name='userTel' value={userInfo.userTel} onChange={handleUserInfo('userTel')} />
+          {errorMsg.userTel && <p className={styles.error_msg}>{errorMsg.userTel}</p>}
         </label>
 
         <label>이메일
-          <input type="email" value={userInfo.userEmail} onChange={(e) => {
-            const value = e.target.value;
-            setUserInfo({ ...userInfo, userEmail: value });
-            checkEmailDuplicate(value);
-          }} required />
-          {emailError && <p className={styles.error_msg}>{emailError}</p>}
+          <input type="email" name='userEmail' value={userInfo.userEmail} onChange={handleUserInfo('userEmail')} />
+          {errorMsg.userEmail && <p className={styles.error_msg}>{errorMsg.userEmail}</p>}
         </label>
 
         <label>주소
-          <input type="text" value={userInfo.userAddr} onChange={(e) => setUserInfo({ ...userInfo, userAddr: e.target.value })} required />
+          <input type="text" name='userAddr' value={userInfo.userAddr} onChange={handleUserInfo('userAddr')} />
         </label>
 
-        <button type="submit" className={styles.submit_btn}>수정 완료</button>
+        <button type="button" className={styles.submit_btn} onClick={handleSubmit}>수정 완료</button>
 
         
         <div className={styles.bottomLink}>
           <a href="delete">탈퇴하기</a>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
