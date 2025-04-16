@@ -1,0 +1,26 @@
+.stock_container {
+  background-color: #F8F4E1; /* 밝은 배경 */
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* 테이블 */
+.stock_table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #F8F4E1; /* 테이블은 흰 배경 */
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* 테이블 헤더 */
+.stock_table thead {
+  background-color: #e0e0e0; /* 연한 회색 헤더 */
+  color: #333;
+}
+
+.stock_table th, .stock-table td {
+  border: 1px solid #cccccc;
+  padding: 10px;
+  text-align: center;
+}
+

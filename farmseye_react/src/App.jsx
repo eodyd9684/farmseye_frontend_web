@@ -19,6 +19,7 @@ import Admin from './routes/admin/Admin'
 import Stock from './routes/stock/Stock'
 import Login from './routes/user/Login'
 import Join from './routes/user/Join'
+import StockRegistration from './routes/stock/StockRegistration'
 
 
 function App() {
@@ -45,8 +46,7 @@ function App() {
   
           {/* 회원 정보 수정 및 관리, 회원별 데이터 확인 페이지 */}
           <Route path="/admin" element={ <AdminLayout /> } > 
-            {/* <Route path="" element={ <Admin /> } /> */}
-            <Route path="" element={ <Stock/> } />
+            <Route path="" element={ <Admin /> } />
           </Route>
           
 
@@ -57,6 +57,11 @@ function App() {
             <Route path="login" element={ <Login /> } />
           </Route>
   
+          {/* 개체 관리*/}
+          <Route path='/stock' element={''}>
+            <Route path='' element={<Stock/>}/>
+            <Route path='join' element={<StockRegistration/>}/>
+          </Route>
   
         </Routes>
       </div>
