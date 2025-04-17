@@ -2,6 +2,14 @@
   background-color: #F8F4E1; /* 밝은 배경 */
   padding: 20px;
   font-family: Arial, sans-serif;
+  overflow: auto;
+}
+
+.size{
+  width: 1200px;
+  min-width: 1200px;
+  margin: 10px auto;
+  padding: 0px 20px;
 }
 
 /* 테이블 */

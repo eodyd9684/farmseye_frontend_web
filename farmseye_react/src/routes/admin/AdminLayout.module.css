@@ -3,6 +3,14 @@
   background-color: #F8F4E1; /* 밝은 베이지 */
   min-height: 100vh;
   font-family: 'Noto Sans KR', sans-serif;
+  overflow: auto;
+}
+
+.size{
+  width: 1200px;
+  min-width: 1200px;
+  margin: 10px auto;
+  padding: 0px 20px;
 }
 
 .tableContainer {

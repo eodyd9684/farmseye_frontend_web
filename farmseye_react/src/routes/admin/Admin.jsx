@@ -82,62 +82,64 @@ const Admin = () => {
 
   return (
     <div className={styles.container}>
-      <div style={{ marginBottom: '1rem' }}>
-        <select name="searchKeyword" value={searchData.searchKeyword} onChange={changeSearchData}>
-          <option value="userId">아이디</option>
-          <option value="userName">이름</option>
-          <option value="userTel">연락처</option>
-        </select>
-        <FarmseyeInput name="searchValue" value={searchData.searchValue} onChange={changeSearchData} />
-        <FarmseyeButton title="검색" size="small" onClick={searchList} />
-      </div>
-
-      <table border={1} className={styles.tableContainer}>
-        <thead>
-          <tr>
-            <td>No</td>
-            <td>아이디</td>
-            <td>이름</td>
-            <td>나이</td>
-            <td>이메일</td>
-            <td>연락처</td>
-            <td>회원가입일</td>
-            <td>상태</td>
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems.map((u, i) => (
-            <AdminDetail
+      <div className={styles.size}>
+        <div style={{ marginBottom: '1rem' }}>
+          <select name="searchKeyword" value={searchData.searchKeyword} onChange={changeSearchData}>
+            <option value="userId">아이디</option>
+            <option value="userName">이름</option>
+            <option value="userTel">연락처</option>
+          </select>
+          <FarmseyeInput name="searchValue" value={searchData.searchValue} onChange={changeSearchData} />
+          <FarmseyeButton title="검색" size="small" onClick={searchList} />
+        </div>
+  
+        <table border={1} className={styles.tableContainer}>
+          <thead>
+            <tr>
+              <td>No</td>
+              <td>아이디</td>
+              <td>이름</td>
+              <td>나이</td>
+              <td>이메일</td>
+              <td>연락처</td>
+              <td>회원가입일</td>
+              <td>상태</td>
+            </tr>
+          </thead>
+          <tbody>
+            {currentItems.map((u, i) => (
+              <AdminDetail
+                key={i}
+                i={startIdx + i + 1}
+                u={u}
+                userInfo={userInfo}
+                setUserInfo={setUserInfo}
+                setUserTrigger={setUserTrigger}
+              />
+            ))}
+          </tbody>
+        </table>
+  
+        {/* 페이징 버튼 */}
+        <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
               key={i}
-              i={startIdx + i + 1}
-              u={u}
-              userInfo={userInfo}
-              setUserInfo={setUserInfo}
-              setUserTrigger={setUserTrigger}
-            />
+              onClick={() => changePage(i + 1)}
+              style={{
+                margin: '0 5px',
+                backgroundColor: currentPage === i + 1 ? 'cornflowerblue' : '#e0e0e0',
+                color: currentPage === i + 1 ? '#fff' : '#333',
+                border: 'none',
+                padding: '6px 12px',
+                borderRadius: '6px',
+                cursor: 'pointer',
+              }}
+            >
+              {i + 1}
+            </button>
           ))}
-        </tbody>
-      </table>
-
-      {/* 페이징 버튼 */}
-      <div style={{ marginTop: '1rem', textAlign: 'center' }}>
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => changePage(i + 1)}
-            style={{
-              margin: '0 5px',
-              backgroundColor: currentPage === i + 1 ? 'cornflowerblue' : '#e0e0e0',
-              color: currentPage === i + 1 ? '#fff' : '#333',
-              border: 'none',
-              padding: '6px 12px',
-              borderRadius: '6px',
-              cursor: 'pointer',
-            }}
-          >
-            {i + 1}
-          </button>
-        ))}
+        </div>
       </div>
     </div>
   );
