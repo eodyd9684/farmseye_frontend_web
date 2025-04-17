@@ -44,52 +44,54 @@ const Stock = () => {
   console.log(stockInfo)
 
   return (
-    <div className={styles.stock_container}>
-  <div>
-    개체 등록
-    <FarmseyeButton 
-      title='등록' 
-      onClick={() => {nav('/stock/join')}} 
-      className={styles.farmseye_button}
-    />
-  </div>
-  <div>
-    <table className={styles.stock_table}>
-      <thead>
-        <tr>
-          <th>개체수</th>
-          <th>입고수</th>
-          <th>출하수</th>
-          <th>총무게</th>
-          <th>폐사수</th>
-          <th>날짜</th>
-          <th>작업</th>
-        </tr>
-      </thead>
-      {currentItems.map((stock, i) => (
-        <StockDetail
-          key={i}
-          stock={stock}
-          stockInfo={stockInfo}
-          setStockInfo={setStockInfo}
-          setUserTrigger={setUserTrigger}
+  <div className={styles.stock_container}>
+    <div className={styles.size}>
+      <div>
+        개체 등록
+        <FarmseyeButton 
+          title='등록' 
+          onClick={() => {nav('/stock/join')}} 
+          className={styles.farmseye_button}
         />
-      ))}
-    </table>
+      </div>
+      <div>
+        <table className={styles.stock_table}>
+          <thead>
+            <tr>
+              <th>개체수</th>
+              <th>입고수</th>
+              <th>출하수</th>
+              <th>총무게</th>
+              <th>폐사수</th>
+              <th>날짜</th>
+              <th>작업</th>
+            </tr>
+          </thead>
+          {currentItems.map((stock, i) => (
+            <StockDetail
+              key={i}
+              stock={stock}
+              stockInfo={stockInfo}
+              setStockInfo={setStockInfo}
+              setUserTrigger={setUserTrigger}
+            />
+          ))}
+        </table>
+      </div>
+      {/* ✅ 페이징 UI */}
+      <div className={styles.pagination}>
+        {Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i + 1}
+            className={`${styles.pageButton} ${currentPage === i + 1 ? styles.active : ''}`}
+            onClick={() => handlePageChange(i + 1)}
+          >
+            {i + 1}
+          </button>
+        ))}
+      </div>
+    </div>
   </div>
-  {/* ✅ 페이징 UI */}
-  <div className={styles.pagination}>
-    {Array.from({ length: totalPages }, (_, i) => (
-      <button
-        key={i + 1}
-        className={`${styles.pageButton} ${currentPage === i + 1 ? styles.active : ''}`}
-        onClick={() => handlePageChange(i + 1)}
-      >
-        {i + 1}
-      </button>
-    ))}
-  </div>
-</div>
   )
 }
 
