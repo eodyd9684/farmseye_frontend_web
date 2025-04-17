@@ -23,8 +23,6 @@ const DataChart = ({ today, data , dataKey}) => {
           data={data}
           legend={
             <div>
-              <span>{today}</span>
-              <span> 온도</span>
             </div>
           }
           yAxis={handleDataKey(dataKey)}

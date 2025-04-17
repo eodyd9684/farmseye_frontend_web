@@ -1,17 +1,52 @@
-.container{
-  background: linear-gradient(rgb(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('/images/mountain13.png');
+/* 모달 배경 */
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 모달 내용 박스 */
+.container {
+  background-image:  url('/images/downloaded-image (2).jpg');
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center center;
-  
 
   box-shadow: 0px 0px 20px rgba(128, 128, 128, 0.2);
   border-radius: 30px;
   padding: 20px;
-  width: 900px;
-  margin: 30px auto;
-  height: 550px;
+  width: 1200px;
+  max-width: 95vw;
+  height: 800px;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  position: relative;
+  overflow-y: auto;
 }
 
+/* 닫기 버튼 */
+.close_button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close_button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  color: crimson;
+}

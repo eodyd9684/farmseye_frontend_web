@@ -1,4 +1,4 @@
-.container{
+/* .container{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,4 +43,54 @@
 .right p > span{
   font-weight: 700;
   font-size: 0.9rem;
+} */
+
+.weatherCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  margin: auto;
+}
+
+.mainInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon img {
+  width: 80px;
+  height: 80px;
+}
+
+.mainInfo h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.mainInfo h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.details {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.details div {
+  background: rgba(255,255,255,0.1);
+  padding: 4px;
+  border-radius: 10px;
+  text-shadow: 0 0 3px rgba(0,0,0,0.3);
 }

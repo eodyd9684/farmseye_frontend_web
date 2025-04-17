@@ -1,64 +1,87 @@
-.week_title{
-  margin: 10px 0px;
-}
-
-.container{
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.2);
-}
-
-.week_weather{
-  display: flex;
-  gap: 10px;
-}
-
-
-
-.day{
+.week_title {
+  margin: 30px 0 20px;
+  font-size: 2rem;
   font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.week_weather>div{
-  flex: 1;
   text-align: center;
-  background-color: rgba(165, 165, 165, 0.15);
-  padding: 4px;
-  border-radius: 10px;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.weather_card{
-  padding: 10px;
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.week_weather {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
-.weather_card>div{
-  flex: 1;
+.week_weather > div {
+  flex: 1 1 120px;
+  min-width: 180px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  padding: 18px 14px;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  color: #ffffff;
 }
 
-.weather_card > div i{
-  font-size: 4rem;
+.week_weather > div:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.weather_card>div:nth-child(2){
-  text-align: start;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 4px;
-  font-size: 1rem;
-}
-
-.week_text >p{
+.day {
   font-size: 1.2rem;
   font-weight: bold;
+  margin-bottom: 10px;
+  color: rgb(125, 125, 125);
 }
 
-.week_text span{
-  font-size: 1.1rem;
-  font-weight: 500;
+.weather_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.weather_card > div i,
+.weather_card > div img {
+  font-size: 2.8rem;
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.weather_card > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 0.95rem;
+  width: 100%;
+  color: #eee;
+}
+
+
+.week_text > p {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 2px 0;
+  color: rgb(125, 125, 125);
+}
+
+.week_text span {
+  font-weight: 400;
+  font-size: 1rem;
 }

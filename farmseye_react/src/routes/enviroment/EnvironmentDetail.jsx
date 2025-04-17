@@ -5,8 +5,12 @@ import DataChart from './DataChart'
 import { selectEnvList } from '../../apis/enviromentApi'
 import ProgressBarChartHor from '../../components/practice/ProgressBarChartHor'
 import Legend from '../../components/Legend'
+import FarmseyeButton from '../../common_component/FarmseyeButton'
+import { useNavigate } from 'react-router-dom'
 
 const EnvironmentDetail = () => {
+  const nav = useNavigate();
+
   //오늘 날짜 받아오기
   const today = useSelector(state => state.today.today);
 
@@ -39,7 +43,7 @@ const EnvironmentDetail = () => {
   const appropriateDangerData = {
     co2 : 5000,
     no2 : 10,
-    nh3 : 25,
+    nh3 : 2.5,
     h2s : 2
   }
 
@@ -77,108 +81,114 @@ const EnvironmentDetail = () => {
 
 
   return (
-    <div className={styles.container}>
-      {
-        envData === null ? 
-        null
-        :
-        <div className={styles.data_container}>
-          
-          <div>
-            <div>
-              <div>
-                <i class="bi bi-thermometer-half"></i>
-                <span> 온도</span>
-              </div>
+    <div className={styles.background}>
+      <div className={styles.container}>
+        <p className={styles.chart_title}>Today Chart</p>
 
-              <div>
-                <span>※ 현재 내부 온도 : </span>
-                {envData[envData.length - 1][dataKey.temp]}
-              </div>
-            </div>
-
-            <DataChart today={today} data={envData} dataKey={dataKey.temp}/>
-          </div>
-
-          <div>
-            <div>
-              <div>
-                <i class="bi bi-droplet-half"></i>
-                <span> 습도</span>
-              </div>
-
-              <div>
-                <span>※ 현재 내부 습도 : </span>
-                {envData[envData.length - 1][dataKey.humi]}
-              </div>
-            </div>
-
-            <DataChart today={today} data={envData} dataKey={dataKey.humi}/>
-          </div>
-
-          <div>
-            <div>
-              <div>
-                <i class="bi bi-lightbulb"></i>
-                <span>조도</span>
-              </div>
-
-              <div>
-                <span>※ 현재 내부 조도 : </span>
-                {envData[envData.length - 1][dataKey.illumi]}
-              </div>
-            </div>
+        {
+          envData === null ? 
+          null
+          :
+          <div className={styles.data_container}>
             
-            <DataChart today={today} data={envData} dataKey={dataKey.illumi}/>
-          </div>
+            <div>
+              <div>
+                <div>
+                  <span><i class="bi bi-thermometer-half"></i> 온도</span>
+                 
+                  <FarmseyeButton title='+ 주간 데이터 차트' size='' onClick={() => {nav('/main/tempWeekChart')}}/>
+                </div>
+  
+                <div>
+                  <span>※ 현재 내부 온도 : </span>
+                  {envData[envData.length - 1][dataKey.temp]}
+                </div>
+              </div>
+  
+              <DataChart today={today} data={envData} dataKey={dataKey.temp}/>
+            </div>
+  
+            <div>
+              <div>
+                <div>
+                  
+                  <span><i class="bi bi-droplet-half"></i> 습도</span>
 
-        </div>
-      }
+                  <FarmseyeButton title='+ 주간 데이터 차트' size='' onClick={() => {nav('/main/humiWeekChart')}}/>
+                </div>
+  
+                <div>
+                  <span>※ 현재 내부 습도 : </span>
+                  {envData[envData.length - 1][dataKey.humi]}
+                </div>
+              </div>
+  
+              <DataChart today={today} data={envData} dataKey={dataKey.humi}/>
+            </div>
+  
+            <div>
+              <div>
+                <div>
+                  <span><i class="bi bi-lightbulb"></i> 조도</span>
+                  <FarmseyeButton title='+ 주간 데이터 차트' size='' onClick={() => {nav('/main/illumiWeekChart')}}/>
+                </div>
+  
+                <div>
+                  <span>※ 현재 내부 조도 : </span>
+                  {envData[envData.length - 1][dataKey.illumi]}
+                </div>
+              </div>
+              
+              <DataChart today={today} data={envData} dataKey={dataKey.illumi}/>
+            </div>
 
-      <div className={styles.bottom}>
-        <div className={styles.test}>
-          <div>
-            <p>CO2 <span>{appropriateNowData.co2}</span></p>
-            <ProgressBarChartHor 
-              max={appropriateData.co2} 
-              current={appropriateNowData.co2} 
-              danger={appropriateDangerData.co2}
-            />
-          </div>
-  
-          <div>
-            <p>NO2 <span>{appropriateNowData.no2}</span></p>
-            <ProgressBarChartHor
-              max={appropriateData.no2} 
-              current={appropriateNowData.no2} 
-              danger={appropriateDangerData.no2} 
-            />
-          </div>
-  
-          <div>
-            <p>NH3 <span>{appropriateNowData.nh3}</span></p>
-            <ProgressBarChartHor 
-              max={appropriateData.nh3} 
-              current={appropriateNowData.nh3} 
-              danger={appropriateDangerData.nh3} 
-            />
-          </div>
-  
-          <div>
-            <p>H2S <span>{appropriateNowData.h2s}</span></p>
-            <ProgressBarChartHor 
-              max={appropriateData.h2s} 
-              current={appropriateNowData.h2s} 
-              danger={appropriateDangerData.h2s} 
-            />
-          </div>
-  
-        </div>
-        <br />
-        <Legend />
-      </div>
 
+
+            <div className={styles.test}>
+              <div>
+                <p>CO2 <span>{appropriateNowData.co2}</span></p>
+                <ProgressBarChartHor 
+                  max={appropriateData.co2} 
+                  current={appropriateNowData.co2} 
+                  danger={appropriateDangerData.co2}
+                />
+              </div>
       
+              <div>
+                <p>NO2 <span>{appropriateNowData.no2}</span></p>
+                <ProgressBarChartHor
+                  max={appropriateData.no2} 
+                  current={appropriateNowData.no2} 
+                  danger={appropriateDangerData.no2} 
+                />
+              </div>
+      
+              <div>
+                <p>NH3 <span>{appropriateNowData.nh3}</span></p>
+                <ProgressBarChartHor 
+                  max={appropriateData.nh3} 
+                  current={appropriateNowData.nh3} 
+                  danger={appropriateDangerData.nh3} 
+                />
+              </div>
+      
+              <div>
+                <p>H2S <span>{appropriateNowData.h2s}</span></p>
+                <ProgressBarChartHor 
+                  max={appropriateData.h2s} 
+                  current={appropriateNowData.h2s} 
+                  danger={appropriateDangerData.h2s} 
+                />
+              </div>
+      
+              <div className={styles.legend_div}><Legend /></div>
+            </div>
+
+            
+          </div>
+        }
+  
+      </div>
     </div>
   )
 }
