@@ -3,6 +3,14 @@
   background-color: #F8F4E1; /* 밝은 베이지 */
   min-height: 100vh;
   font-family: 'Noto Sans KR', sans-serif;
+  overflow: auto;
+}
+
+.size{
+  width: 1200px;
+  min-width: 1200px;
+  margin: 10px auto;
+  padding: 0px 20px;
 }
 
 .tableContainer {
@@ -47,7 +55,7 @@ input[type="text"] {
 }
 
 button {
-  background-color: #7B2CBF; /* 포인트 보라 */
+  background-color: cornflowerblue; /* 포인트 보라 */
   color: white;
   padding: 0.5rem 1.2rem;
   font-weight: bold;
@@ -58,5 +66,5 @@ button {
 }
 
 button:hover {
-  background-color: #5A189A;
+  background-color: #6495edcc;
 }

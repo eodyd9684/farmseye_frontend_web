@@ -34,7 +34,14 @@ const Login = () => {
       }
 
       alert('로그인 성공');
-      dispatch(loginReducer(token));
+      const id = JSON.parse(res.config.data);
+      sessionStorage.setItem('userId' , id.userId);
+
+      //응답 헤더 중 'authorization' 값을 가져옴. 이때 소문자 사용.
+      console.log(res.headers['authorization']);
+
+      //전달받은 jwt 토큰을 store에 저장
+      dispatch(loginReducer(res.headers['authorization']));
       nav('/');
     })
     .catch(e => {

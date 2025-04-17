@@ -16,8 +16,10 @@ import SlaughterPerformance from './components/practice/SlaughterPerformance'
 import QuarantineFacility from './components/practice/QuarantineFacility'
 import Test from './components/test'
 import Admin from './routes/admin/Admin'
+import Stock from './routes/stock/Stock'
 import Login from './routes/user/Login'
 import Join from './routes/user/Join'
+import StockRegistration from './routes/stock/StockRegistration'
 import Update from './routes/user/Edit'
 import Edit from './routes/user/Edit'
 import ProtectedAdminRoute from './routes/user/ProtectedAdminRoute'
@@ -49,6 +51,7 @@ function App() {
           <Route path="/admin" element={ <ProtectedAdminRoute><AdminLayout /></ProtectedAdminRoute> } > 
             <Route path="" element={ <ProtectedAdminRoute><Admin /></ProtectedAdminRoute> } />
           </Route>
+          
 
           {/* 회원 가입 및 회원 관리 */}
           <Route path="/user" element={ '' } > 
@@ -57,6 +60,11 @@ function App() {
             <Route path="login" element={ <Login /> } />
           </Route>
   
+          {/* 개체 관리*/}
+          <Route path='/stock' element={''}>
+            <Route path='' element={<Stock/>}/>
+            <Route path='join' element={<StockRegistration/>}/>
+          </Route>
   
         </Routes>
       </div>
