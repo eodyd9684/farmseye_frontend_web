@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './Header.module.css'
 import { useNavigate } from "react-router-dom";
 import FarmseyeButton from "../../common_component/FarmseyeButton";
@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutReducer } from "../../redux/authSlice";
 
 const Header = () => {
-    //store에 저장된 token 가져오기
-    const token = useSelector(state => state.auth.token);
-    const dispatch = useDispatch();
+  //store에 저장된 token 가져오기
+  const token = useSelector(state => state.auth.token);
+  const dispatch = useDispatch();
 
   const nav = useNavigate();
 
@@ -41,7 +41,7 @@ const Header = () => {
       <div className={styles.header_bar}>
         <div className={styles.header}>
   
-          <div className={styles.home_logo} onClick={e => nav('/main')}>
+          <div className={styles.home_logo} onClick={e => nav('/')}>
             <img src="/images/farmsEye.png" alt="프로젝트 이미지" height='80px' width='80px' />
           </div>
   
@@ -70,6 +70,12 @@ const Header = () => {
             <>
               <ul 
                 className={styles.menu} 
+              >
+                <li onClick={() => nav('/main')}>홈</li>
+              </ul>
+
+              <ul 
+                className={styles.menu} 
                 onMouseEnter={() => handleMouseEnter('축사 내부')} 
                 onMouseLeave={handleMouseLeave}
               >
@@ -78,7 +84,8 @@ const Header = () => {
                   <div className={styles.dropdown}>
                     <li onClick={e => nav('/main/enviroment')} >축사 내부</li>
                     <li onClick={e => nav('/main/tempWeekChart')}>주간 온도 상세</li>
-                    <li>주간 습도 상세</li>
+                    <li onClick={e => nav('/main/humiWeekChart')}>주간 습도 상세</li>
+                    <li onClick={e => nav('/main/illumiWeekChart')}>주간 조도 상세</li>
                   </div>
                 )}
               </ul>
@@ -117,12 +124,7 @@ const Header = () => {
                 onMouseLeave={handleMouseLeave}
               >
                 <li>내부 CCTV</li>
-                {activeMenu === '내부 CCTV' && (
-                  <div className={styles.dropdown}>
-                    <li>상세 1</li>
-                    <li>상세 2</li>
-                  </div>
-                )}
+                
               </ul>
             </>
   

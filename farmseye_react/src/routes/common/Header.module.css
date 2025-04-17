@@ -1,5 +1,5 @@
 .header_bar{
-  background-color: #2cc185;
+  background-color: rgb(44, 193, 133);
   position: fixed;
   top: 0;
   width: 100vw;
@@ -30,12 +30,14 @@
   gap: 30px;
   padding: 10px;
   border-radius: 10px;
+  
 }
 
 .home_logo img{
   border-radius: 10px;
   object-fit: cover;
   object-position: center;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 1);
 }
 
 .home_logo:hover{
@@ -64,7 +66,6 @@
   font-weight: bold;
   padding: 10px;
   border-radius: 6px;
-  box-shadow: 4px 4px 6px rgba(190, 190, 190, 0.5);
 }
 
 .user_login_join{
@@ -121,7 +122,7 @@
 @keyframes dropdown-animation {
   from {
     opacity: 0;
-    transform: translateY(-10px); /* 위에서 아래로 이동 */
+    transform: translateY(0px); /* 위에서 아래로 이동 */
   }
   to {
     opacity: 1;
