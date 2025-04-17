@@ -3,6 +3,7 @@ import styles from './Header.module.css'
 import { useNavigate } from "react-router-dom";
 import FarmseyeButton from "../../common_component/FarmseyeButton";
 import { useDispatch, useSelector } from "react-redux";
+import { isAdmin, isAuthenticated } from '../../redux/authCheck';
 import { logoutReducer } from "../../redux/authSlice";
 
 const Header = () => {
@@ -119,6 +120,25 @@ const Header = () => {
                 </div>
               )}
             </ul>
+            
+            {
+              isAdmin(token) 
+              && 
+              <ul 
+              className={styles.menu} 
+              onMouseEnter={() => handleMouseEnter('관리자')} 
+              onMouseLeave={handleMouseLeave}
+            >
+              <li>관리자</li>
+              {activeMenu === '관리자' && (
+                <div className={styles.dropdown}>
+                  <li onClick={e => nav('/admin')}>회원관리</li>
+                </div>
+              )}
+            </ul>
+            }
+            
+            
           </>
 
         }

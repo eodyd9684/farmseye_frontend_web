@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate } from 'react-router';
 import { useSelector } from 'react-redux';
-import { isAdmin } from '../redux/authCheck';
+import { isAdmin } from '../../redux/authCheck';
 
 const ProtectedAdminRoute = ({children}) => {
   const token = useSelector(state => state.auth.token);
