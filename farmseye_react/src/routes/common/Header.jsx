@@ -3,6 +3,7 @@ import styles from './Header.module.css'
 import { useNavigate } from "react-router-dom";
 import FarmseyeButton from "../../common_component/FarmseyeButton";
 import { useDispatch, useSelector } from "react-redux";
+import { isAdmin, isAuthenticated } from '../../redux/authCheck';
 import { logoutReducer } from "../../redux/authSlice";
 
 const Header = () => {
@@ -44,11 +45,17 @@ const Header = () => {
           <div className={styles.home_logo} onClick={e => nav('/')}>
             <img src="/images/farmsEye.png" alt="프로젝트 이미지" height='80px' width='80px' />
           </div>
-  
-  
-  
-          <div className={styles.content_list}>
             
+  
+  
+  
+            
+            
+            
+            
+
+
+        <div className={styles.content_list}>
           {
             token === null
             ?
@@ -95,37 +102,27 @@ const Header = () => {
                 onMouseEnter={() => handleMouseEnter('개체 관리')} 
                 onMouseLeave={handleMouseLeave}
               >
-                <li>개체 관리</li>
-                {activeMenu === '개체 관리' && (
-                  <div className={styles.dropdown}>
-                    <li>상세 1</li>
-                    <li>상세 2</li>
-                  </div>
-                )}
-              </ul>
-    
-              {/* <ul 
-                className={styles.menu} 
-                onMouseEnter={() => handleMouseEnter('날씨 / 재난')} 
-                onMouseLeave={handleMouseLeave}
-              >
-                <li>날씨</li>
-                {activeMenu === '날씨 / 재난' && (
-                  <div className={styles.dropdown}>
-                    <li onClick={(e) => {nav('/main/week-weather')}}>주간 날씨</li>
-                    <li>상세 2</li>
-                  </div>
-                )}
-              </ul> */}
-    
-              <ul 
-                className={styles.menu} 
-                onMouseEnter={() => handleMouseEnter('내부 CCTV')} 
-                onMouseLeave={handleMouseLeave}
-              >
-                <li>내부 CCTV</li>
+                <li onClick={e => nav('/stock')}>개체 관리</li>
                 
               </ul>
+                
+
+              {
+              isAdmin(token) 
+              && 
+              <ul 
+              className={styles.menu} 
+              onMouseEnter={() => handleMouseEnter('관리자')} 
+              onMouseLeave={handleMouseLeave}
+              >
+                <li>관리자</li>
+                {activeMenu === '관리자' && (
+                  <div className={styles.dropdown}>
+                    <li onClick={e => nav('/admin')}>회원관리</li>
+                  </div>
+                )}
+              </ul>
+              }  
             </>
   
           }

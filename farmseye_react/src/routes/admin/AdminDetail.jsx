@@ -13,19 +13,20 @@ const AdminDetail = ({ u, userInfo, setUserInfo, i, setUserTrigger}) => {
   const changeInfo = (field, value) => {
     setUserData(prev => ({ ...prev, [field]: value }));
   };
-
+console.log(userData)
   //버튼 클릭 시 삭제하는 함수
   const deleteUser = () => {
-    axios.delete(`/api/user/${u.userId}`)
+    axios.delete(`/api/users/${u.userId}`)
       .then(res => {
         alert('삭제되었습니다.');
         setUserInfo(userInfo.filter(user => user.userId !== u.userId));
+        setUserTrigger({})
       })
       .catch(error => console.log(error));
   };
   //버튼 클릭 시 수정하는 함수
   const saveUserInfo = () => {
-    axios.put(`/api/user/${u.userId}`, userData)
+    axios.put(`/api/users/${u.userId}`, userData)
       .then(res => {
         alert('수정되었습니다.');
         const updatedList = userInfo.map(user =>
@@ -46,10 +47,10 @@ const AdminDetail = ({ u, userInfo, setUserInfo, i, setUserTrigger}) => {
           <td>{userData.userId}</td>
           <td>{userData.userName}</td>
           <td>{userData.userAge}</td>
-          <td><FarmseyeInput defaultValue={userData.userEmail} onChange={e => changeInfo('userEmail', e.target.value)} /></td>
-          <td><FarmseyeInput defaultValue={userData.userTel} onChange={e => changeInfo('userTel', e.target.value)} /></td>
+          <td>{userData.userEmail}</td>
+          <td>{userData.userTel}</td>
           <td>{userData.regDate}</td>
-          <td>{userData.isUsing}</td>
+          <td> <FarmseyeInput defaultValue={userData.isUsing} onChange={e => changeInfo('isUsing', e.target.value)}/></td>
           <td>
             <FarmseyeButton title="변경" size="small" onClick={saveUserInfo} />
             <FarmseyeButton title="취소" size="small" onClick={() => setIsShow(false)} />
