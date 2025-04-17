@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../../redux/axiosInstance';
 import styles from './Login.module.css'
 
+
 const Login = () => {
   //로그인 성공 시 진행되어야 하는 코드를 authSlice에 reducer로 등록했고 이를 사용을 위한 useDispatch() 선언
   const dispatch = useDispatch();
@@ -25,10 +26,12 @@ const Login = () => {
     axiosInstance.post('/user/login', loginInfo)
     .then(res => {
       const token = res.headers['authorization'];
+      const userId = JSON.parse(res.config.data).userId
+
 
       alert('로그인 성공');
       dispatch(loginReducer(token));
-      nav('/');
+      nav('/');     
     })
     .catch(e => {
       if (e.response && e.response.status === 401) {

@@ -1,11 +1,11 @@
 import axios from "axios";
+import { axiosInstance } from "../redux/axiosInstance";
 
 /**
  * 내부 환경 데이터 조회
  */
   export const selectEnvList = () => {
-    const userId = sessionStorage.getItem('userId');
-    const responcs = axios.get(`/api/farms/${userId}`)
+    const responcs = axiosInstance.get(`/farms`)
     return responcs;
   }
   
