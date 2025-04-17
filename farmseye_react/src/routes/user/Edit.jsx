@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styles from './Edit.module.css'; // FarmsEye 스타일 적용을 위한 CSS 파일
+import styles from './Edit.module.css'; 
 import { axiosInstance } from '../../redux/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,16 +17,14 @@ const EditUserInfo = () => {
     userAddr: ''
   });
 
+  // 모든 회원 정보를 담는 함수
   const [userList, setUserList] = useState({});
 
   // 상태 설정: 비밀번호 변경 여부
   const [changePw, setChangePw] = useState(false);
   
-  //에러 메세지
+  // 에러 메세지
   const [errorMsg, setErrorMsg] = useState({});
-
-
-  ////////////////////////////////////////////////////////////////////////////////////
 
   // 현재 사용자 정보 로딩
   useEffect(() => {
@@ -56,11 +54,11 @@ const EditUserInfo = () => {
   }, []);
 
 
-  //회원 정보창 변경
+  // 회원 정보창 변경
   const handleUserInfo = (field) => (e) => {
     let value = e.target.value;
 
-  // 전화번호일 경우 하이픈 자동 삽입 처리
+    // 전화번호일 경우 하이픈 자동 삽입 처리
     if (field === 'userTel') {
       value = value.replace(/[^0-9]/g, ''); // 숫자 외 제거
 
@@ -200,6 +198,25 @@ const EditUserInfo = () => {
     }
   }
 
+  //회원 탈퇴 기능
+  const handleDeactivate = () => {
+    const confirmDelete = window.confirm('정말 탈퇴하시겠습니까? 탈퇴 시 복구가 불가능합니다.');
+  
+    if (!confirmDelete) return;
+  
+    axiosInstance
+      .delete('/users/deactivate')
+      .then(res => {
+        alert('회원 탈퇴가 완료되었습니다.');
+        localStorage.removeItem('accessToken');
+        nav('/');
+      })
+      .catch(err => {
+        console.error('탈퇴 실패:', err.response?.data || err.message);
+        alert('탈퇴에 실패했습니다. 다시 시도해 주세요.');
+      });
+  };
+
   return (
     <div className={styles.edit_container}>
       <h2 className={styles.title}>회원 정보 수정</h2>
@@ -245,7 +262,11 @@ const EditUserInfo = () => {
 
         
         <div className={styles.bottomLink}>
-          <a href="delete">탈퇴하기</a>
+          <ul>
+            <li className={styles.delete_li} onClick={handleDeactivate}>
+              탈퇴하기
+            </li>
+          </ul>
         </div>
       </div>
     </div>

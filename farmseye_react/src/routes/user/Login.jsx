@@ -13,7 +13,8 @@ const Login = () => {
 
   const [loginInfo, setLoginInfo] = useState({
     userId : '',
-    userPw : ''
+    userPw : '',
+    isUsing : '',
   });
 
   // 각 입력 필드의 에러 메시지 저장 상태
@@ -23,21 +24,23 @@ const Login = () => {
   const login = () => {
     axiosInstance.post('/user/login', loginInfo)
     .then(res => {
+      const token = res.headers['authorization'];
+      const isUsing = res.data.isUsing; // 응답 body에 isUsing이 포함되어야 함
+      console.log(res)
+
+      if (isUsing === 'N') {
+        alert('탈퇴한 계정입니다.');
+        return; // 로그인 처리 중단
+      }
+
       alert('로그인 성공');
-
-      //응답 헤더 중 'authorization' 값을 가져옴. 이때 소문자 사용.
-      console.log(res.headers['authorization']);
-
-      //전달받은 jwt 토큰을 store에 저장
-      dispatch(loginReducer(res.headers['authorization']));
+      dispatch(loginReducer(token));
       nav('/');
     })
     .catch(e => {
-      //로그인 검증 실패 시 서버에서 401 상태코드를 응답
-      if(e.status === 401){
+      if (e.response && e.response.status === 401) {
         alert('로그인 실패');
-      }
-      else{
+      } else {
         console.log(e);
       }
     });

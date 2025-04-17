@@ -82,7 +82,10 @@
   text-align: center;
 }
 
-.bottomLink a {
-  color: #666;
-  text-decoration: none;
+.delete_li {
+  border: none;
+  color:  #666;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.8rem;
 }

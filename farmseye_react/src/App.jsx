@@ -20,7 +20,7 @@ import Login from './routes/user/Login'
 import Join from './routes/user/Join'
 import Update from './routes/user/Edit'
 import Edit from './routes/user/Edit'
-import Delete from './routes/user/Delete'
+import ProtectedAdminRoute from './routes/user/ProtectedAdminRoute'
 
 
 function App() {
@@ -46,15 +46,14 @@ function App() {
           </Route>
   
           {/* 회원 정보 수정 및 관리, 회원별 데이터 확인 페이지 */}
-          <Route path="/admin" element={ <AdminLayout /> } > 
-            <Route path="" element={ <Admin /> } />
+          <Route path="/admin" element={ <ProtectedAdminRoute><AdminLayout /></ProtectedAdminRoute> } > 
+            <Route path="" element={ <ProtectedAdminRoute><Admin /></ProtectedAdminRoute> } />
           </Route>
 
           {/* 회원 가입 및 회원 관리 */}
           <Route path="/user" element={ '' } > 
             <Route path="join" element={ <Join /> } />
             <Route path="update" element={ <Edit /> } />
-            <Route path="delete" element={ <Delete /> } />
             <Route path="login" element={ <Login /> } />
           </Route>
   
