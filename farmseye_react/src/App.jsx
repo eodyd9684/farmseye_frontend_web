@@ -25,6 +25,8 @@ import HumiWeekChart from './routes/enviroment/HumiWeekChart'
 import IllumiWeekChart from './routes/enviroment/IllumiWeekChart'
 import StockRegistration from './routes/stock/StockRegistration'
 import ProtectedAdminRoute from './routes/user/ProtectedAdminRoute'
+import ProtectedRoute from './routes/user/ProtectedRoute'
+import StockLayout from './routes/stock/StockLayout'
 
 
 function App() {
@@ -42,7 +44,7 @@ function App() {
             <Route path="" element={ <HomeLayout /> } />
           </Route>
   
-          <Route path='/main' element={ <UserLayout/> }>
+          <Route path='/main' element={ <ProtectedRoute><UserLayout/></ProtectedRoute> }>
             <Route path='' element={ <UserMainTest /> }/>
             <Route path='enviroment' element={ <EnvironmentDetail/> } />
             <Route path='tempWeekChart' element={ <TempWeekChart/> } />
@@ -64,7 +66,7 @@ function App() {
           </Route>
   
           {/* 개체 관리*/}
-          <Route path='/stock' element={''}>
+          <Route path='/stock' element={<ProtectedRoute><StockLayout /></ProtectedRoute>}>
             <Route path='' element={<Stock/>}/>
             <Route path='join' element={<StockRegistration/>}/>
           </Route>

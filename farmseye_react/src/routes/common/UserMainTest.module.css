@@ -1,6 +1,7 @@
 
 .background{
   width: 100vw;
+  height: calc(100vh - 100px);
   overflow: auto;
   background: #f7f9fa;
 }
@@ -15,6 +16,22 @@
   font-family: 'Pretendard', sans-serif;
   width: 1200px;
   margin: 0px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.detail{
+  font-size: 1rem;
+  background-color: #c0c0c0;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.detail:hover{
+  cursor: pointer;
+  background-color: #a0a0a0;
+  color: #435d77;
 }
 
 .container {
@@ -22,7 +39,6 @@
   justify-content: space-between;
   gap: 20px;
   width: 1200px;
-  min-height: 60vh;
   padding: 0px 0px;
   box-sizing: border-box;
   margin: 0px auto;

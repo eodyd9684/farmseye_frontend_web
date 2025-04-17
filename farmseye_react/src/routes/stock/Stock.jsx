@@ -6,6 +6,7 @@ import FarmseyeButton from '../../common_component/FarmseyeButton';
 import StockRegistration from './StockRegistration';
 import { useNavigate } from 'react-router-dom';
 import styles from '../stock/Stock.module.css'
+import { axiosInstance } from '../../redux/axiosInstance';
 
 const Stock = () => {
   const nav = useNavigate()
@@ -31,17 +32,15 @@ const Stock = () => {
 
   //개체 조회
   useEffect(() => {
-    const userId = sessionStorage.getItem('userId')
-    axios.get(`/api/stock/${userId}`)
+    
+    axiosInstance.get(`/stock`)
     .then(res => {
-      console.log(res.data)
       setStockInfo(res.data)
       setCurrentPage(1); // 갱신시 1페이지로 초기화
     })
     .catch(error => console.log(error))
   }, [userTrigger])
   
-  console.log(stockInfo)
 
   return (
   <div className={styles.stock_container}>

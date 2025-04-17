@@ -14,7 +14,6 @@ const StockRegistration = () => {
     userId : 'user'
   })
 
-  console.log(stockData)
   
   const changeData = (e) => {
     const { name, value } = e.target

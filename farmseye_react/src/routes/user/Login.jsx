@@ -26,7 +26,6 @@ const Login = () => {
     axiosInstance.post('/user/login', loginInfo)
     .then(res => {
       const token = res.headers['authorization'];
-      const userId = JSON.parse(res.config.data).userId
 
 
       alert('로그인 성공');
