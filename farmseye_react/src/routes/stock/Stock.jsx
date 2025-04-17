@@ -13,9 +13,21 @@ const Stock = () => {
   const [stockInfo, setStockInfo] = useState([]);
 
   //user 정보 재조회 실행을 위한 변수
-    const [userTrigger, setUserTrigger] = useState({});
+  const [userTrigger, setUserTrigger] = useState({});
   
-  
+  // 페이징 상태
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
+  // 현재 페이지에 맞는 데이터 계산
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = stockInfo.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(stockInfo.length / itemsPerPage);
+
+  const handlePageChange = (pageNum) => {
+    setCurrentPage(pageNum);
+  };
 
   //개체 조회
   useEffect(() => {
@@ -24,6 +36,7 @@ const Stock = () => {
     .then(res => {
       console.log(res.data)
       setStockInfo(res.data)
+      setCurrentPage(1); // 갱신시 1페이지로 초기화
     })
     .catch(error => console.log(error))
   }, [userTrigger])
@@ -53,7 +66,7 @@ const Stock = () => {
           <th>작업</th>
         </tr>
       </thead>
-      {stockInfo.map((stock, i) => (
+      {currentItems.map((stock, i) => (
         <StockDetail
           key={i}
           stock={stock}
@@ -63,6 +76,18 @@ const Stock = () => {
         />
       ))}
     </table>
+  </div>
+  {/* ✅ 페이징 UI */}
+  <div className={styles.pagination}>
+    {Array.from({ length: totalPages }, (_, i) => (
+      <button
+        key={i + 1}
+        className={`${styles.pageButton} ${currentPage === i + 1 ? styles.active : ''}`}
+        onClick={() => handlePageChange(i + 1)}
+      >
+        {i + 1}
+      </button>
+    ))}
   </div>
 </div>
   )
