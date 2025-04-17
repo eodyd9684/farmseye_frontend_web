@@ -6,9 +6,10 @@ import { useNavigate } from 'react-router-dom';
 const Join = () => {
   const nav = useNavigate();
 
-  //회원 정보를 저장할 state 변수
-  const [userIdList, setUserIdList] = useState({});
+  // 회원가입 전 회원 중복 검사를 위해 조회한 회원들의 정보들을 담는 변수
+  const [checkList, setCheckList] = useState({});
   
+  // 가입할 회원의 정보를 여기 담는다. 
   const [userList, setUserList] = useState({
     userId: '',
     userPw: '',
@@ -23,7 +24,7 @@ const Join = () => {
   const handleChange = (field) => (e) => {
     let value = e.target.value;
 
-  // 전화번호일 경우 하이픈 자동 삽입 처리
+    // 전화번호일 경우 하이픈 자동 삽입 처리
     if (field === 'userTel') {
       value = value.replace(/[^0-9]/g, ''); // 숫자 외 제거
 
@@ -65,7 +66,7 @@ const Join = () => {
     axios.get('/api/users/check')
     .then(res => {
       console.log(res.data)
-      setUserIdList(res.data)
+      setCheckList(res.data)
     })
     .catch(error => console.log(error))
   }, []);
@@ -154,9 +155,9 @@ const Join = () => {
     }
 
    //중복 검사 확인
-  const isIdDuplicate = userIdList.some(user => user.userId === userList.userId);
-  const isEmailDuplicate = userIdList.some(user => user.userEmail === userList.userEmail);
-  const isTelDuplicate = userIdList.some(user => user.userTel === userList.userTel);
+  const isIdDuplicate = checkList.some(user => user.userId === userList.userId);
+  const isEmailDuplicate = checkList.some(user => user.userEmail === userList.userEmail);
+  const isTelDuplicate = checkList.some(user => user.userTel === userList.userTel);
 
   const duplicateErrors = {};
   if (isIdDuplicate) duplicateErrors.userId = '이미 존재하는 아이디입니다.';

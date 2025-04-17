@@ -25,23 +25,9 @@ const Login = () => {
     axiosInstance.post('/user/login', loginInfo)
     .then(res => {
       const token = res.headers['authorization'];
-      const isUsing = res.data.isUsing; // 응답 body에 isUsing이 포함되어야 함
-      console.log(res)
-
-      if (isUsing === 'N') {
-        alert('탈퇴한 계정입니다.');
-        return; // 로그인 처리 중단
-      }
 
       alert('로그인 성공');
-      const id = JSON.parse(res.config.data);
-      sessionStorage.setItem('userId' , id.userId);
-
-      //응답 헤더 중 'authorization' 값을 가져옴. 이때 소문자 사용.
-      console.log(res.headers['authorization']);
-
-      //전달받은 jwt 토큰을 store에 저장
-      dispatch(loginReducer(res.headers['authorization']));
+      dispatch(loginReducer(token));
       nav('/');
     })
     .catch(e => {
