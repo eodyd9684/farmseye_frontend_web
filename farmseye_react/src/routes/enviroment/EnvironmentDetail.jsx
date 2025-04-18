@@ -187,7 +187,7 @@ const EnvironmentDetail = () => {
             
           </div>
         }
-  
+
       </div>
     </div>
   )

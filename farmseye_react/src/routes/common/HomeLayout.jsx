@@ -16,7 +16,7 @@ const HomeLayout = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent(prev => (prev + 1) % images.length);
-    }, 30000); // 30초마다 슬라이드 전환
+    }, 5000); // 30초마다 슬라이드 전환
 
     return () => clearInterval(interval);
   }, []);

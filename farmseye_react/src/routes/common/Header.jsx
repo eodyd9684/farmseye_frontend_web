@@ -50,20 +50,21 @@ const Header = () => {
           {
             token === null
             ?
-              <ul 
-                className={styles.menu} 
-                onMouseEnter={() => handleMouseEnter('메인페이지')} 
-                onMouseLeave={handleMouseLeave}
-              >
-                <li>메인페이지</li>
-                {activeMenu === '메인페이지' && (
-                  <div className={styles.dropdown}>
-                    <li onClick={e => nav('/')}>FarmsEye</li>
-                    <li onClick={e => nav('/')}>회사연혁</li>
-                    <li onClick={e => nav('/')}>공지사항</li>
-                  </div>
-                )}
-              </ul>
+            null
+              // <ul 
+              //   className={styles.menu} 
+              //   onMouseEnter={() => handleMouseEnter('메인페이지')} 
+              //   onMouseLeave={handleMouseLeave}
+              // >
+              //   <li>메인페이지</li>
+              //   {activeMenu === '메인페이지' && (
+              //     <div className={styles.dropdown}>
+              //       <li onClick={e => nav('/')}>FarmsEye</li>
+              //       <li onClick={e => nav('/')}>회사연혁</li>
+              //       <li onClick={e => nav('/')}>공지사항</li>
+              //     </div>
+              //   )}
+              // </ul>
             :
             <>
               <ul 
@@ -106,12 +107,8 @@ const Header = () => {
               onMouseEnter={() => handleMouseEnter('관리자')} 
               onMouseLeave={handleMouseLeave}
               >
-                <li>관리자</li>
-                {activeMenu === '관리자' && (
-                  <div className={styles.dropdown}>
-                    <li onClick={e => nav('/admin')}>회원관리</li>
-                  </div>
-                )}
+                <li onClick={e => nav('/admin')}>관리자</li>
+                
               </ul>
               }  
             </>

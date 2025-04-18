@@ -106,7 +106,10 @@ const UserMainTest = () => {
 
   return (
     <div className={styles.background}>
-      <p className={styles.chart_title}>Today Chart</p>
+      <div className={styles.chart_title}>
+        <p>Today Chart</p>
+        <p className={styles.detail} onClick={e => nav('/main/enviroment')}>+ 상세보기</p>
+      </div>
       
       <div className={styles.container}>
 

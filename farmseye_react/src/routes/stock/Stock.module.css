@@ -1,9 +1,12 @@
 .stock_container {
-  background-color: #F8F4E1; /* 밝은 배경 */
+  background-color: #f7f9fa;/* 밝은 배경 */
   padding: 20px;
+  width: 100vw;
+  height: calc(100vh - 100px);
   font-family: Arial, sans-serif;
   overflow: auto;
 }
+
 
 .size{
   width: 1200px;
@@ -119,4 +122,19 @@
 .active {
   background-color: cornflowerblue;
   color: white;
+}
+
+
+.stock_cell{
+  background-color: #F8F4E1;
+  text-align: center;
+  border: 1px solid lightgrey;
+  padding: 10px;
+}
+
+.set_btn{
+  border: 1px solid lightgrey;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
 }

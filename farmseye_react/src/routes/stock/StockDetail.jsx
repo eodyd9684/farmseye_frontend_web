@@ -75,7 +75,7 @@ const StockDetail = ({stock, setStockInfo, stockInfo, setUserTrigger}) => {
           />
         </td>
         <td className={styles.stock_cell}>{updateInfo.regDate}</td>
-        <td className={styles.stock_cell}>
+        <td className={styles.set_btn}>
           <FarmseyeButton 
             title='확인' 
             size='small' 
@@ -98,7 +98,7 @@ const StockDetail = ({stock, setStockInfo, stockInfo, setUserTrigger}) => {
         <td className={styles.stock_cell}>{stock.stockWeight}</td>
         <td className={styles.stock_cell}>{stock.deathStock}</td>
         <td className={styles.stock_cell}>{stock.regDate}</td>
-        <td className={styles.stock_cell}>
+        <td className={styles.set_btn}>
           <FarmseyeButton 
             title='수정' 
             size='small' 
