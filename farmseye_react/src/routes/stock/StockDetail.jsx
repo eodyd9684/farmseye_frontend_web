@@ -15,7 +15,7 @@ const StockDetail = ({stock, setStockInfo, stockInfo, setUserTrigger}) => {
   const updateStock = () => {
     axios.put(`/api/stock/${stock.stockNum}`, updateInfo)
     .then(res => {
-      console.log(res.data)
+      alert('수정 되었습니다.')
       setIsShow(false)
       setUserTrigger({})
     }).catch(error => console.log(error))

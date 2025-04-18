@@ -25,6 +25,7 @@ const Admin = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
+  //user정보를 조회하는 api
   useEffect(() => {
     axios.get('/api/users')
       .then((res) => {
@@ -80,6 +81,7 @@ const Admin = () => {
     setCurrentPage(pageNum);
   };
 
+
   return (
     <div className={styles.container}>
       <div className={styles.size}>
@@ -109,13 +111,13 @@ const Admin = () => {
           <tbody>
             {currentItems.map((u, i) => (
               <AdminDetail
-                key={i}
-                i={startIdx + i + 1}
-                u={u}
-                userInfo={userInfo}
-                setUserInfo={setUserInfo}
-                setUserTrigger={setUserTrigger}
-              />
+              key={u.userId}
+              i={startIdx + i + 1}
+              u={u}
+              userInfo={userInfo}
+              setUserInfo={setUserInfo}
+              setUserTrigger={setUserTrigger}
+            />
             ))}
           </tbody>
         </table>

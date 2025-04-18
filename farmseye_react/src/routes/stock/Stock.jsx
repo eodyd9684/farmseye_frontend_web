@@ -32,7 +32,6 @@ const Stock = () => {
 
   //개체 조회
   useEffect(() => {
-    
     axiosInstance.get(`/stock`)
     .then(res => {
       setStockInfo(res.data)
@@ -68,7 +67,7 @@ const Stock = () => {
           </thead>
           {currentItems.map((stock, i) => (
             <StockDetail
-              key={i}
+              key={stock.stockNum}
               stock={stock}
               stockInfo={stockInfo}
               setStockInfo={setStockInfo}
