@@ -3,6 +3,7 @@ import styles from '../admin/AdminLayout.module.css';
 import FarmseyeButton from '../../common_component/FarmseyeButton';
 import FarmseyeInput from '../../common_component/FarmseyeInput';
 import axios from 'axios';
+import { axiosInstance } from '../../redux/axiosInstance';
 
 const AdminDetail = ({ u, userInfo, setUserInfo, i, setUserTrigger}) => {
   const [isShow, setIsShow] = useState(false);
@@ -13,7 +14,6 @@ const AdminDetail = ({ u, userInfo, setUserInfo, i, setUserTrigger}) => {
   const changeInfo = (field, value) => {
     setUserData(prev => ({ ...prev, [field]: value }));
   };
-console.log(userData)
   //버튼 클릭 시 삭제하는 함수
   const deleteUser = () => {
     axios.delete(`/api/users/${u.userId}`)
@@ -26,7 +26,7 @@ console.log(userData)
   };
   //버튼 클릭 시 수정하는 함수
   const saveUserInfo = () => {
-    axios.put(`/api/users/${u.userId}`, userData)
+    axiosInstance.put('/users', userData)
       .then(res => {
         alert('수정되었습니다.');
         const updatedList = userInfo.map(user =>

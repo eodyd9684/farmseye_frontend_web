@@ -2,6 +2,7 @@
   width: 100vw;
   background: #f7f9fa;
   overflow: auto;
+  height: calc(100vh - 100px);
 }
 
 .chart_title {
@@ -20,7 +21,7 @@
 .container{
   width: 1200px;
   min-width: 1200px;
-  margin: 10px auto;
+  margin: 0px auto;
   padding: 0px 20px;
 }
 

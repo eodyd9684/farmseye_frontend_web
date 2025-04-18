@@ -1,6 +1,6 @@
 .background {
   width: 100vw;
-  min-height: 100vh;
+  height: calc(100vh - 100px);
   background: #f7f9fb;
   overflow: auto;
 }

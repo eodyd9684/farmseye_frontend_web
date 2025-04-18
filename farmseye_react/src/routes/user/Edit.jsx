@@ -189,11 +189,10 @@ const EditUserInfo = () => {
       return;
     }
 
-    if(result === 0){
+    if(result === 1){
       axiosInstance
       .put('/users', userInfo)
       .then(res => {
-        console.log(res.data)
         alert('수정 완료')
         nav('/')
       })
