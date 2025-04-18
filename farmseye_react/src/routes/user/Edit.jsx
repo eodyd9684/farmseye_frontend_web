@@ -4,8 +4,13 @@ import axios from 'axios';
 import styles from './Edit.module.css'; 
 import { axiosInstance } from '../../redux/axiosInstance';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logoutReducer } from '../../redux/authSlice';
 
 const EditUserInfo = () => {
+  //탈퇴 시 로그아웃 기능
+  const dispatch = useDispatch();
+
   const nav = useNavigate();
   // 사용자 정보 상태 설정
   const [userInfo, setUserInfo] = useState({
@@ -126,8 +131,6 @@ const EditUserInfo = () => {
       }
     })
 
-
-
     //비밀번호 정규식
     //영어는 소문자나 대문자 + 숫자는 포함
     const regex_pw = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,20}$/;
@@ -164,6 +167,7 @@ const EditUserInfo = () => {
 
   //회원 정보 수정 제출
   const handleSubmit = (e) => {
+
     console.log(userInfo);
 
     if (changePw && userInfo.userPw !== userInfo.confirmPw) {
@@ -174,11 +178,23 @@ const EditUserInfo = () => {
       return;
     }
 
+    // 공란 확인
+    const newErrors = {};
+    if (!userInfo.userEmail.trim()) newErrors.userEmail = '이메일 : 필수 정보입니다.';
+    if (!userInfo.userTel.trim()) newErrors.userTel = '전화번호 : 필수 정보입니다.';
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrorMsg(newErrors);
+      return;
+    }
+
     const result = joinValiData();
 
     //중복 검사 확인
     const isEmailDuplicate = userList.some(user => user.userEmail === userInfo.userEmail && user.userId !== userInfo.userId);
     const isTelDuplicate = userList.some(user => user.userTel === userInfo.userTel && user.userId !== userInfo.userId);
+
+    
 
     const duplicateErrors = {};
     if (isEmailDuplicate) duplicateErrors.userEmail = '이미 존재하는 이메일입니다.';
@@ -189,7 +205,7 @@ const EditUserInfo = () => {
       return;
     }
 
-    if(result === 1){
+    if(result === 0){
       axiosInstance
       .put('/users', userInfo)
       .then(res => {
@@ -209,6 +225,8 @@ const EditUserInfo = () => {
     axiosInstance
       .delete('/users/deactivate')
       .then(res => {
+        //탈퇴 시 로그아웃
+        dispatch(logoutReducer());
         alert('회원 탈퇴가 완료되었습니다.');
         localStorage.removeItem('accessToken');
         nav('/');
