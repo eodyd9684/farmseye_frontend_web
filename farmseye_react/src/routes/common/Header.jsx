@@ -45,15 +45,6 @@ const Header = () => {
           <div className={styles.home_logo} onClick={e => nav('/')}>
             <img src="/images/farmsEye.png" alt="프로젝트 이미지" height='80px' width='80px' />
           </div>
-            
-  
-  
-  
-            
-            
-            
-            
-
 
         <div className={styles.content_list}>
           {
@@ -123,9 +114,6 @@ const Header = () => {
             </>
   
           }
-            
-  
-            
   
           </div>
   
