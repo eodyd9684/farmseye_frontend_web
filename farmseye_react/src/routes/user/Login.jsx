@@ -8,13 +8,13 @@ import styles from './Login.module.css'
 const Login = () => {
   //로그인 성공 시 진행되어야 하는 코드를 authSlice에 reducer로 등록했고 이를 사용을 위한 useDispatch() 선언
   const dispatch = useDispatch();
+
   //로그인 성공시 메인페이지로 이동하기 위한 useNavigate() 선언
   const nav = useNavigate();
 
   const [loginInfo, setLoginInfo] = useState({
     userId : '',
     userPw : '',
-    isUsing : '',
   });
 
   // 각 입력 필드의 에러 메시지 저장 상태
@@ -25,8 +25,9 @@ const Login = () => {
     axiosInstance.post('/user/login', loginInfo)
     .then(res => {
       const token = res.headers['authorization'];
+      const user = JSON.parse(res.config.data).userId
 
-      alert('로그인 성공');
+      alert(`${user}님 환영합니다!`);
       dispatch(loginReducer(token));
       nav('/');
     })
@@ -50,7 +51,7 @@ const Login = () => {
     }
   };
 
-    // 폼 제출 시 실행되는 함수
+    // 제출 시 실행되는 함수
     const handleSubmit = (e) => {
       e.preventDefault(); // 기본 제출 동작 차단
   
@@ -78,7 +79,7 @@ const Login = () => {
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={`${styles.inputBox} ${errors.userId && styles.error}`}>
-          <i class="bi bi-person"></i>
+          <i className="bi bi-person"></i>
           <input
             type="text"
             placeholder="아이디"
@@ -89,7 +90,7 @@ const Login = () => {
         {errors.userId && <p className={styles.errorMsg}>{errors.userId}</p>}
 
         <div className={`${styles.inputBox} ${errors.userPw && styles.error}`}>
-          <i class="bi bi-lock"></i>
+          <i className="bi bi-lock"></i>
           <input
             type="password"
             placeholder="비밀번호"

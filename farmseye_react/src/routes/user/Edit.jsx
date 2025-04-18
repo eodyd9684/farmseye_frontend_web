@@ -126,11 +126,14 @@ const EditUserInfo = () => {
       }
     })
 
+
+
     //비밀번호 정규식
     //영어는 소문자나 대문자 + 숫자는 포함
     const regex_pw = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,20}$/;
 
-    if (!regex_pw.test(userInfo.userPw)) {
+    //비밀번호 변경창이 오픈되었을 때만 정규식을 진행하겠다
+    if (changePw && !regex_pw.test(userInfo.userPw)) {
       result = 1;
 
       setErrorMsg((state) => {

@@ -191,7 +191,7 @@ const Join = () => {
         {/* 아이디 / 비밀번호 / 이메일 */}
         <div className={styles.inputGroup}>
           <div className={`${styles.inputLine} ${errorMsg.userId && styles.error}`}>
-            <i class="bi bi-person"></i>
+            <i className="bi bi-person"></i>
             <input
               type="text"
               placeholder="아이디"
@@ -203,7 +203,7 @@ const Join = () => {
           {errorMsg.userId && <p className={styles.errorMsg}>{errorMsg.userId}</p>}
 
           <div className={`${styles.inputLine} ${errorMsg.userPw && styles.error}`}>
-            <i class="bi bi-lock"></i>
+            <i className="bi bi-lock"></i>
             <input
               type="password"
               placeholder="비밀번호 (영어 대/소문자 + 숫자 포함)"
@@ -214,7 +214,7 @@ const Join = () => {
           {errorMsg.userPw && <p className={styles.errorMsg}>{errorMsg.userPw}</p>}
 
           <div className={`${styles.inputLine} ${errorMsg.userEmail && styles.error}`}>
-            <i class="bi bi-envelope"></i>
+            <i className="bi bi-envelope"></i>
             <input
               type="email"
               placeholder="이메일 (비밀번호 찾기 등 본인 확인용)"
@@ -229,7 +229,7 @@ const Join = () => {
         {/* 이름 / 주소 / 전화번호 */}
         <div className={styles.inputGroup}>
           <div className={`${styles.inputLine} ${errorMsg.userName && styles.error}`}>
-            <i class="bi bi-person"></i>
+            <i className="bi bi-person"></i>
             <input
               type="text"
               placeholder="이름"
@@ -240,7 +240,7 @@ const Join = () => {
           {errorMsg.userName && <p className={styles.errorMsg}>{errorMsg.userName}</p>}
 
           <div className={`${styles.inputLine} ${errorMsg.userAddr && styles.error}`}>
-            <i class="bi bi-house-door"></i>
+            <i className="bi bi-house-door"></i>
             <input
               type="text"
               placeholder="주소"
@@ -251,7 +251,7 @@ const Join = () => {
           {errorMsg.userAddr && <p className={styles.errorMsg}>{errorMsg.userAddr}</p>}
 
           <div className={`${styles.inputLine} ${errorMsg.userTel && styles.error}`}>
-            <i class="bi bi-telephone"></i>
+            <i className="bi bi-telephone"></i>
             <input
               type="tel"
               placeholder="전화번호 입력 ( - 없이)"
