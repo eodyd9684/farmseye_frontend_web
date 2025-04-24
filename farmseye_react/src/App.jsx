@@ -27,6 +27,8 @@ import StockRegistration from './routes/stock/StockRegistration'
 import ProtectedAdminRoute from './routes/user/ProtectedAdminRoute'
 import ProtectedRoute from './routes/user/ProtectedRoute'
 import StockLayout from './routes/stock/StockLayout'
+import MjpegStream from './routes/stock/MjpegStream'
+import MainController from './components/MainController'
 
 
 function App() {
@@ -50,6 +52,7 @@ function App() {
             <Route path='tempWeekChart' element={ <TempWeekChart/> } />
             <Route path='humiWeekChart' element={ <HumiWeekChart/> } />
             <Route path='illumiWeekChart' element={ <IllumiWeekChart/> } />
+            <Route path='mainController' element={ <MainController/> } />
           </Route>
   
           {/* 회원 정보 수정 및 관리, 회원별 데이터 확인 페이지 */}
@@ -69,6 +72,7 @@ function App() {
           <Route path='/stock' element={<ProtectedRoute><StockLayout /></ProtectedRoute>}>
             <Route path='' element={<Stock/>}/>
             <Route path='join' element={<StockRegistration/>}/>
+            <Route path='stream' element={<MjpegStream />}/>
           </Route>
   
         </Routes>

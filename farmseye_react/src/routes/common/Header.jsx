@@ -43,7 +43,7 @@ const Header = () => {
         <div className={styles.header}>
   
           <div className={styles.home_logo} onClick={e => nav('/')}>
-            <img src="/images/farmsEye.png" alt="프로젝트 이미지" height='80px' width='80px' />
+            <img src="/images/farmseyelogo.png" alt="프로젝트 이미지" height='80px' width='80px' />
           </div>
             
   
@@ -79,7 +79,7 @@ const Header = () => {
               <ul 
                 className={styles.menu} 
               >
-                <li onClick={() => nav('/main')}>홈</li>
+                <li onClick={() => nav('/')}>홈</li>
               </ul>
 
               <ul 
@@ -103,8 +103,26 @@ const Header = () => {
                 onMouseEnter={() => handleMouseEnter('개체 관리')} 
                 onMouseLeave={handleMouseLeave}
               >
-                <li onClick={e => nav('/stock')}>개체 관리</li>
-                
+                <li>개체 관리</li>
+                {activeMenu === '개체 관리' && (
+                  <div className={styles.dropdown}>
+                    <li onClick={e => nav('/stock')} >개체 관리</li>
+                    <li onClick={e => nav('/stock/stream')} >CCTV</li>
+                  </div>
+                )}
+              </ul>
+
+              <ul 
+                className={styles.menu} 
+                onMouseEnter={() => handleMouseEnter('시설 관리')} 
+                onMouseLeave={handleMouseLeave}
+              >
+                <li>시설 관리</li>
+                {activeMenu === '시설 관리' && (
+                  <div className={styles.dropdown}>
+                    <li onClick={e => nav('/main/mainController')} >제어패널</li>
+                  </div>
+                )}
               </ul>
                 
 
