@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 function ControlPanel() {
   const [servoAngle, setServoAngle] = useState(0);
   const [ledState, setLedState] = useState('off');
-  const [blinkInterval, setBlinkInterval] = useState(0.5);
   const [status, setStatus] = useState('');
 
   const controlServo = async () => {
