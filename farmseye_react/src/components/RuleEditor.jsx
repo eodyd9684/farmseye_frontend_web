@@ -150,25 +150,7 @@ function RuleEditor() {
                   >
                     <option value="on">켜기</option>
                     <option value="off">끄기</option>
-                    <option value="blink">깜빡이기</option>
                   </select>
-                  
-                  {rule.actionValue === 'blink' && (
-                    <div className="blink-interval">
-                      <label>
-                        깜빡임 간격:
-                        <input
-                          type="range"
-                          min="0.1"
-                          max="2"
-                          step="0.1"
-                          value={rule.blinkInterval}
-                          onChange={(e) => updateRule(rule.id, 'blinkInterval', parseFloat(e.target.value))}
-                        />
-                        <span>{rule.blinkInterval}초</span>
-                      </label>
-                    </div>
-                  )}
                 </div>
               )}
             </div>

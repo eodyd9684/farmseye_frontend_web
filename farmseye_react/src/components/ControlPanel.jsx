@@ -1,4 +1,5 @@
 // src/components/ControlPanel.js
+import axios from 'axios';
 import React, { useState } from 'react';
 
 function ControlPanel() {
@@ -33,24 +34,14 @@ function ControlPanel() {
       setStatus('LED 제어 중...');
       const requestBody = { state };
       
-      if (state === 'blink') {
-        requestBody.interval = blinkInterval;
-      }
       
-      const response = await fetch('http://192.168.30.236:5000/api/control/led', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
-      
-      if (!response.ok) {
-        throw new Error('LED 제어 중 오류가 발생했습니다.');
-      }
-      
-      setLedState(state);
-      setStatus('LED가 성공적으로 제어되었습니다.');
+      axios.post('http://192.168.30.236:5000/api/control/led', {'state' : state})
+      .then(res => {
+        setLedState(state);
+        setStatus('LED가 성공적으로 제어되었습니다.');
+      })
+      .catch(e => console.log(e));
+
     } catch (error) {
       setStatus(`오류: ${error.message}`);
     }
@@ -93,31 +84,9 @@ function ControlPanel() {
           >
             끄기
           </button>
-          <button 
-            className={ledState === 'blink' ? 'active' : ''} 
-            onClick={() => controlLed('blink')}
-          >
-            깜빡임
-          </button>
+          
         </div>
         
-        {ledState === 'blink' && (
-          <div className="control-row">
-            <label>
-              깜빡임 간격: 
-              <input 
-                type="range" 
-                min="0.1" 
-                max="2" 
-                step="0.1" 
-                value={blinkInterval} 
-                onChange={(e) => setBlinkInterval(parseFloat(e.target.value))} 
-              />
-              {blinkInterval}초
-            </label>
-            <button onClick={() => controlLed('blink')}>적용</button>
-          </div>
-        )}
       </div>
       
       {status && <p className="status-message">{status}</p>}

@@ -6,6 +6,7 @@ import './MainController.css';
 import SensorData from '../components/SensorData';
 import ControlPanel from '../components/ControlPanel';
 import RuleEditor from '../components/RuleEditor';
+import axios from 'axios';
 
 function MainController() {
   const [sensorData, setSensorData] = useState(null);
@@ -29,6 +30,26 @@ function MainController() {
       setLoading(false);
     }
   };
+
+  // const fetchSensorData1 = async () => {
+  //   try {
+  //     axios.get('http://192.168.30.236:5000/api/sensor-data')
+  //     .then(res => {
+  //       const data = res.data;
+  //       setSensorData(data);
+  //       setError(null);
+  //     })
+  //     .catch(e => {
+  //       console.log(e);
+  //       setError(e.message);
+  //     });
+
+  //   } catch (err) {
+  //     setError(err.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   // 자동화 규칙 체크 및 적용
   const checkRules = async () => {
