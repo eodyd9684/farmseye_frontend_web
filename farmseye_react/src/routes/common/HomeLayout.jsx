@@ -51,7 +51,7 @@ const HomeLayout = () => {
 
       <div className={styles.footer}>
         <div className={styles.footer_contact}>
-          <img src="/images/icon.png" />
+          <img src="/images/logo.png" />
 
           <div className={styles.contact_icon}>
             <i class="bi bi-twitter-x" ></i>
